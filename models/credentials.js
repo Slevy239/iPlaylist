@@ -22,5 +22,5 @@ module.exports = function (sequelize, Sequelize) {
             defaultValue: 'active'
         }
     });
-  return userCred;
-        };
+    return userCred;
+};
