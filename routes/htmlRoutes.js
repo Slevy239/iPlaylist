@@ -1,6 +1,11 @@
-var db = require("../models");
+const db = require("../models");
+const path = require("path");
 
 module.exports = function(app) {
+  //Load the signup page:
+  
+  //Load login page, this will do Passport authorization:
+  
   // Load index page
   app.get("/", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {

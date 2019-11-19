@@ -35,7 +35,6 @@ module.exports = function (passport, user) {
                         //Change this to be what you get from the front end;
                         lastname: req.body.lastname
                     };
-                    //Does this need to refer to the model?
                     User.create(data).then(function (newUser, created) {
                         if (!newUser) {
                             return done(null, false);

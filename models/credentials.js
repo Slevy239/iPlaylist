@@ -1,12 +1,9 @@
 module.exports = function (sequelize, Sequelize) {
     var userCred = sequelize.define("userCred", {
-        userName: {
-            type: Sequelize.TEXT, allowNull: false, validate: {
-                len: [4, 50]
-            }
-        },
         email: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
             validate: {
                 isEmail: true
             }
@@ -22,5 +19,5 @@ module.exports = function (sequelize, Sequelize) {
             defaultValue: 'active'
         }
     });
-  return userCred;
-        };
+    return userCred;
+};
