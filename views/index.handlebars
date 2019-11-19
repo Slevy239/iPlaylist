@@ -1,52 +1,79 @@
-<div class="container">
-  <div class="jumbotron text center">
-    <h1>iStack</h1>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="row">
-      <h2>Seach input</h2>
-      <form action="/">
-        <input type="text">
-      </form>
+    <div class="container text-center">
+        <div class="jumbotron">
+            <h1><i class="fab fa-searchengin"></i> iStack <i class="fab fa-searchengin"></i></h1>
+            <h3>Search Stack<strong>Overflow</strong></h3>
+        </div>
     </div>
-  </div>
-</div>
 
-{{!-- new entry modal --}}
-<div class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">New Entry</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" &times;></span>
-        </button>
-      </div>
-      <div class="moda-body">
-        <form action="form-group">
-          <label for="NewEntry">New Entry</label>
-          <small id="help" class="form-text text-muted">Enter a new Seach for StackOverflow</small>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h2>Seach input:</h2>
+                <br>
+                <form action="/" method="POST" id="submit">
+                    <input type="text" name="question" class="form-control">
+                    <br>
+                    <button type="submit" class="btn btn-primary" id="text-enter-button">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+    <br><br>
 
-{{!-- author  --}}
+    <div class="container">
 
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'first')">first</button>
+            <button class="tablinks" onclick="openTab(event, 'second')">second</button>
+            <button class="tablinks" onclick="openTab(event, 'third')">third</button>
+        </div>
 
-<div class="container">
-  <div class="row">
-    <div id="content">
-      {{#results}}
+        <!-- Tab content -->
+        <div id="first" class="tabcontent text-center">
+            <h3>first</h3>
+            <p>Content 1.</p>
+        </div>
+
+        <div id="second" class="tabcontent text-center">
+            <h3>second</h3>
+            <p>content 2.</p>
+        </div>
+
+        <div id="third" class="tabcontent text-center">
+            <h3>third</h3>
+            <p>content 3.</p>
+        </div>
     </div>
-  </div>
 
-</div>
+    <!-- Modal -->
+
+    <div class="modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <!-- content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- title -->
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- body -->
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <!-- footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
