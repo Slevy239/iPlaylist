@@ -1,25 +1,22 @@
 $(function(){
     //Define some variables:
-    let signUp = $("form.signup");
-    let email = $("input#emailInput");
-    let password = $("input#pWordInput");
+    let email = $("#emailInput");
+    let password = $("#pWordInput");
 
-    signUp.on('click', function(event){
+    $("#subBtn").on('click', function(event){
         event.preventDefault();
         console.log("Signed up!");
         let createUser = {
             email: email.val().trim(),
-            passWord: password.val().trim()
+            password: password.val().trim()
         };
 
-        if(!createUser.email || !createUser.passWord) {
-            //May want to do a modal instead of an alert
-            alert("Please enter a username and password.");
+        if (!createUser.email || !createUser.password) {
             return;
         }
 
         //Call the sign in function:
-        signUpUser(createUser.email, createUser.passWord);
+        signUpUser(createUser.email, createUser.password);
         //Clear out the inputs:
         email.val("");
         password.val("");
@@ -31,6 +28,7 @@ $(function(){
             email: email,       
             password: password
         }).then(function(data){
+            console.log(data);
             //Double check that this is the right redirect location:
             window.location.replace("/project2");
         }).catch(handleLoginErr);
