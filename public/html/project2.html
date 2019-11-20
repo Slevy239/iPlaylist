@@ -38,7 +38,7 @@
 
                 <h2>Seach input:</h2>
 
-                <form action="/api/spotify/search" method="GET" id="submit">
+                <form>
                     <input type="text" name="song" class="form-control" id="search-song" placeholder="da fuq">
                     <br>
                     <button type="submit" class="btn btn-primary" id="text-enter-button">Submit</button>
@@ -102,8 +102,16 @@
 </body>
 
 <script>
+$("#text-enter-button").on("click", function (event) {
+    event.preventDefault();
 
-        
+        var id = $("#search-song");
+        $.ajax("/api/spotify/search/" + id, {
+            type: "GET",
+    
+        })
+    });
+    
 </script>
 
 </script>
