@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iStack</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/tabStyle.css">
+    <script src="https://kit.fontawesome.com/2f421fef00.js" crossorigin="anonymous"></script>
+    <script src="../js/tab.js"></script>
+    <script src="../../routes/apiRoutes.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+
+
+    <div class="container text-center">
+        <div class="jumbotron">
+            <h1><i class="fas fa-music"></i> iPlaylist <i class="fas fa-music"></i></h1>
+            <h3>Create a damn <strong>Playlist</strong></h3>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 text-center">
+
+                <h2>Seach input:</h2>
+
+                <form action="/api/spotify/search" method="GET" id="submit">
+                    <input type="text" name="song" class="form-control" id="search-song" placeholder="da fuq">
+                    <br>
+                    <button type="submit" class="btn btn-primary" id="text-enter-button">Submit</button>
+                </form>
+
+            </div>
+            <div class="col-4"></div>
+
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="container">
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'first')">Public</button>
+            <button class="tablinks" onclick="openTab(event, 'second')">Activity 1</button>
+            <button class="tablinks" onclick="openTab(event, 'third')">Activity 2</button>
+
+
+            <div id="dropdown">
+                <h9 style="float: right;">Sort by:
+
+                    <select>
+                        <option value="data">Data</option>
+                        <option value="author">Author</option>
+                    </select>
+                </h9>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Tab content -->
+    <div id="first" class="tabcontent text-center">
+        <p id="playlist">Your Posts</p>
+        <p id="author">Content 1.</p>
+        <!-- <iframe src="https://open.spotify.com/embed/album/2FHEsPCnUBTzKjJRDfkW0z" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
+        <p id="tag"></p>
+    </div>
+
+    <div id="second" class="tabcontent text-center">
+        <p id="playlist">All Posts</p>
+        <p id="author">content 2.</p>
+        <p id="tag"></p>
+    </div>
+
+    <div id="third" class="tabcontent text-center">
+        <p id="playlist">All Posts</p>
+        <p id="author">content 2.</p>
+        <p id="tag"></p>
+    </div>
+
+
+
+
+
+
+</body>
+
+<script>
+
+        
+</script>
+
+</script>
+
+</html>
