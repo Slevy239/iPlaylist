@@ -11,7 +11,8 @@ passport.use(new LocalStrategy(
             where: {
                 email: email
             }
-        }).then(function (user) {
+        }).then(function (err, user) {
+            if (err) { return done(err); }
             if (!user) {
                 return done(null, false, {
                     message: 'Incorrect email'

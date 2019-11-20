@@ -5,7 +5,6 @@ $(function(){
 
     $("#subBtn").on('click', function(event){
         event.preventDefault();
-        console.log("Signed up!");
         let createUser = {
             email: email.val().trim(),
             password: password.val().trim()
