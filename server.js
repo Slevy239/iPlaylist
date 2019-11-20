@@ -2,15 +2,11 @@ const env = require("dotenv").config();
 const express = require("express");
 const exphbs = require("express-handlebars");
 const session = require('express-session');
-const passport = require('passport');
-const Strategy = require('passport-local').Strategy;
+const passport = require('./config/passport/passport');
 
 const db = require("./models");
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-//Passport strategy:
-require('./config/passport/passport.js')(passport, db.userCred);
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
