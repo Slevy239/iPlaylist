@@ -7,8 +7,8 @@ module.exports = function (app) {
     db.userCred.create({
       email: req.body.email,
       password: req.body.password
-    }).then(function () {
-      res.redirect("/login");
+    }).then(function (data) {
+      res.json(data);
     }).catch(function (err) {
       console.log(err);
       res.status(401).json(err);
@@ -18,9 +18,7 @@ module.exports = function (app) {
   //Route for user login:
   app.post('/api/login', passport.authenticate("local"), function(req, res){
     res.json(req.user);
-    res.redirect("/home");
   });
-
 
   // Route for logging user out
   app.get("/logout", function(req, res) {

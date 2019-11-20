@@ -14,6 +14,9 @@ module.exports = function(app) {
   });
   //Load login page, this will do Passport authorization:
   app.get('/login', function(req, res){
+    if (req.user) {
+      res.redirect('/home');
+    }
     res.sendFile(path.join(__dirname, '../public/landing.html'));
   });
   //Load home page: 
