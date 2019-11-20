@@ -11,16 +11,16 @@ iStack will be a programmer notebook/stack overflow consultation app.
 
 Users will:
 
-1. Login to the app using Google authorization
+1. Login to the app using Local authorization
 2. Their user info gets saved in a database
-3. First time they log in they see a brief intro screen explaining app
+3. First time they log in they see a brief intro screen explaining app - Need to add intro to signup page
 4. Advance then to first entry screen - they just see the entry box
 5. They then either type or SPEAK an entry and add tags
-6. This gets saved in a separate database with a unqiue id that links them to the user info db  
+6. This gets saved in a separate database with a unqiue id that links them to the user info db, this database will hold all info regarding songs. 
 
 Things we need:
 
-1. User authorization via google - Jack
+1. User authorization via google - Jack - Done.
 2. Use cheerio to parse and display results - Phil
 3. Implement tags and addition other info in database - Jack
 4. If answer exists in DB and new search yields same answer, say hey check out other post & answer
