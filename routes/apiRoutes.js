@@ -2,12 +2,13 @@ var db = require("../models");
 
 module.exports = function (app) {
   // Get all examples
-  app.get("/api/examples", function (req, res) {
+  app.get("/api/spotify/search/:id", function (req, res) {
 
+    let id = req.params.id;
 
     spotify
 
-      .search({ type: 'track', query: searchStrSpotify })
+      .search({ type: 'track', query: id })
 
       .then(function (response) {
 
