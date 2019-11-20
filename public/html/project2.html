@@ -10,11 +10,13 @@
     <link rel="stylesheet" href="../styles/tabStyle.css">
     <script src="https://kit.fontawesome.com/2f421fef00.js" crossorigin="anonymous"></script>
     <script src="../js/tab.js"></script>
+    <script src="../../routes/apiRoutes.js"></script>
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -23,8 +25,8 @@
 
     <div class="container text-center">
         <div class="jumbotron">
-            <h1><i class="fab fa-searchengin"></i> iStack <i class="fab fa-searchengin"></i></h1>
-            <h3>Search Stack<strong>Overflow</strong></h3>
+            <h1><i class="fas fa-music"></i> iPlaylist <i class="fas fa-music"></i></h1>
+            <h3>Create a damn <strong>Playlist</strong></h3>
         </div>
     </div>
 
@@ -35,17 +37,13 @@
             <div class="col-4 text-center">
 
                 <h2>Seach input:</h2>
-                <!-- <br> -->
 
-                <form id="submit">
-                    <div class="text-center">
-
-                        <input type="text" name="question" class="form-control" id="input">
-                        <br>
-                        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-outline-primary"
-                            id="btn">Submit</button>
-                    </div>
+                <form action="/api/spotify/search" method="GET" id="submit">
+                    <input type="text" name="song" class="form-control" id="search-song" placeholder="da fuq">
+                    <br>
+                    <button type="submit" class="btn btn-primary" id="text-enter-button">Submit</button>
                 </form>
+
             </div>
             <div class="col-4"></div>
 
@@ -58,8 +56,10 @@
     <div class="container">
         <!-- Tab links -->
         <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'first')">first</button>
-            <button class="tablinks" onclick="openTab(event, 'second')">second</button>
+            <button class="tablinks" onclick="openTab(event, 'first')">Public</button>
+            <button class="tablinks" onclick="openTab(event, 'second')">Activity 1</button>
+            <button class="tablinks" onclick="openTab(event, 'third')">Activity 2</button>
+
 
             <div id="dropdown">
                 <h9 style="float: right;">Sort by:
@@ -76,54 +76,35 @@
 
     <!-- Tab content -->
     <div id="first" class="tabcontent text-center">
-        <p id="answer">Your Posts</p>
+        <p id="playlist">Your Posts</p>
         <p id="author">Content 1.</p>
+        <!-- <iframe src="https://open.spotify.com/embed/album/2FHEsPCnUBTzKjJRDfkW0z" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
         <p id="tag"></p>
     </div>
 
     <div id="second" class="tabcontent text-center">
-        <p id="answer">All Posts</p>
+        <p id="playlist">All Posts</p>
+        <p id="author">content 2.</p>
+        <p id="tag"></p>
+    </div>
+
+    <div id="third" class="tabcontent text-center">
+        <p id="playlist">All Posts</p>
         <p id="author">content 2.</p>
         <p id="tag"></p>
     </div>
 
 
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 </body>
- 
+
 <script>
 
-
-    $(document).ready(function ($) {
-        $("#btn").on("click", function (event) {
-            event.preventDefault();
-
-
-
-            $("#myModal").modal('show');
-        })
-    })
+        
+</script>
 
 </script>
 
