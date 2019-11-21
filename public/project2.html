@@ -30,7 +30,7 @@
             <div class="col-4"></div>
             <div class="col-4 text-center">
 
-                <h2>Seach input:</h2>
+                <h2>Search input:</h2>
                 <!-- <br> -->
 
                 <form id="submit">
@@ -100,7 +100,7 @@
         </div>
     </div>
 
-        <!-- <div id="second" class="tabcontent text-center">
+    <!-- <div id="second" class="tabcontent text-center">
             <p id="answer">All Posts</p>
             <p id="author">content 2.</p>
             <div class="vote">
@@ -113,17 +113,32 @@
 
 
 </body>
+
+<script src="../public/js/spotify.js"></script>
+
 <script>
 
-    function toggleVote(x) {
-        const buttonDiv = $("#newBtn");
-        const toggle = x.classList.toggle("fa-thumbs-down");
-        const buttonHtml = "<button type='button' class='btn btn-success glyphicon glyphicon-thumbs-up'>" +
-            "<i onclick='toggleVote(this)' class='fa fa-thumbs-up'></i>" + "</button";
-console.log("yo")
-        buttonDiv.append(buttonHtml)
-        // this.classList.toggle("maClasse");
-    };
+
+
+    $("#submitbtn").on("click", function (event) {
+        event.preventDefault();
+
+        // $("#modal").modal('show');
+        $("#results-modal").modal('show');
+
+        function toggleVote(x) {
+            const buttonDiv = $("#newBtn");
+            const toggle = x.classList.toggle("fa-thumbs-down");
+            const buttonHtml = "<button type='button' class='btn btn-success glyphicon glyphicon-thumbs-up'>" +
+                "<i onclick='toggleVote(this)' class='fa fa-thumbs-up'></i>" + "</button";
+            console.log("yo")
+            buttonDiv.append(buttonHtml)
+            // this.classList.toggle("maClasse");
+        };
+
+    });
+
+
 
 
 </script>
