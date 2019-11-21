@@ -14,8 +14,10 @@ module.exports = function (sequelize, Sequelize) {
             type: Sequelize.STRING, 
             allowNull: false
         },
-        last_login: {
-            type: Sequelize.DATE
+        username: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            unique: true,
         },
         status: {
             type: Sequelize.ENUM('active', 'inactive'),
