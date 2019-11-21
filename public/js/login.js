@@ -2,6 +2,7 @@ $(function () {
     //On submit, send over the email address and password supplied by the user and start authorization cascade:
     $("#subBtn").on('click', function (event) {
         event.preventDefault();
+        console.log("Clicked");
         let email = $("#email").val().trim();
         let password = $("#password").val().trim();
         let user =
