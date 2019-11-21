@@ -10,18 +10,18 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/home");
     }
-    res.sendFile(path.join(__dirname, '../public/signup.html'));
+    res.sendFile(path.join(__dirname, '../public/html/signup.html'));
   });
   //Load login page, this will do Passport authorization:
   app.get('/login', function(req, res){
     if (req.user) {
       res.redirect('/home');
     }
-    res.sendFile(path.join(__dirname, '../public/landing.html'));
+    res.sendFile(path.join(__dirname, '../public/html/landing.html'));
   });
   //Load home page: 
   app.get('/home', isAuthenticated, function(req, res){
-    res.sendFile(path.join(__dirname, '../public/project2.html'));
+    res.sendFile(path.join(__dirname, '../public/html/project2.html'));
   });
 
 };
