@@ -1,0 +1,21 @@
+{
+  "development": {
+    "username": "root",
+    "password": "",
+    "database": "Stack_DB",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "dM*4V7c^pK",
+    "database": "testdb",
+    "host": "localhost",
+    "dialect": "mysql",
+    "logging": false
+  },
+  "production": {
+    "use_env_variable": "JAWSDB_URL",
+    "dialect": "mysql"
+  }
+}
