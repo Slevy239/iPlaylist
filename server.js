@@ -3,7 +3,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const session = require('express-session');
 const passport = require('./config/passport/passport');
-const path = require("path")
+const path = require("path");
 
 const db = require("./models");
 const app = express();
