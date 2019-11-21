@@ -17,7 +17,7 @@ $(function () {
             email: email,
             password: password
         }).then(function() {
-            window.location.replace("/project2.html");
+            window.location.replace("../html/project2.html");
         }).catch(handleLoginErr);
     };
     //Error handling

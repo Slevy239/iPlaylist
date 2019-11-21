@@ -22,39 +22,15 @@
   "homepage": "https://github.com/Slevy239/iPlaylist#readme",
   "dependencies": {
     "bcrypt": "^3.0.7",
-<<<<<<< HEAD
-    "cheerio": "^1.0.0-rc.3",
-    "dotenv": "^8.0.0",
-    "express": "^4.17.0",
-    "express-handlebars": "^3.1.0",
-    "express-session": "^1.17.0",
-    "morgan": "^1.9.1",
-    "mysql2": "^1.6.5",
-    "node-spotify-api": "^1.1.1",
-    "request": "^2.88.0",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "sequelize": "^5.8.6"
-  },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
-    "cross-env": "^5.2.0",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "mocha": "^6.1.4",
-    "prettier": "^1.17.1"
-=======
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "express-session": "^1.17.0",
     "morgan": "^1.9.1",
     "mysql2": "^2.0.1",
+    "node-spotify-api": "^1.1.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "sequelize": "^5.21.2"
->>>>>>> 50f808f31daa05e294f448d636f1e6589884d7b9
   }
 }

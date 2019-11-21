@@ -29,7 +29,7 @@ $(function(){
         }).then(function(data){
             console.log(data);
             //Double check that this is the right redirect location:
-            window.location.replace("/project2.html");
+            window.location.replace("../html/project2.html");
         }).catch(handleLoginErr);
     }
 
