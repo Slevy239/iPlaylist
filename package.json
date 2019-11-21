@@ -1,28 +1,17 @@
 {
-  "name": "iplaylist",
+  "name": "node-handlebars-boilerplate",
   "version": "1.0.0",
-  "description": "# Authors: Same Levy, Phil Swartz, Jack Ryan # 2019",
-  "main": "keys.js",
-  "directories": {
-    "test": "test"
-  },
+  "description": "Project 2 Starter",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "eslint --quiet .",
+    "fix": "eslint --fix .",
+    "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Slevy239/iPlaylist.git"
-  },
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Slevy239/iPlaylist/issues"
-  },
-  "homepage": "https://github.com/Slevy239/iPlaylist#readme",
   "dependencies": {
     "bcrypt": "^3.0.7",
-<<<<<<< HEAD
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.0.0",
     "express": "^4.17.0",
@@ -31,9 +20,9 @@
     "morgan": "^1.9.1",
     "mysql2": "^1.6.5",
     "node-spotify-api": "^1.1.1",
-    "request": "^2.88.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "request": "^2.88.0",
     "sequelize": "^5.8.6"
   },
   "devDependencies": {
@@ -45,16 +34,5 @@
     "eslint-plugin-prettier": "^3.1.0",
     "mocha": "^6.1.4",
     "prettier": "^1.17.1"
-=======
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^3.1.0",
-    "express-session": "^1.17.0",
-    "morgan": "^1.9.1",
-    "mysql2": "^2.0.1",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "sequelize": "^5.21.2"
->>>>>>> 50f808f31daa05e294f448d636f1e6589884d7b9
   }
 }
