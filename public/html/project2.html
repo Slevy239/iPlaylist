@@ -14,7 +14,7 @@
 <body>
     <div class="container text-center">
         <div class="jumbotron">
-            <h1><i class="fab fa-searchengin"></i> i<strong>Playlist</strong> <i class="fab fa-searchengin"></i></h1>
+            <h1><i class="fas fa-music"></i> i<strong>Playlist</strong> <i class="fas fa-music"></i></h1>
             <h3>Create a commuminty based Playlist</h3>
         </div>
     </div>
@@ -37,7 +37,7 @@
 
                         <button class="btn btn-primary" type="button" data-toggle="modal" data-target="results-modal"
                             aria-hidden="true" name="action" id="submitbtn">Submit
-                            <!-- <i class="fas fa-mug-hot"></i> -->
+                            <i class="fas fa-mug-hot"></i>
                         </button>
                     </div>
                 </form>
@@ -55,8 +55,8 @@
 
 
         <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'first')">first</button>
-            <button class="tablinks" onclick="openTab(event, 'second')">second</button>
+            <button class="tablinks" onclick="openTab(event, 'first')">Community</button>
+            <button class="tablinks" onclick="openTab(event, 'second')">Personal</button>
 
             <div id="dropdown">
                 <h9 style="float: right;">Sort by:
@@ -73,14 +73,7 @@
 
     <!-- Tab content -->
     <div id="first" class="tabcontent text-center">
-        <p id="answer">Your Posts</p>
-        <p id="author">Content 1.</p>
-        <p id="tag"></p>
-        <button type="button" class="btn btn-success glyphicon glyphicon-thumbs-up">
-            <i onclick="classList.toggle('fa-thumbs-down')" class="fa fa-thumbs-up"></i></button>
-
-
-        </button>
+       
     </div>
 
 
@@ -88,60 +81,74 @@
     <div id="second" class="tabcontent text-center">
         <div class="songs">
             <div id="newBtn"></div>
-            <p id="songName"></p>
-            <p id="artistName"></p>
-            <p id="albumImg"></p>
-            <p id="tags"></p>
+            <div id="songName"></div>
+            <div id="artistName"></div>
+            <div id="albumImg"></div>
+            <div id="tags"></div>
 
         </div>
     </div>
 
-    <!-- <div id="second" class="tabcontent text-center">
-            <p id="answer">All Posts</p>
-            <p id="author">content 2.</p>
-            <div class="vote">
-            </div>
+</body>
 
-            <p id="tag"></p>
+<!-- <script src="../js/spotify.js"></script> -->
 
+<script src="https://kit.fontawesome.com/2f421fef00.js" crossorigin="anonymous"></script>
 
-        </div> -->
-
-    </body>
-    
-    <!-- <script src="../js/spotify.js"></script> -->
-    
-    <script src="https://kit.fontawesome.com/2f421fef00.js" crossorigin="anonymous"></script>
-    
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="../js/tab.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+<script src="../js/tab.js"></script>
 <script>
 
 
+    var songNum = 0;
 
-    $("#submitbtn").on("click", function (event) {
-        event.preventDefault();
+    const songs = [
+        {
+            songTitle: "song1",
+            artist: "artist1",
+        },
+        {
+            songTitle: "song2",
+            artist: "artist2"
+        },
+        {
+            songTitle: "song3",
+            artist: "3artist"
+        },
+        {
+            songTitle: "song4",
+            artist: "artist4"
+        }
+    ]
 
-        // $("#modal").modal('show');
-        $("#results-modal").modal('show');
-    });
 
-const songs = ["", ""]
-        function dynamicBtn() {
-            for (let i = 0; i < songs.length; i++) {
-                const button = songs[i];
-            const buttonHtml = "<button type='button' class='btn btn-success glyphicon glyphicon-thumbs-up'>" +
-                "<i onclick='toggleVote(this)' class='fa fa-thumbs-up'></i>" + "</button";
-                $("#newBtn").html(buttonHtml)
-            }
-            // this.classList.toggle("maClasse");
-            // const buttonDiv = $("#newBtn");
-            // const toggle = x.classList.toggle("fa-thumbs-down");
-          
-            // buttonDiv.append(buttonHtml)
-        };
-        dynamicBtn();
+
+    function dynamicBtn() {
+
+    const title = songs[songNum].songTitle;
+    const artist = songs[songNum].artist;
+    const thumb = "<i onclick='classList.toggle('fa-thumbs-down')' class='fa fa-thumbs-up'></i>"
+    const buttonHtml = "<button type='button' class='btn btn-success glyphicon glyphicon-thumbs-up'>" +
+        thumb + "</button>";
+    for (let i = 0; i < songs.length; i++) {
+        songNum++
+
+        console.log(i)
+        $('.songs').append('<button type="button" id=button-' + i + ' class="btn btn-success glyphicon glyphicon-thumbs-up">' + thumb + '</button>');
+        // $(".songs").append('<div id="songName"></div>')
+        // $("#songName").html(title)
+        // $('<div class="songs" />').text(title).appendTo('body');       
+       
+        $("#button-" + i).on("click", function () {
+            this.classList.toggle("fa-thumbs-down");
+            console.log("clicked")
+
+        })
+    }
+
+    };
+    dynamicBtn();
 
 
 
