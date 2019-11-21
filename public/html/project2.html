@@ -7,19 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>iStack</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../public/styles/tabStyle.css">
-    <script src="https://kit.fontawesome.com/2f421fef00.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles/tabStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="js/tab.js"></script>
 </head>
 
 <body>
     <div class="container text-center">
         <div class="jumbotron">
-            <h1><i class="fab fa-searchengin"></i> iStack <i class="fab fa-searchengin"></i></h1>
-            <h3>Search Stack<strong>Overflow</strong></h3>
+            <h1><i class="fab fa-searchengin"></i> i<strong>Playlist</strong> <i class="fab fa-searchengin"></i></h1>
+            <h3>Create a commuminty based Playlist</h3>
         </div>
     </div>
 
@@ -111,11 +107,15 @@
 
         </div> -->
 
-
-</body>
-
-<script src="../js/spotify.js"></script>
-
+    </body>
+    
+    <!-- <script src="../js/spotify.js"></script> -->
+    
+    <script src="https://kit.fontawesome.com/2f421fef00.js" crossorigin="anonymous"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="../js/tab.js"></script>
 <script>
 
 
@@ -125,22 +125,29 @@
 
         // $("#modal").modal('show');
         $("#results-modal").modal('show');
+    });
 
-        function toggleVote(x) {
-            const buttonDiv = $("#newBtn");
-            const toggle = x.classList.toggle("fa-thumbs-down");
+const songs = ["", ""]
+        function dynamicBtn() {
+            for (let i = 0; i < songs.length; i++) {
+                const button = songs[i];
             const buttonHtml = "<button type='button' class='btn btn-success glyphicon glyphicon-thumbs-up'>" +
                 "<i onclick='toggleVote(this)' class='fa fa-thumbs-up'></i>" + "</button";
-            console.log("yo")
-            buttonDiv.append(buttonHtml)
+                $("#newBtn").html(buttonHtml)
+            }
             // this.classList.toggle("maClasse");
+            // const buttonDiv = $("#newBtn");
+            // const toggle = x.classList.toggle("fa-thumbs-down");
+          
+            // buttonDiv.append(buttonHtml)
         };
+        dynamicBtn();
 
-    });
 
 
 
 
 </script>
+
 
 </html>
