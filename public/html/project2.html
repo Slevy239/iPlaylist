@@ -7,28 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>iStack</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../styles/tabStyle.css">
+    <link rel="stylesheet" href="../public/styles/tabStyle.css">
     <script src="https://kit.fontawesome.com/2f421fef00.js" crossorigin="anonymous"></script>
-    <script src="../js/tab.js"></script>
-    <script src="../../routes/apiRoutes.js"></script>
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="js/tab.js"></script>
 </head>
 
 <body>
-
-
-
     <div class="container text-center">
         <div class="jumbotron">
-            <h1><i class="fas fa-music"></i> iPlaylist <i class="fas fa-music"></i></h1>
-            <h3>Create a damn <strong>Playlist</strong></h3>
+            <h1><i class="fab fa-searchengin"></i> iStack <i class="fab fa-searchengin"></i></h1>
+            <h3>Search Stack<strong>Overflow</strong></h3>
         </div>
     </div>
+
 
 
     <div class="container">
@@ -36,30 +30,37 @@
             <div class="col-4"></div>
             <div class="col-4 text-center">
 
-                <h2>Seach input:</h2>
+                <h2>Search input:</h2>
+                <!-- <br> -->
 
-                <form>
-                    <input type="text" name="song" class="form-control" id="search-song" placeholder="da fuq">
-                    <br>
-                    <button type="submit" class="btn btn-primary" id="text-enter-button">Submit</button>
+                <form id="submit">
+                    <div class="text-center">
+
+                        <input type="text" name="question" class="form-control">
+                        <br>
+
+                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="results-modal"
+                            aria-hidden="true" name="action" id="submitbtn">Submit
+                            <!-- <i class="fas fa-mug-hot"></i> -->
+                        </button>
+                    </div>
                 </form>
-
             </div>
             <div class="col-4"></div>
 
         </div>
     </div>
-
-    <br>
-    <br>
+    <br><br>
 
     <div class="container">
-        <!-- Tab links -->
-        <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'first')">Public</button>
-            <button class="tablinks" onclick="openTab(event, 'second')">Activity 1</button>
-            <button class="tablinks" onclick="openTab(event, 'third')">Activity 2</button>
 
+
+        <!-- Tab links -->
+
+
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'first')">first</button>
+            <button class="tablinks" onclick="openTab(event, 'second')">second</button>
 
             <div id="dropdown">
                 <h9 style="float: right;">Sort by:
@@ -76,43 +77,69 @@
 
     <!-- Tab content -->
     <div id="first" class="tabcontent text-center">
-        <p id="playlist">Your Posts</p>
+        <p id="answer">Your Posts</p>
         <p id="author">Content 1.</p>
-        <!-- <iframe src="https://open.spotify.com/embed/album/2FHEsPCnUBTzKjJRDfkW0z" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
         <p id="tag"></p>
+        <button type="button" class="btn btn-success glyphicon glyphicon-thumbs-up">
+            <i onclick="classList.toggle('fa-thumbs-down')" class="fa fa-thumbs-up"></i></button>
+
+
+        </button>
     </div>
 
+
+    <!-- dynamically add divs for each songs -->
     <div id="second" class="tabcontent text-center">
-        <p id="playlist">All Posts</p>
-        <p id="author">content 2.</p>
-        <p id="tag"></p>
+        <div class="songs">
+            <div id="newBtn"></div>
+            <p id="songName"></p>
+            <p id="artistName"></p>
+            <p id="albumImg"></p>
+            <p id="tags"></p>
+
+        </div>
     </div>
 
-    <div id="third" class="tabcontent text-center">
-        <p id="playlist">All Posts</p>
-        <p id="author">content 2.</p>
-        <p id="tag"></p>
-    </div>
+    <!-- <div id="second" class="tabcontent text-center">
+            <p id="answer">All Posts</p>
+            <p id="author">content 2.</p>
+            <div class="vote">
+            </div>
+
+            <p id="tag"></p>
 
 
-
-
+        </div> -->
 
 
 </body>
 
-<script>
-$("#text-enter-button").on("click", function (event) {
-    event.preventDefault();
+<script src="../public/js/spotify.js"></script>
 
-        var id = $("#search-song");
-        $.ajax("/api/spotify/search/" + id, {
-            type: "GET",
-    
-        })
+<script>
+
+
+
+    $("#submitbtn").on("click", function (event) {
+        event.preventDefault();
+
+        // $("#modal").modal('show');
+        $("#results-modal").modal('show');
+
+        function toggleVote(x) {
+            const buttonDiv = $("#newBtn");
+            const toggle = x.classList.toggle("fa-thumbs-down");
+            const buttonHtml = "<button type='button' class='btn btn-success glyphicon glyphicon-thumbs-up'>" +
+                "<i onclick='toggleVote(this)' class='fa fa-thumbs-up'></i>" + "</button";
+            console.log("yo")
+            buttonDiv.append(buttonHtml)
+            // this.classList.toggle("maClasse");
+        };
+
     });
-    
-</script>
+
+
+
 
 </script>
 
