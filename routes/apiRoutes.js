@@ -3,7 +3,7 @@ const passport = require('../config/passport/passport');
 
 // spotify api dependencies
 const Keys = require('../keys.js');
-const Spotify = require('./node_modules/node-spotify-api');
+var Spotify = require('../node_modules/node-spotify-api');
 const spotify = new Spotify(Keys.spotify);
 
 module.exports = function (app) {
