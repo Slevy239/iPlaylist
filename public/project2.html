@@ -7,11 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>iStack</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./tabStyle.css">
+    <link rel="stylesheet" href="../public/styles/tabStyle.css">
     <script src="https://kit.fontawesome.com/2f421fef00.js" crossorigin="anonymous"></script>
-    <script src="./tab.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="js/tab.js"></script>
 </head>
 
 <body>
@@ -21,6 +22,7 @@
             <h3>Search Stack<strong>Overflow</strong></h3>
         </div>
     </div>
+
 
 
     <div class="container">
@@ -56,66 +58,59 @@
         <!-- Tab links -->
 
 
-            <div class="tab">
-                <button class="tablinks" onclick="openTab(event, 'first')">first</button>
-                <button class="tablinks" onclick="openTab(event, 'second')">second</button>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'first')">first</button>
+            <button class="tablinks" onclick="openTab(event, 'second')">second</button>
 
-                <div id="dropdown">
-                    <h9 style="float: right;">Sort by:
+            <div id="dropdown">
+                <h9 style="float: right;">Sort by:
 
-                        <select>
-                            <option value="data">Data</option>
-                            <option value="author">Author</option>
-                        </select>
-                    </h9>
-                </div>
+                    <select>
+                        <option value="data">Data</option>
+                        <option value="author">Author</option>
+                    </select>
+                </h9>
             </div>
         </div>
+    </div>
 
 
-        <!-- Tab content -->
-        <div id="first" class="tabcontent text-center">
-            <p id="answer">Your Posts</p>
-            <p id="author">Content 1.</p>
-            <p id="tag"></p>
+    <!-- Tab content -->
+    <div id="first" class="tabcontent text-center">
+        <p id="answer">Your Posts</p>
+        <p id="author">Content 1.</p>
+        <p id="tag"></p>
+        <button type="button" class="btn btn-success glyphicon glyphicon-thumbs-up">
+            <i onclick="classList.toggle('fa-thumbs-down')" class="fa fa-thumbs-up"></i></button>
+
+
+        </button>
+    </div>
+
+
+    <!-- dynamically add divs for each songs -->
+    <div id="second" class="tabcontent text-center">
+        <div class="songs">
+            <div id="newBtn"></div>
+            <p id="songName"></p>
+            <p id="artistName"></p>
+            <p id="albumImg"></p>
+            <p id="tags"></p>
 
         </div>
+    </div>
 
-        <div id="second" class="tabcontent text-center">
+    <!-- <div id="second" class="tabcontent text-center">
             <p id="answer">All Posts</p>
             <p id="author">content 2.</p>
-            <p id="tag"></p>
-        </div>
-
-
-
-    </div>
-
-    <!-- Modal -->
-
-    <div id="modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <!-- content -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- title -->
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- body -->
-                <div class="modal-body">
-                    <p>Modal body text goes here.</p>
-                </div>
-                <!-- footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+            <div class="vote">
             </div>
-        </div>
-    </div>
+
+            <p id="tag"></p>
+
+
+        </div> -->
+
 
 </body>
 
@@ -131,7 +126,17 @@
         // $("#modal").modal('show');
         $("#results-modal").modal('show');
 
-    })
+        function toggleVote(x) {
+            const buttonDiv = $("#newBtn");
+            const toggle = x.classList.toggle("fa-thumbs-down");
+            const buttonHtml = "<button type='button' class='btn btn-success glyphicon glyphicon-thumbs-up'>" +
+                "<i onclick='toggleVote(this)' class='fa fa-thumbs-up'></i>" + "</button";
+            console.log("yo")
+            buttonDiv.append(buttonHtml)
+            // this.classList.toggle("maClasse");
+        };
+
+    });
 
 
 

@@ -3,6 +3,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const session = require('express-session');
 const passport = require('./config/passport/passport');
+const path = require("path")
 
 const db = require("./models");
 const app = express();
@@ -12,6 +13,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+
+// Serve static content for the app from the "public" directory in the application directory.
+// app.use('/public', express.static(path.join(__dirname + '/public')));
+
 
 // Handlebars
 app.engine(
