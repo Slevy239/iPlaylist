@@ -76,16 +76,6 @@
                 <div id="spotifyOld"></div>
 
             </div>
-            <!-- <div class="col-md-"> -->
-            <!-- <iframe src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="300" height="80"
-                frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            <iframe src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="300" height="80"
-                frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            <iframe src="https://open.spotify.com/embed/track/7CZyCXKG6d5ALeq41sLzbw" width="300" height="80"
-                frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                <iframe src="https://open.spotify.com/embed/track/6mib3N4E8PZHAGQ3xy7bho" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
-
-            <!-- </div> -->
             <div class="col">
                 <div id="vote"></div>
 
@@ -120,9 +110,6 @@
 
     $(document).ready(function () {
         console.log("ready!");
-
-
-        var songNum = 0;
 
         const songs = [
             {
@@ -160,13 +147,6 @@
 
 
 
-        function dynamicBtn() {
-
-            const title = songs[songNum].songTitle;
-            const artist = songs[songNum].artist;
-            const thumb = '<i onclick="classList.toggle("fa-thumbs-down")" class="fa fa-thumbs-up"></i>';
-
-
             //dynamically created new div for each index of the array within #spotifyOld
             for (let i = 0; i < songs.length; i++) {
                 var newElement = document.createElement('div');
@@ -185,8 +165,6 @@
                 document.getElementById("voteNew-" + i).innerHTML = voteSytem
 
             };
-        };
-        dynamicBtn();
 
         $('.like, .dislike').on('click', function () {
             event.preventDefault();
