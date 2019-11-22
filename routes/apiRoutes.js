@@ -8,39 +8,32 @@ const spotify = new Spotify(Keys.spotify);
 
 module.exports = function (app) {
   // Get all examples
-  app.get("/api/spotify/search/:id", function (req, res) {
+  app.post("/api/spotify/search", function (req, res) {
 
-    let id = req.params.id;
-
-    console.log(id);
+    let searchInfo = req.body.searchInfo;
 
     spotify
 
-      .search({ type: 'track', query: id })
+      .search({ type: 'track', query: searchInfo })
 
       .then(function (response) {
 
-        var artistName = response.tracks.items[0].artists[0].name;
-        var songName = response.tracks.items[0].name;
-        var songLink = response.tracks.items[0].external_urls.spotify;
-        var albumLink = response.tracks.items[0].album.external_urls.spotify;
+        console.log(response.tracks);
 
-        console.log('\n');
-        console.log('-------------------------------------------------');
-        console.log(' Artist: ' + artistName.toUpperCase());
-        console.log('-------------------------------------------------');
-        console.log('  Song: ' + songName);
-        console.log('  Link to song: ' + songLink);
-        console.log('  Link to album: ' + albumLink);
-        console.log('\n');
+        let allTracks = response.tracks.items;
 
+        let sortedTracks = allTracks.sort((a, b) => (a.popularity > b.popularity ? -1 : 1));
+        
 
-      })
-
-
-
+        let sendArr = [];  
+        for (let i = 0; i < sortedTracks.length; i++){
+          sendArr.push(sortedTracks[i].external_urls);
+        }
+          res.json(sendArr);
+        })
   });
 
+  
   //Route for initial user signup:
   app.post('/api/signup', function (req, res) {
     db.userCred.create({
@@ -56,31 +49,31 @@ module.exports = function (app) {
   });
 
   //Route for user login:
-  app.post('/api/login', passport.authenticate("local"), function(req, res){
+  app.post('/api/login', passport.authenticate("local"), function (req, res) {
     res.json(req.user);
   });
 
   // Route for logging user out
-  app.get("/logout", function(req, res) {
+  app.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/api/login");
   });
 
-    // Route for getting some data about our user to be used client side
-    app.get("/api/user_data", function(req, res) {
-      if (!req.user) {
-        // The user is not logged in, send back an empty object
-        res.json({});
-      } else {
-        // Otherwise send back the user's email and id
-        // Sending back a password, even a hashed password, isn't a good idea
-        res.json({
-          email: req.user.email,
-          id: req.user.id,
-          username: req.user.username
-        });
-      }
-    });
+  // Route for getting some data about our user to be used client side
+  app.get("/api/user_data", function (req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id,
+        username: req.user.username
+      });
+    }
+  });
 
 
 };

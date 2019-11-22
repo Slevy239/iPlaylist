@@ -7,10 +7,18 @@ $('#submitbtn').on('click', function(){
     
     event.preventDefault();
 
-    var searchedString = $('#question').val().trim();
+    var searchedString = $('.userSearch').val().trim();
 
-    $.post("/api/spotify/search/", { id: searchedString })
+    console.log(searchedString);
 
+
+    $.post("/api/spotify/search", {
+        searchInfo: searchedString       
+
+    }).then(function(data){
+        console.log(data);
+        
+    });
 
 })
 

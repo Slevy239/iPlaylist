@@ -14,4 +14,4 @@ module.exports = function (sequelize, Sequelize) {
         }
     });
     return songInfo;
-};
+}; 
