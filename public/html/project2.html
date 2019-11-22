@@ -168,8 +168,6 @@
 
 
             //dynamically created new div for each index of the array within #spotifyOld
-            //only displays one songs.src
-            //the others are [object Object]
             for (let i = 0; i < songs.length; i++) {
                 var newElement = document.createElement('div');
                 newElement.id = "spotifyNew-" + i;
@@ -178,13 +176,13 @@
                 $('#spotifyOld').append(newElement)
                 document.getElementById('spotifyNew-' + i).innerHTML = songs[i].src;
 
-
+                //vote for each song
                 var newVote = document.createElement('div');
                 newVote.id = "voteNew-" + i;
                 newVote.className = "vote";
                 newVote.innerHTML = songs[i];
                 $("#vote").append(newVote);
-                document.getElementById("voteNew-" + i).innerHTML =  voteSytem    
+                document.getElementById("voteNew-" + i).innerHTML = voteSytem
 
             };
         };
@@ -202,6 +200,13 @@
 
 </script>
 <style>
+
+    body{
+        background-color: black;
+    }
+    h2{
+        color: teal;
+    }
     #thumb {
         border: solid 1px black;
         margin: 5%;
@@ -233,6 +238,7 @@
         display: inline-block;
         cursor: pointer;
         margin: 10px;
+        color: white;
     }
 
     .dislike:hover,
