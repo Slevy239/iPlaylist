@@ -136,19 +136,24 @@
             }
         ]
 
-        var voteSytem = '<div class="rating">' +
-            '<div class="like grow">' +
-            '<i class="fa fa-thumbs-up fa-3x like" aria-hidden="true"></i>' +
-            '</div>' +
-            '<div class="dislike grow">' +
-            '<i class="fa fa-thumbs-down fa-3x like" aria-hidden="true"></i>' +
-            '</div>' + '</div>';
+        
 
 
 
 
             //dynamically created new div for each index of the array within #spotifyOld
             for (let i = 0; i < songs.length; i++) {
+
+
+
+                var voteSytem = '<div class="rating">' +
+            '<div class="like grow">' +
+            '<i class="fa fa-thumbs-up fa-3x like" aria-hidden="true" id="like"></i></div>' +
+            '<div class="dislike grow">' +
+            '<i class="fa fa-thumbs-down fa-3x like" aria-hidden="true" id="dislike"></i>' +
+            '</div>' + '</div>';
+
+
                 var newElement = document.createElement('div');
                 newElement.id = "spotifyNew-" + i;
                 newElement.className = "song";
@@ -164,13 +169,20 @@
                 $("#vote").append(newVote);
                 document.getElementById("voteNew-" + i).innerHTML = voteSytem
 
+                $('#like, #dislike').on('click', function () {
+                    console.log("hi")
+                    event.preventDefault();
+                    $('.active').removeClass('active');
+                    $(this).addClass('active');
+                });
+
+                // $().on('click', function () {
+                //     event.preventDefault();
+                //     $('.active').removeClass('active');
+                //     $(this).addClass('active');
+                // });
             };
 
-        $('.like, .dislike').on('click', function () {
-            event.preventDefault();
-            $('.active').removeClass('active');
-            $(this).addClass('active');
-        });
 
 
 
@@ -227,7 +239,7 @@
     }
 
     .active {
-        color: #2EBDD1;
+        color: red;
     }
 </style>
 
