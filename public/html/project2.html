@@ -72,11 +72,11 @@
         <!-- Tab content -->
         <div id="first" class="tabcontent text-center overflow-auto">
             <div class="row">
-                <div class="col">
+                <div class="col-9">
                     <div id="spotifyOld"></div>
 
                 </div>
-                <div class="col">
+                <div class="col-3">
                     <div id="vote"></div>
 
                 </div>
@@ -115,23 +115,23 @@
             {
                 songTitle: "song1",
                 artist: "artist1",
-                src: '<iframe src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
+                src: '<iframe src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
             },
             {
                 songTitle: "song2",
                 artist: "artist2",
-                src: '<iframe src="https://open.spotify.com/embed/track/2ON1mRDRdSSrFBdlFOUYTu" width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
+                src: '<iframe src="https://open.spotify.com/embed/track/2ON1mRDRdSSrFBdlFOUYTu" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
             },
             {
                 songTitle: "song3",
                 artist: "3artist",
-                src: '<iframe src="https://open.spotify.com/embed/track/1k5iH4KDKi56MFvlnrALNV" width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
+                src: '<iframe src="https://open.spotify.com/embed/track/1k5iH4KDKi56MFvlnrALNV" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
 
             },
             {
                 songTitle: "song4",
                 artist: "artist4",
-                src: '<iframe src="https://open.spotify.com/embed/track/0K6yUnIKNsFtfIpTgGtcHm" width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
+                src: '<iframe src="https://open.spotify.com/embed/track/0K6yUnIKNsFtfIpTgGtcHm" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
 
             }
         ]
@@ -147,9 +147,9 @@
 
             var voteSytem = '<div class="rating">' +
                 '<div class="like grow">' +
-                '<i class="fa fa-thumbs-up fa-3x like" aria-hidden="true" id="like-' + i + '"></i></div>' +
+                '<i class="fa fa-thumbs-up fa-2x like" aria-hidden="true" id="like-' + i + '"></i></div>' +
                 '<div class="dislike grow">' +
-                '<i class="fa fa-thumbs-down fa-3x like" aria-hidden="true" id="dislike-' + i + '"></i>' +
+                '<i class="fa fa-thumbs-down fa-2x like" aria-hidden="true" id="dislike-' + i + '"></i>' +
                 '</div>' + '</div>';
 
 
@@ -211,16 +211,13 @@
         border: black solid 1px;
     }
 
-    #thumb {
-        float: left;
-    }
-
     .rating {
         display: inline-block;
         width: 100%;
         /* margin-top: 40px;
         padding-top: 40px; */
         text-align: center;
+        margin-top: 37%;
     }
 
     .like,
@@ -240,6 +237,9 @@
 
     .active {
         color: teal;
+    }
+    .song {
+        margin-top: 10%;
     }
 </style>
 
