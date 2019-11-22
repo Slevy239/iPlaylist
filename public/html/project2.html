@@ -169,18 +169,18 @@
                 $("#vote").append(newVote);
                 document.getElementById("voteNew-" + i).innerHTML = voteSytem
 
-                $('#like-'+i, '#dislike-'+i).on('click', function () {
+                $('#like-'+i).on('click', function () {
                     console.log("hi")
                     event.preventDefault();
                     $('.active').removeClass('active');
                     $(this).addClass('active');
                 });
 
-                // $().on('click', function () {
-                //     event.preventDefault();
-                //     $('.active').removeClass('active');
-                //     $(this).addClass('active');
-                // });
+                $('#dislike-' +i).on('click', function () {
+                    event.preventDefault();
+                    $('.active').removeClass('active');
+                    $(this).addClass('active');
+                });
             };
 
 
@@ -239,7 +239,7 @@
     }
 
     .active {
-        color: red;
+        color: teal;
     }
 </style>
 
