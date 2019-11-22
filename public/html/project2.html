@@ -26,7 +26,7 @@
             <div class="col-4"></div>
             <div class="col-4 text-center">
 
-                <h2>Search input:</h2>
+                <h2>Search for an artist:</h2>
                 <!-- <br> -->
 
                 <form id="submit">
@@ -68,27 +68,27 @@
         </div>
     </div>
 
+    <div class="container">
+        <!-- Tab content -->
+        <div id="first" class="tabcontent text-center overflow-auto">
+            <div class="row">
+                <div class="col">
+                    <div id="spotifyOld"></div>
 
-    <!-- Tab content -->
-    <div id="first" class="tabcontent text-center overflow-auto">
-        <div class="row">
-            <div class="col">
-                <div id="spotifyOld"></div>
+                </div>
+                <div class="col">
+                    <div id="vote"></div>
 
-            </div>
-            <div class="col">
-                <div id="vote"></div>
-
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- dynamically add divs for each songs -->
-    <div id="second" class="tabcontent">
-        <div class="songs">
+        <!-- dynamically add divs for each songs -->
+        <div id="second" class="tabcontent">
+            <div class="songs">
+            </div>
         </div>
-    </div>
 
     </div>
 
@@ -136,52 +136,51 @@
             }
         ]
 
-        
 
 
 
 
-            //dynamically created new div for each index of the array within #spotifyOld
-            for (let i = 0; i < songs.length; i++) {
+
+        //dynamically created new div for each index of the array within #spotifyOld
+        for (let i = 0; i < songs.length; i++) {
 
 
+            var voteSytem = '<div class="rating">' +
+                '<div class="like grow">' +
+                '<i class="fa fa-thumbs-up fa-3x like" aria-hidden="true" id="like-' + i + '"></i></div>' +
+                '<div class="dislike grow">' +
+                '<i class="fa fa-thumbs-down fa-3x like" aria-hidden="true" id="dislike-' + i + '"></i>' +
+                '</div>' + '</div>';
 
-                var voteSytem = '<div class="rating">' +
-            '<div class="like grow">' +
-            '<i class="fa fa-thumbs-up fa-3x like" aria-hidden="true" id="like-'+i +'"></i></div>' +
-            '<div class="dislike grow">' +
-            '<i class="fa fa-thumbs-down fa-3x like" aria-hidden="true" id="dislike-'+i +'"></i>' +
-            '</div>' + '</div>';
 
+            var newElement = document.createElement('div');
+            newElement.id = "spotifyNew-" + i;
+            newElement.className = "song";
+            newElement.innerHTML = songs[i];
+            $('#spotifyOld').append(newElement)
+            document.getElementById('spotifyNew-' + i).innerHTML = songs[i].src;
 
-                var newElement = document.createElement('div');
-                newElement.id = "spotifyNew-" + i;
-                newElement.className = "song";
-                newElement.innerHTML = songs[i];
-                $('#spotifyOld').append(newElement)
-                document.getElementById('spotifyNew-' + i).innerHTML = songs[i].src;
+            //vote for each song
+            var newVote = document.createElement('div');
+            newVote.id = "voteNew-" + i;
+            newVote.className = "vote";
+            newVote.innerHTML = songs[i];
+            $("#vote").append(newVote);
+            document.getElementById("voteNew-" + i).innerHTML = voteSytem
 
-                //vote for each song
-                var newVote = document.createElement('div');
-                newVote.id = "voteNew-" + i;
-                newVote.className = "vote";
-                newVote.innerHTML = songs[i];
-                $("#vote").append(newVote);
-                document.getElementById("voteNew-" + i).innerHTML = voteSytem
+            $('#like-' + i).on('click', function () {
+                console.log("hi")
+                event.preventDefault();
+                $('.active').removeClass('active');
+                $(this).addClass('active');
+            });
 
-                $('#like-'+i).on('click', function () {
-                    console.log("hi")
-                    event.preventDefault();
-                    $('.active').removeClass('active');
-                    $(this).addClass('active');
-                });
-
-                $('#dislike-' +i).on('click', function () {
-                    event.preventDefault();
-                    $('.active').removeClass('active');
-                    $(this).addClass('active');
-                });
-            };
+            $('#dislike-' + i).on('click', function () {
+                event.preventDefault();
+                $('.active').removeClass('active');
+                $(this).addClass('active');
+            });
+        };
 
 
 
@@ -190,13 +189,14 @@
 
 </script>
 <style>
-
-    body{
+    body {
         background-color: black;
     }
-    h2{
+
+    h2 {
         color: teal;
     }
+
     #thumb {
         border: solid 1px black;
         margin: 5%;
