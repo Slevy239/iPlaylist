@@ -71,25 +71,24 @@
 
     <!-- Tab content -->
     <div id="first" class="tabcontent text-center overflow-auto">
-        <div>
-            <iframe src="https://open.spotify.com/embed/track/21jGcNKet2qwijlDFuPiPb"
-                src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="300" height="80"
+        <div class="row">
+            <div class="col">
+                <div id="spotifyOld"></div>
+
+            </div>
+            <!-- <div class="col-md-"> -->
+            <!-- <iframe src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="300" height="80"
                 frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <iframe src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="300" height="80"
                 frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <iframe src="https://open.spotify.com/embed/track/7CZyCXKG6d5ALeq41sLzbw" width="300" height="80"
                 frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                <iframe src="https://open.spotify.com/embed/track/6mib3N4E8PZHAGQ3xy7bho" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe src="https://open.spotify.com/embed/track/6mib3N4E8PZHAGQ3xy7bho" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
 
-        </div>
-        <div class="rating">
-            <!-- Thumbs up -->
-            <div class="like grow">
-                <i class="fa fa-thumbs-up fa-3x like" aria-hidden="true"></i>
-            </div>
-            <!-- Thumbs down -->
-            <div class="dislike grow">
-                <i class="fa fa-thumbs-down fa-3x like" aria-hidden="true"></i>
+            <!-- </div> -->
+            <div class="col">
+                <div id="vote"></div>
+
             </div>
         </div>
     </div>
@@ -129,22 +128,35 @@
             {
                 songTitle: "song1",
                 artist: "artist1",
-                src: "../../../../Music/Phish/Phish - 2019-06-23 Merriweather Post Pavilion, Columbia, MD [V0]/ph190623d3_02_Waste.mp3"
+                src: '<iframe src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
             },
             {
                 songTitle: "song2",
                 artist: "artist2",
-                src: ""
+                src: '<iframe src="https://open.spotify.com/embed/track/2ON1mRDRdSSrFBdlFOUYTu" width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
             },
             {
                 songTitle: "song3",
-                artist: "3artist"
+                artist: "3artist",
+                src: '<iframe src="https://open.spotify.com/embed/track/1k5iH4KDKi56MFvlnrALNV" width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
+
             },
             {
                 songTitle: "song4",
-                artist: "artist4"
+                artist: "artist4",
+                src: '<iframe src="https://open.spotify.com/embed/track/0K6yUnIKNsFtfIpTgGtcHm" width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
+
             }
         ]
+
+        var voteSytem = '<div class="rating">' +
+            '<div class="like grow">' +
+            '<i class="fa fa-thumbs-up fa-3x like" aria-hidden="true"></i>' +
+            '</div>' +
+            '<div class="dislike grow">' +
+            '<i class="fa fa-thumbs-down fa-3x like" aria-hidden="true"></i>' +
+            '</div>' + '</div>';
+
 
 
 
@@ -155,13 +167,24 @@
             const thumb = '<i onclick="classList.toggle("fa-thumbs-down")" class="fa fa-thumbs-up"></i>';
 
 
-
+            //dynamically created new div for each index of the array within #spotifyOld
+            //only displays one songs.src
+            //the others are [object Object]
             for (let i = 0; i < songs.length; i++) {
-                songNum++
-                const buttonHtml = '<div id="songName">' + songs[i].songTitle + '</div>' + '<div id="artistName">' + songs[i].artist + '</div>' + '<div id="audio"></div>' + '<button type="button" id="thumb button-' + i + '" class="btn btn-success glyphicon glyphicon-thumbs-up">' + thumb + '</button>';
-                console.log(i)
-                $('.songs').append(buttonHtml);
-                document.getElementById('audio').innerHTML = '<a href="https://open.spotify.com/track/21jGcNKet2qwijlDFuPiPb">'
+                var newElement = document.createElement('div');
+                newElement.id = "spotifyNew-" + i;
+                newElement.className = "song";
+                newElement.innerHTML = songs[i];
+                $('#spotifyOld').append(newElement)
+                document.getElementById('spotifyNew-' + i).innerHTML = songs[i].src;
+
+
+                var newVote = document.createElement('div');
+                newVote.id = "voteNew-" + i;
+                newVote.className = "vote";
+                newVote.innerHTML = songs[i];
+                $("#vote").append(newVote);
+                document.getElementById("voteNew-" + i).innerHTML =  voteSytem    
 
             };
         };
@@ -200,8 +223,8 @@
     .rating {
         display: inline-block;
         width: 100%;
-        margin-top: 40px;
-        padding-top: 40px;
+        /* margin-top: 40px;
+        padding-top: 40px; */
         text-align: center;
     }
 
