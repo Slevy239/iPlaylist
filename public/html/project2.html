@@ -49,8 +49,6 @@
     <br><br>
 
     <div class="container">
-
-
         <!-- Tab links -->
 
 
@@ -72,21 +70,37 @@
 
 
     <!-- Tab content -->
-    <div id="first" class="tabcontent text-center">
-       
+    <div id="first" class="tabcontent text-center overflow-auto">
+        <div>
+            <iframe src="https://open.spotify.com/embed/track/21jGcNKet2qwijlDFuPiPb"
+                src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="300" height="80"
+                frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <iframe src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="300" height="80"
+                frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <iframe src="https://open.spotify.com/embed/track/7CZyCXKG6d5ALeq41sLzbw" width="300" height="80"
+                frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe src="https://open.spotify.com/embed/track/6mib3N4E8PZHAGQ3xy7bho" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+        </div>
+        <div class="rating">
+            <!-- Thumbs up -->
+            <div class="like grow">
+                <i class="fa fa-thumbs-up fa-3x like" aria-hidden="true"></i>
+            </div>
+            <!-- Thumbs down -->
+            <div class="dislike grow">
+                <i class="fa fa-thumbs-down fa-3x like" aria-hidden="true"></i>
+            </div>
+        </div>
     </div>
 
 
     <!-- dynamically add divs for each songs -->
-    <div id="second" class="tabcontent text-center">
+    <div id="second" class="tabcontent">
         <div class="songs">
-            <div id="newBtn"></div>
-            <div id="songName"></div>
-            <div id="artistName"></div>
-            <div id="albumImg"></div>
-            <div id="tags"></div>
-
         </div>
+    </div>
+
     </div>
 
 </body>
@@ -99,65 +113,116 @@
     crossorigin="anonymous"></script>
 <script src="../js/tab.js"></script>
 
+
 <script src="../js/spotify.js"></script>
+
 
 <script>
 
-
-    var songNum = 0;
-
-    const songs = [
-        {
-            songTitle: "song1",
-            artist: "artist1",
-        },
-        {
-            songTitle: "song2",
-            artist: "artist2"
-        },
-        {
-            songTitle: "song3",
-            artist: "3artist"
-        },
-        {
-            songTitle: "song4",
-            artist: "artist4"
-        }
-    ]
+    $(document).ready(function () {
+        console.log("ready!");
 
 
+        var songNum = 0;
 
-    function dynamicBtn() {
-
-    const title = songs[songNum].songTitle;
-    const artist = songs[songNum].artist;
-    const thumb = "<i onclick='classList.toggle('fa-thumbs-down')' class='fa fa-thumbs-up'></i>"
-    const buttonHtml = "<button type='button' class='btn btn-success glyphicon glyphicon-thumbs-up'>" +
-        thumb + "</button>";
-    for (let i = 0; i < songs.length; i++) {
-        songNum++
-
-        console.log(i)
-        $('.songs').append('<button type="button" id=button-' + i + ' class="btn btn-success glyphicon glyphicon-thumbs-up">' + thumb + '</button>');
-        // $(".songs").append('<div id="songName"></div>')
-        // $("#songName").html(title)
-        // $('<div class="songs" />').text(title).appendTo('body');       
-       
-        $("#button-" + i).on("click", function () {
-            this.classList.toggle("fa-thumbs-down");
-            console.log("clicked")
-
-        })
-    }
-
-    };
-    dynamicBtn();
+        const songs = [
+            {
+                songTitle: "song1",
+                artist: "artist1",
+                src: "../../../../Music/Phish/Phish - 2019-06-23 Merriweather Post Pavilion, Columbia, MD [V0]/ph190623d3_02_Waste.mp3"
+            },
+            {
+                songTitle: "song2",
+                artist: "artist2",
+                src: ""
+            },
+            {
+                songTitle: "song3",
+                artist: "3artist"
+            },
+            {
+                songTitle: "song4",
+                artist: "artist4"
+            }
+        ]
 
 
 
+        function dynamicBtn() {
 
+            const title = songs[songNum].songTitle;
+            const artist = songs[songNum].artist;
+            const thumb = '<i onclick="classList.toggle("fa-thumbs-down")" class="fa fa-thumbs-up"></i>';
+
+
+
+            for (let i = 0; i < songs.length; i++) {
+                songNum++
+                const buttonHtml = '<div id="songName">' + songs[i].songTitle + '</div>' + '<div id="artistName">' + songs[i].artist + '</div>' + '<div id="audio"></div>' + '<button type="button" id="thumb button-' + i + '" class="btn btn-success glyphicon glyphicon-thumbs-up">' + thumb + '</button>';
+                console.log(i)
+                $('.songs').append(buttonHtml);
+                document.getElementById('audio').innerHTML = '<a href="https://open.spotify.com/track/21jGcNKet2qwijlDFuPiPb">'
+
+            };
+        };
+        dynamicBtn();
+
+        $('.like, .dislike').on('click', function () {
+            event.preventDefault();
+            $('.active').removeClass('active');
+            $(this).addClass('active');
+        });
+
+
+
+    });
 
 </script>
+<style>
+    #thumb {
+        border: solid 1px black;
+        margin: 5%;
+        /* display: block; */
+    }
+
+    .songs {
+        border: black solid 1px;
+    }
+
+    #newSongs {
+        border: black solid 1px;
+    }
+
+    #thumb {
+        float: left;
+    }
+
+    .rating {
+        display: inline-block;
+        width: 100%;
+        margin-top: 40px;
+        padding-top: 40px;
+        text-align: center;
+    }
+
+    .like,
+    .dislike {
+        display: inline-block;
+        cursor: pointer;
+        margin: 10px;
+    }
+
+    .dislike:hover,
+    .like:hover {
+        color: #2EBDD1;
+        transition: all .2s ease-in-out;
+        transform: scale(1.1);
+    }
+
+    .active {
+        color: #2EBDD1;
+    }
+</style>
 
 
 </html>
