@@ -30,7 +30,7 @@ $('#submitbtn').on('click', function () {
 
 
 
-$("#instaPlay").on("click", function () {
+$("#personSearch").on("click", function () {
     event.preventDefault();
 
     console.log("clicked");
