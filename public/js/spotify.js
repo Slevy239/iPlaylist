@@ -81,7 +81,7 @@ $("#instaPlay").on("click", function () {
         }
 
         $.ajax(settings).done(function (response) {
-            // console.log(response);
+            console.log(response);
 
             // initial list of 50 preview mp3s
             let preview_mp3s = [];
@@ -91,7 +91,7 @@ $("#instaPlay").on("click", function () {
 
             // generate 10 random numbers: instant playlists will be of length 10
             let random_nums = []
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 5; i++) {
 
                 random_nums.push(Math.floor(Math.random() * 50));
 
@@ -114,6 +114,14 @@ $("#instaPlay").on("click", function () {
 
 
 })
+
+function CreateMiniPlayer (){
+
+
+
+
+}
+
 
 
 function CreateInstantPlaylist (Arr) {
