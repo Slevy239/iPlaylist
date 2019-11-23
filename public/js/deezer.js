@@ -130,17 +130,29 @@ $("#personSearch").on("click", function () {
 
 
 function CreateSongCard (Arr) {
-
-    console.log(Arr)
-
+    let cardBody1 = $("<div>").addClass("<card-body>");
+    let cardBody2 = $("<div>").addClass("<card-body>");
+    let title = $("<h5>").addClass('card-title');
+    let dataList = $("<ul>").addClass('list-group list-group-flush');
+    let songTitle = $("<li>").addClass('list-group-item');
+    let prevURL = $("<li>").addClass('list-group-item');
+    let saveLink = $("<a>").addClass('card-link').text("Save to my list.");
+    let commLink = $("<a>").addClass('card-link').text("Save to community list.");
+    let newCard = $("<div>").addClass("card").attr('width', '18rem');
+    let cardImg = $("<img>").addClass('card-img-top');
     for (let i = 0; i < Arr.length; i++) {
-
-        let newCard = $("")
-
-
+        newCard.attr("id", i);
+        cardImg.attr('src', Arr[i].cover_img);
+        commLink.attr('id', i);
+        saveLink.attr('id', i);
+        cardBody1.append(title.text(Arr[i].artist_name));
+        dataList.append(songTitle.text(Arr[i].song_title));
+        dataList.append(prevURL.text(Arr[i].preview_url));
+        cardBody1.append(title);
+        cardBody2.append(saveLink, commLink);
+        newCard.append(cardImg, cardBody1, dataList ,cardBody2);
+        $("#singlePlayList").append(newCard);
     }
-
-
 }
 
 
