@@ -90,10 +90,11 @@ function CreateSongCard(Arr) {
         let dataList = $("<ul>").addClass('list-group list-group-flush');
         let songTitle = $("<li>").addClass('list-group-item');
         let prevURL = $("<li>").addClass('list-group-item');
-        let saveLink = $("<button>").addClass('card-link').attr('id', 'personID' + i).text("Save to my list.");
-        let commLink = $("<button>").addClass('card-link').attr('id', 'commID' + i).text("Save to community list.");
-        let newCard = $("<div>").addClass("card").attr('width', '18rem');
-        let cardImg = $("<img>").addClass('card-img-top').addClass('cardImage');
+        let saveLink = $("<a>").addClass('card-link').text("Save to my list.");
+        let commLink = $("<a>").addClass('card-link').text("Save to community list.");
+        let newCard = $("<div>").addClass("card");
+        let cardImg = $("<img>").addClass('card-img-top');
+
         newCard.attr("id", i);
         cardImg.attr('src', Arr[i].cover_img);
         cardBody1.append(title.text(Arr[i].artist_name));
@@ -103,6 +104,7 @@ function CreateSongCard(Arr) {
         cardBody2.append(saveLink, commLink);
         newCard.append(cardImg, cardBody1, dataList, cardBody2);
         $("#singlePlayList").append(newCard);
+
     }
 }
 
