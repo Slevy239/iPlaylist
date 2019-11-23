@@ -8,6 +8,7 @@ passport.use('local', new LocalStrategy(
         passwordField: 'password'
     },
     function (username, password, done) {
+        console.log("Is this happening?");
         db.userCred.findOne({
             where: {
                 username: username

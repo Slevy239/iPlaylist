@@ -16,10 +16,12 @@ $(function () {
         $.post('/api/login', {
             username: username,
             password: password
-        }).then(function(data) {
-            window.location.replace("../html/project2.html");
+        })
+
+        .then(function(data) {
+            window.location.replace('/home');
         }).catch(handleLoginErr);
-    };
+    }
     //Error handling
     function handleLoginErr(err) {
         $("#alert .msg").text(err.responseJSON);

@@ -49,12 +49,10 @@ module.exports = function (app) {
   });
 
   //Route for user login:
-  app.post('/api/login', passport.authenticate("local", { failureFlash: true }), function (req, res) {
-    if (req.user) {
-      res.json(req.user);
-    }
+  app.post('/api/login', passport.authenticate("local", {failureRedirect: '/', failureFlash: true }), function (req, res) {
+    res.redirect('/home');
   });
-
+  
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
