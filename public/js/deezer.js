@@ -139,8 +139,9 @@ function CreateSongCard(Arr) {
         let prevURL = $("<li>").addClass('list-group-item');
         let saveLink = $("<a>").addClass('card-link').text("Save to my list.");
         let commLink = $("<a>").addClass('card-link').text("Save to community list.");
-        let newCard = $("<div>").addClass("card").attr('width', '18rem');
+        let newCard = $("<div>").addClass("card");
         let cardImg = $("<img>").addClass('card-img-top');
+
         newCard.attr("id", i);
         cardImg.attr('src', Arr[i].cover_img);
         commLink.attr('id', i);
@@ -152,6 +153,7 @@ function CreateSongCard(Arr) {
         cardBody2.append(saveLink, commLink);
         newCard.append(cardImg, cardBody1, dataList, cardBody2);
         $("#singlePlayList").append(newCard);
+
     }
 }
 
