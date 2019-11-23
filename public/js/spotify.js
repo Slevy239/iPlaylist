@@ -55,9 +55,10 @@ $("#instaPlay").on("click", function () {
             "x-rapidapi-key": "93bb26cc96msh4a3826e7173d4dep100250jsn2e5da9455e0c"
         }
     }
+  
 
     $.ajax(deezer).done(function (response) {
-        // console.log(response.data[0]);
+        console.log(response.data[0]);
 
         let artist_id = response.data[0].artist.id;
 

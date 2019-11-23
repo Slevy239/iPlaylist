@@ -8,27 +8,47 @@
     <title>iPlaylist</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../styles/tabStyle.css">
+    <link rel="stylesheet" href="../styles/styles.css">
 </head>
 
 <body>
     <div class="container text-center">
         <div class="jumbotron jumbo-formatter">
-            <h1><i class="fas fa-music"></i> i<strong>Playlist</strong> <i class="fas fa-music"></i></h1>
+            <h1><i class="fas fa-music"></i>i<strong>Playlist</strong><i class="fas fa-music"></i></h1>
             <h3>Create a commuminty based Playlist</h3>
         </div>
     </div>
 
 
-
     <div class="container">
+        <div class="row">
+            <div class="col center-align">
+                <div class="hover" id="hover">
+                    <a href="personal.html">
+                        <h1 id="link">playlist
+                            <img src="https://www.dominatorfestival.nl/wp-content/uploads/2019/03/20180721_DOMINATOR_Vincent_065_5201-2000x1333.jpg" alt="communityImg">
+                        </h1>
+
+                        </a>
+                </div>
+            </div>
+            <div class="col">
+                <div id="hover" class="hover">
+                    <h1>Personal</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="container">
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8 text-center">
 
                 <h2>Search for an artist:</h2>
-                <!-- <br> -->
-
+/
                 <form id="submit">
                     <div class="text-center">
 
@@ -45,7 +65,7 @@
             <div class="col-2"></div>
 
         </div>
-    </div>
+    </div> -->
     <br><br>
 
     <div class="container">
@@ -198,74 +218,5 @@
     });
 
 </script>
-<style>
-    body {
-        background-color: black;
-    }
-
-    h2 {
-        color: teal;
-    }
-
-    .jumbo-formatter {
-
-        height: auto !important;
-        padding: 30px 15px 30px 15px;
-
-    }
-
-    #submitbtn {
-
-        margin-top: 8px;
-
-    }
-
-    #thumb {
-        border: solid 1px black;
-        margin: 5%;
-        /* display: block; */
-    }
-
-    .songs {
-        border: black solid 1px;
-    }
-
-    #newSongs {
-        border: black solid 1px;
-    }
-
-    .rating {
-        display: inline-block;
-        width: 100%;
-        /* margin-top: 40px;
-        padding-top: 40px; */
-        text-align: center;
-        margin-top: 37%;
-    }
-
-    .like,
-    .dislike {
-        display: inline-block;
-        cursor: pointer;
-        margin: 10px;
-        color: white;
-    }
-
-    .dislike:hover,
-    .like:hover {
-        color: #2EBDD1;
-        transition: all .2s ease-in-out;
-        transform: scale(1.1);
-    }
-
-    .active {
-        color: teal;
-    }
-
-    .song {
-        margin-top: 10%;
-    }
-</style>
-
 
 </html>
