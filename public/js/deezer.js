@@ -2,40 +2,12 @@
 
 
 
-
-$('#submitbtn').on('click', function () {
-
-    event.preventDefault();
-
-    var searchedString = $('.userSearch').val().trim();
-
-    console.log(searchedString);
-
-
-    $.post("/api/spotify/search", {
-        searchInfo: searchedString
-
-    }).then(function (data) {
-        console.log(data);
-
-    });
-
-
-
-
-
-
-
-})
-
-
-
 $("#personSearch").on("click", function () {
     event.preventDefault();
 
     console.log("clicked");
 
-    var searchedString = $('.userSearch').val().trim();
+    var searchedString = $('#userSearch').val().trim();
 
     if (searchedString === "") {
 
@@ -58,7 +30,7 @@ $("#personSearch").on("click", function () {
   
 
     $.ajax(deezer).done(function (response) {
-        console.log(response.data[0]);
+        // console.log(response.data[0]);
 
         let artist_id = response.data[0].artist.id;
 
@@ -82,31 +54,70 @@ $("#personSearch").on("click", function () {
         }
 
         $.ajax(settings).done(function (response) {
-            console.log(response);
 
-            // initial list of 50 preview mp3s
-            let preview_mp3s = [];
-            for (let i = 0; i < response.data.length; i++) {
-                preview_mp3s.push(response.data[i].preview);
-            }
+            /* console.log(response.data);
 
-            // generate 10 random numbers: instant playlists will be of length 10
+            // atrist album image
+            console.log(response.data[0].album.cover_medium);
+
+            // artist name
+            console.log(response.data[0].artist.name);
+
+            // song title
+            console.log(response.data[0].title);
+
+            // preview url
+            console.log(response.data[0].preview); */
+
+
+            // generate 5 random numbers: instant playlists will be of length 10
             let random_nums = []
             for (let i = 0; i < 5; i++) {
 
                 random_nums.push(Math.floor(Math.random() * 50));
+                
 
             }
 
-            // grab 10 random mp3s to display playlist
-            let random_mp3s = [];
+            console.log(random_nums);
+
+            // grab 5 random mp3s to display playlist
+            let tracks = [];
+            
+            let tracksObj = {
+
+                cover_img: "",
+                artist_name: "",
+                song_title: "",
+                preview_url: ""
+
+            }
+
             for (let i = 0; i < random_nums.length; i++) {
-                random_mp3s.push(response.data[random_nums[i]].preview);
+
+                tracksObj.cover_img = response.data[random_nums[i]].album.cover_medium;
+                tracksObj.artist_name = response.data[random_nums[i]].artist.name;
+                tracksObj.song_title = response.data[random_nums[i]].title;
+                tracksObj.preview_url = response.data[random_nums[i]].preview
+
+                tracks.push(tracksObj);
+                
+                tracksObj = {
+
+                    cover_img: "",
+                    artist_name: "",
+                    song_title: "",
+                    preview_url: ""
+    
+                }
+
             }
 
-            // console.log(random_mp3s);
-
-            CreateInstantPlaylist(random_mp3s);
+            // array of objects to be displayed in a card
+            // console.log(tracks);
+            
+    
+            CreateSongCard(tracks);
 
         });
 
@@ -116,28 +127,15 @@ $("#personSearch").on("click", function () {
 
 })
 
-function CreateMiniPlayer (){
 
 
-
-
-}
-
-
-
-function CreateInstantPlaylist (Arr) {
+function CreateSongCard (Arr) {
 
     console.log(Arr)
 
     for (let i = 0; i < Arr.length; i++) {
 
-        let newDiv = $("<div class=playlist-track-"+i+">");
-
-        // newDiv.append("<a href="+Arr[i]+">");
-
-        $(".instantPlaylist").append(newDiv);
-
-        $(newDiv).append("<embed src="+Arr[i]+" type=audio/mp3 autostart=0>");
+        let newCard = $("")
 
 
     }

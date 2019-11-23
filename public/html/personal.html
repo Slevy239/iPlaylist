@@ -16,26 +16,35 @@
     <nav class="navbar navbar-light bg-light justify-content-between">
         <a class="navbar-brand">Navbar</a>
         <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <input id="userSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="personSearch">Search</button>
         </form>
     </nav>
 
     <div class="container singlePlaylistBoxes">
-        <div class="row playlists-row">
-            <div class="col singlePlaylist">
-                <div class="col singlePlaylist-inner">
-
-
-                </div>
-
+        <div id="song-card" class="card" style="width: 18rem;">
+            <img src="" class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">Artist Name</h5>
+                
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Song title</li>
+                <li class="list-group-item">Preview Url</li>
+            
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Save Song</a>
+                <a href="#" class="card-link">Add to Community</a>
             </div>
         </div>
-        
+
+    </div>
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
-<script src="../js/spotify.js"></script>
+<script src="../js/deezer.js"></script>
 
 </html>
