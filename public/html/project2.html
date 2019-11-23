@@ -8,27 +8,47 @@
     <title>iPlaylist</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../styles/tabStyle.css">
+    <link rel="stylesheet" href="../styles/styles.css">
 </head>
 
 <body>
     <div class="container text-center">
-        <div class="jumbotron">
-            <h1><i class="fas fa-music"></i> i<strong>Playlist</strong> <i class="fas fa-music"></i></h1>
+        <div class="jumbotron jumbo-formatter">
+            <h1><i class="fas fa-music"></i>i<strong>Playlist</strong><i class="fas fa-music"></i></h1>
             <h3>Create a commuminty based Playlist</h3>
         </div>
     </div>
 
 
-
     <div class="container">
         <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4 text-center">
+            <div class="col center-align">
+                <div class="hover" id="hover">
+                    <a href="personal.html">
+                        <h1 id="link">playlist
+                            <img src="https://www.dominatorfestival.nl/wp-content/uploads/2019/03/20180721_DOMINATOR_Vincent_065_5201-2000x1333.jpg" alt="communityImg">
+                        </h1>
+
+                        </a>
+                </div>
+            </div>
+            <div class="col">
+                <div id="hover" class="hover">
+                    <h1>Personal</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 text-center">
 
                 <h2>Search for an artist:</h2>
-                <!-- <br> -->
-
+/
                 <form id="submit">
                     <div class="text-center">
 
@@ -42,10 +62,10 @@
                     </div>
                 </form>
             </div>
-            <div class="col-4"></div>
+            <div class="col-2"></div>
 
         </div>
-    </div>
+    </div> -->
     <br><br>
 
     <div class="container">
@@ -55,6 +75,8 @@
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'first')">Community</button>
             <button class="tablinks" onclick="openTab(event, 'second')">Personal</button>
+            <button id="instaPlay" class="tablinks" onclick="openTab(event, 'third')">instantPlaylist</button>
+
 
             <div id="dropdown">
                 <h9 style="float: right;">Sort by:
@@ -72,11 +94,11 @@
         <!-- Tab content -->
         <div id="first" class="tabcontent text-center overflow-auto">
             <div class="row">
-                <div class="col">
+                <div class="col-9">
                     <div id="spotifyOld"></div>
 
                 </div>
-                <div class="col">
+                <div class="col-3">
                     <div id="vote"></div>
 
                 </div>
@@ -90,7 +112,16 @@
             </div>
         </div>
 
+
+        <div id="third" class="tabcontent">
+            <div class="instantPlaylist">
+
+
+            </div>
+        </div>
+
     </div>
+
 
 </body>
 
@@ -115,27 +146,26 @@
             {
                 songTitle: "song1",
                 artist: "artist1",
-                src: '<iframe src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
+                src: '<iframe src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
             },
             {
                 songTitle: "song2",
                 artist: "artist2",
-                src: '<iframe src="https://open.spotify.com/embed/track/2ON1mRDRdSSrFBdlFOUYTu" width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
+                src: '<iframe src="https://open.spotify.com/embed/track/2ON1mRDRdSSrFBdlFOUYTu" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
             },
             {
                 songTitle: "song3",
                 artist: "3artist",
-                src: '<iframe src="https://open.spotify.com/embed/track/1k5iH4KDKi56MFvlnrALNV" width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
+                src: '<iframe src="https://open.spotify.com/embed/track/1k5iH4KDKi56MFvlnrALNV" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
 
             },
             {
                 songTitle: "song4",
                 artist: "artist4",
-                src: '<iframe src="https://open.spotify.com/embed/track/0K6yUnIKNsFtfIpTgGtcHm" width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
+                src: '<iframe src="https://open.spotify.com/embed/track/0K6yUnIKNsFtfIpTgGtcHm" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
 
             }
         ]
-
 
 
 
@@ -147,9 +177,9 @@
 
             var voteSytem = '<div class="rating">' +
                 '<div class="like grow">' +
-                '<i class="fa fa-thumbs-up fa-3x like" aria-hidden="true" id="like-' + i + '"></i></div>' +
+                '<i class="fa fa-thumbs-up fa-2x like" aria-hidden="true" id="like-' + i + '"></i></div>' +
                 '<div class="dislike grow">' +
-                '<i class="fa fa-thumbs-down fa-3x like" aria-hidden="true" id="dislike-' + i + '"></i>' +
+                '<i class="fa fa-thumbs-down fa-2x like" aria-hidden="true" id="dislike-' + i + '"></i>' +
                 '</div>' + '</div>';
 
 
@@ -188,60 +218,5 @@
     });
 
 </script>
-<style>
-    body {
-        background-color: black;
-    }
-
-    h2 {
-        color: teal;
-    }
-
-    #thumb {
-        border: solid 1px black;
-        margin: 5%;
-        /* display: block; */
-    }
-
-    .songs {
-        border: black solid 1px;
-    }
-
-    #newSongs {
-        border: black solid 1px;
-    }
-
-    #thumb {
-        float: left;
-    }
-
-    .rating {
-        display: inline-block;
-        width: 100%;
-        /* margin-top: 40px;
-        padding-top: 40px; */
-        text-align: center;
-    }
-
-    .like,
-    .dislike {
-        display: inline-block;
-        cursor: pointer;
-        margin: 10px;
-        color: white;
-    }
-
-    .dislike:hover,
-    .like:hover {
-        color: #2EBDD1;
-        transition: all .2s ease-in-out;
-        transform: scale(1.1);
-    }
-
-    .active {
-        color: teal;
-    }
-</style>
-
 
 </html>

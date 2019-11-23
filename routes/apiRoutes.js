@@ -7,7 +7,8 @@ var Spotify = require('node-spotify-api');
 const spotify = new Spotify(Keys.spotify);
 
 module.exports = function (app) {
-  // Get all examples
+
+  // take songs related the the user search and send back to the front end
   app.post("/api/spotify/search", function (req, res) {
 
     let searchInfo = req.body.searchInfo;
@@ -18,19 +19,36 @@ module.exports = function (app) {
 
       .then(function (response) {
 
-        console.log(response.tracks);
+        // console.log(response.tracks);
+        console.log(response.tracks.items[0].album);
+
 
         let allTracks = response.tracks.items;
 
         let sortedTracks = allTracks.sort((a, b) => (a.popularity > b.popularity ? -1 : 1));
 
-
-        let sendArr = [];
-        for (let i = 0; i < sortedTracks.length; i++) {
+        
+        let sendArr = [];  
+        for (let i = 0; i < sortedTracks.length; i++){
           sendArr.push(sortedTracks[i].external_urls);
         }
-        res.json(sendArr);
-      });
+          res.json(sendArr);
+        })
+
+
+      
+
+  });
+
+  app.post("/api/deezer/search", function (req, res) {
+
+    let searchInfo = req.body.searchInfo;
+
+    console.log(searchInfo);
+
+
+      
+
   });
 
 
