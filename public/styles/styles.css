@@ -152,3 +152,15 @@ img{
   margin-left: auto;
 }
 
+.card-img-top {
+  height: auto;
+  width: 20px;
+}
+
+.card {
+  margin: 10px;
+  width: 220px;
+  float: left;
+
+}
+
