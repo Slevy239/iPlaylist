@@ -140,7 +140,7 @@ function CreateSongCard(Arr) {
         let saveLink = $("<a>").addClass('card-link').text("Save to my list.");
         let commLink = $("<a>").addClass('card-link').text("Save to community list.");
         let newCard = $("<div>").addClass("card").attr('width', '18rem');
-        let cardImg = $("<img>").addClass('card-img-top');
+        let cardImg = $("<img>").addClass('card-img-top').addClass('cardImage');
         newCard.attr("id", i);
         cardImg.attr('src', Arr[i].cover_img);
         commLink.attr('id', i);
