@@ -26,6 +26,7 @@ module.exports = function (app) {
         let allTracks = response.tracks.items;
 
         let sortedTracks = allTracks.sort((a, b) => (a.popularity > b.popularity ? -1 : 1));
+
         
         let sendArr = [];  
         for (let i = 0; i < sortedTracks.length; i++){
@@ -50,7 +51,7 @@ module.exports = function (app) {
 
   });
 
-  
+
   //Route for initial user signup:
   app.post('/api/signup', function (req, res) {
     db.userCred.create({
@@ -66,10 +67,10 @@ module.exports = function (app) {
   });
 
   //Route for user login:
-  app.post('/api/login', passport.authenticate("local"), function (req, res) {
-    res.json(req.user);
+  app.post('/api/login', passport.authenticate("local", {failureRedirect: '/', failureFlash: true }), function (req, res) {
+    res.redirect('/home');
   });
-
+  
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();

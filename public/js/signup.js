@@ -35,8 +35,6 @@ $(function(){
             password: password,
             username: username
         }).then(function(data){
-            console.log(data);
-            //Double check that this is the right redirect location:
             window.location.replace("../html/project2.html");
         }).catch(handleLoginErr);
     }
