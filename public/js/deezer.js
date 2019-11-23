@@ -27,7 +27,7 @@ $("#personSearch").on("click", function () {
             "x-rapidapi-key": "93bb26cc96msh4a3826e7173d4dep100250jsn2e5da9455e0c"
         }
     }
-  
+
 
     $.ajax(deezer).done(function (response) {
         // console.log(response.data[0]);
@@ -75,7 +75,7 @@ $("#personSearch").on("click", function () {
             for (let i = 0; i < 5; i++) {
 
                 random_nums.push(Math.floor(Math.random() * 50));
-                
+
 
             }
 
@@ -83,7 +83,7 @@ $("#personSearch").on("click", function () {
 
             // grab 5 random mp3s to display playlist
             let tracks = [];
-            
+
             let tracksObj = {
 
                 cover_img: "",
@@ -101,22 +101,22 @@ $("#personSearch").on("click", function () {
                 tracksObj.preview_url = response.data[random_nums[i]].preview
 
                 tracks.push(tracksObj);
-                
+
                 tracksObj = {
 
                     cover_img: "",
                     artist_name: "",
                     song_title: "",
                     preview_url: ""
-    
+
                 }
 
             }
 
             // array of objects to be displayed in a card
             // console.log(tracks);
-            
-    
+
+
             CreateSongCard(tracks);
 
         });
@@ -129,18 +129,18 @@ $("#personSearch").on("click", function () {
 
 
 
-function CreateSongCard (Arr) {
-    let cardBody1 = $("<div>").addClass("<card-body>");
-    let cardBody2 = $("<div>").addClass("<card-body>");
-    let title = $("<h5>").addClass('card-title');
-    let dataList = $("<ul>").addClass('list-group list-group-flush');
-    let songTitle = $("<li>").addClass('list-group-item');
-    let prevURL = $("<li>").addClass('list-group-item');
-    let saveLink = $("<a>").addClass('card-link').text("Save to my list.");
-    let commLink = $("<a>").addClass('card-link').text("Save to community list.");
-    let newCard = $("<div>").addClass("card").attr('width', '18rem');
-    let cardImg = $("<img>").addClass('card-img-top');
+function CreateSongCard(Arr) {
     for (let i = 0; i < Arr.length; i++) {
+        let cardBody1 = $("<div>").addClass("<card-body>");
+        let cardBody2 = $("<div>").addClass("<card-body>");
+        let title = $("<h5>").addClass('card-title');
+        let dataList = $("<ul>").addClass('list-group list-group-flush');
+        let songTitle = $("<li>").addClass('list-group-item');
+        let prevURL = $("<li>").addClass('list-group-item');
+        let saveLink = $("<a>").addClass('card-link').text("Save to my list.");
+        let commLink = $("<a>").addClass('card-link').text("Save to community list.");
+        let newCard = $("<div>").addClass("card").attr('width', '18rem');
+        let cardImg = $("<img>").addClass('card-img-top');
         newCard.attr("id", i);
         cardImg.attr('src', Arr[i].cover_img);
         commLink.attr('id', i);
@@ -150,7 +150,7 @@ function CreateSongCard (Arr) {
         dataList.append(prevURL.text(Arr[i].preview_url));
         cardBody1.append(title);
         cardBody2.append(saveLink, commLink);
-        newCard.append(cardImg, cardBody1, dataList ,cardBody2);
+        newCard.append(cardImg, cardBody1, dataList, cardBody2);
         $("#singlePlayList").append(newCard);
     }
 }
