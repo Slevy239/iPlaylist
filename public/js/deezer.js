@@ -1,11 +1,5 @@
-
-
-
-
 $("#personSearch").on("click", function () {
     event.preventDefault();
-
-    console.log("clicked");
 
     var searchedString = $('#userSearch').val().trim();
 
@@ -14,8 +8,6 @@ $("#personSearch").on("click", function () {
         searchedString = "eminem";
 
     }
-
-    console.log(searchedString)
     // initial deezer api call to grab the artist id related to the users searched string
     var deezer = {
         "async": true,
@@ -26,8 +18,7 @@ $("#personSearch").on("click", function () {
             "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
             "x-rapidapi-key": "93bb26cc96msh4a3826e7173d4dep100250jsn2e5da9455e0c"
         }
-    }
-
+    };
 
     $.ajax(deezer).done(function (response) {
         // console.log(response.data[0]);
@@ -54,80 +45,42 @@ $("#personSearch").on("click", function () {
         }
 
         $.ajax(settings).done(function (response) {
-
-            /* console.log(response.data);
-
-            // atrist album image
-            console.log(response.data[0].album.cover_medium);
-
-            // artist name
-            console.log(response.data[0].artist.name);
-
-            // song title
-            console.log(response.data[0].title);
-
-            // preview url
-            console.log(response.data[0].preview); */
-
-
             // generate 5 random numbers: instant playlists will be of length 10
-            let random_nums = []
+            let random_nums = [];
             for (let i = 0; i < 5; i++) {
-
                 random_nums.push(Math.floor(Math.random() * 50));
-
-
             }
-
-            console.log(random_nums);
 
             // grab 5 random mp3s to display playlist
             let tracks = [];
 
             let tracksObj = {
-
                 cover_img: "",
                 artist_name: "",
                 song_title: "",
                 preview_url: ""
-
-            }
+            };
 
             for (let i = 0; i < random_nums.length; i++) {
 
                 tracksObj.cover_img = response.data[random_nums[i]].album.cover_medium;
                 tracksObj.artist_name = response.data[random_nums[i]].artist.name;
                 tracksObj.song_title = response.data[random_nums[i]].title;
-                tracksObj.preview_url = response.data[random_nums[i]].preview
+                tracksObj.preview_url = response.data[random_nums[i]].preview;
 
                 tracks.push(tracksObj);
 
                 tracksObj = {
-
                     cover_img: "",
                     artist_name: "",
                     song_title: "",
                     preview_url: ""
-
-                }
-
+                };
             }
-
-            // array of objects to be displayed in a card
-            // console.log(tracks);
-
-
             CreateSongCard(tracks);
-
         });
-
     }
-
-
-
-})
-
-
+});
 
 function CreateSongCard(Arr) {
     for (let i = 0; i < Arr.length; i++) {
@@ -137,14 +90,12 @@ function CreateSongCard(Arr) {
         let dataList = $("<ul>").addClass('list-group list-group-flush');
         let songTitle = $("<li>").addClass('list-group-item');
         let prevURL = $("<li>").addClass('list-group-item');
-        let saveLink = $("<a>").addClass('card-link').text("Save to my list.");
-        let commLink = $("<a>").addClass('card-link').text("Save to community list.");
+        let saveLink = $("<button>").addClass('card-link').attr('id', 'personID' + i).text("Save to my list.");
+        let commLink = $("<button>").addClass('card-link').attr('id', 'commID' + i).text("Save to community list.");
         let newCard = $("<div>").addClass("card").attr('width', '18rem');
         let cardImg = $("<img>").addClass('card-img-top').addClass('cardImage');
         newCard.attr("id", i);
         cardImg.attr('src', Arr[i].cover_img);
-        commLink.attr('id', i);
-        saveLink.attr('id', i);
         cardBody1.append(title.text(Arr[i].artist_name));
         dataList.append(songTitle.text(Arr[i].song_title));
         dataList.append(prevURL.text(Arr[i].preview_url));
@@ -155,18 +106,12 @@ function CreateSongCard(Arr) {
     }
 }
 
-
-
 function deezerPostObj(dataObj) {
-
-    // console.log(dataObj);
 
     $.post("/api/deezer/search", {
         searchInfo: dataObj
 
     }).then(function (data) {
-        // console.log(data);
 
     });
-
 }
