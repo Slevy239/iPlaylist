@@ -131,4 +131,24 @@ img{
 }
 
 
+#homeCards {
+
+  color: #e7f4ff;
+  text-shadow: 0 0 10px #01b7ff;
+  
+}
+
+
+#center { 
+  text-align: center;
+
+  
+}
+
+#center h3 {
+    margin-top: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+}
 
