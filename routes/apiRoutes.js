@@ -23,17 +23,17 @@ module.exports = function (app) {
         let allTracks = response.tracks.items;
 
         let sortedTracks = allTracks.sort((a, b) => (a.popularity > b.popularity ? -1 : 1));
-        
 
-        let sendArr = [];  
-        for (let i = 0; i < sortedTracks.length; i++){
+
+        let sendArr = [];
+        for (let i = 0; i < sortedTracks.length; i++) {
           sendArr.push(sortedTracks[i].external_urls);
         }
-          res.json(sendArr);
-        })
+        res.json(sendArr);
+      });
   });
 
-  
+
   //Route for initial user signup:
   app.post('/api/signup', function (req, res) {
     db.userCred.create({
@@ -49,8 +49,10 @@ module.exports = function (app) {
   });
 
   //Route for user login:
-  app.post('/api/login', passport.authenticate("local"), function (req, res) {
-    res.json(req.user);
+  app.post('/api/login', passport.authenticate("local", { failureFlash: true }), function (req, res) {
+    if (req.user) {
+      res.json(req.user);
+    }
   });
 
   // Route for logging user out

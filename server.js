@@ -4,6 +4,7 @@ const exphbs = require("express-handlebars");
 const session = require('express-session');
 const passport = require('./config/passport/passport');
 const path = require("path");
+const flash = require('connect-flash');
 
 const db = require("./models");
 const app = express();
@@ -13,10 +14,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
-
-// Serve static content for the app from the "public" directory in the application directory.
-// app.use('/public', express.static(path.join(__dirname + '/public')));
-
+app.use(flash());
 
 // Handlebars
 app.engine(
@@ -31,6 +29,7 @@ app.set("view engine", "handlebars");
 // logging, parsing, and session handling.
 app.use(require('morgan')('combined'));
 app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('body-parser').json());
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 // Initialize Passport and restore authentication state, if any, from the

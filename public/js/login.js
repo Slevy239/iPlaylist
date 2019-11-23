@@ -1,23 +1,22 @@
 $(function () {
-    //On submit, send over the email address and password supplied by the user and start authorization cascade:
+    //On submit, send over the username and password supplied by the user and start authorization cascade:
     $("#subBtn").on('click', function (event) {
         event.preventDefault();
-        console.log("Clicked");
-        let email = $("#email").val().trim();
+        let username = $("#username").val().trim();
         let password = $("#password").val().trim();
         let user =
         {
-            email: email,
+            username: username,
             password: password
         };
-        sendData(user.email, user.password);
+        sendData(user.username, user.password);
     });
 
-    function sendData(email, password) {
+    function sendData(username, password) {
         $.post('/api/login', {
-            email: email,
+            username: username,
             password: password
-        }).then(function() {
+        }).then(function(data) {
             window.location.replace("../html/project2.html");
         }).catch(handleLoginErr);
     };
