@@ -132,15 +132,24 @@ $("#personSearch").on("click", function () {
 function CreateSongCard (Arr) {
 
     console.log(Arr)
-
+    let cardBody1 = $("<div>").addClass("<card-body>");
+    let cardBody2 = $("<div>").addClass("<card-body>");
+    let title = $("<h5>").addClass('card-title');
+    let dataList = $("<ul>").addClass('list-group list-group-flush');
+    let songTitle = $("<li>").addClass('list-group-item');
+    let prevURL = $("<li>").addClass('list-group-item');
+    let saveLink = $("<a>").addClass('card-link').text("Save to my list.");
+    let commLink = $("<a>").addClass('card-link').text("Save to community list.");
     for (let i = 0; i < Arr.length; i++) {
-
-        let newCard = $("")
-
-
+        let newCard = $("<div>").attr("id", i).addClass("card").attr('width', '18rem');
+        let cardImg = $("<img>").attr('src', Arr[i].cover_img).addClass('card-img-top');
+        cardBody1.append(title.text(Arr[i].artist_name));
+        dataList.append(songTitle.text(Arr[i].song_title));
+        dataList.append(prevURL.text(Arr[i].preview_url));
+        cardBody1.append(title);
+        cardBody2.append(saveLink, commLink);
+        newCard.append(cardImg, cardBody1, dataList ,cardBody2);
     }
-
-
 }
 
 
