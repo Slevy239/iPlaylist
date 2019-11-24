@@ -103,11 +103,13 @@ function CreateSongCard(Arr) {
         dataList.append('<button id='+i+'><img class="playBtn" alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
 
         dataList.attr('src', Arr[i].preview_url);
-    
-        cardBody1.append(title);
 
-        dataList.append(prevURL.text(Arr[i].preview_url));
         cardBody1.append(artist);
+
+    
+        cardBody1.append(songTitle);
+
+        // dataList.append(prevURL.text(Arr[i].preview_url));
 
         cardBody2.append(saveLink, commLink);
         newCard.append(cardImg, cardBody1, dataList, cardBody2);
@@ -135,8 +137,6 @@ function CreateSongCard(Arr) {
 
 
 
-
-
 function deezerPostObj(dataObj) {
 
     $.post("/api/deezer/search", {
@@ -146,6 +146,7 @@ function deezerPostObj(dataObj) {
 
     });
 }
+
 
 //Send selected song to personal playlist:
 $(document).on("click", ".personal", function () {
@@ -184,6 +185,7 @@ $(document).on("click", ".community", function () {
 
     sendToCommunity(songData);
 });
+
 
 //Need to send over username:
 //Post song to personal playlist:
