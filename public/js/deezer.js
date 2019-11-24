@@ -157,7 +157,7 @@ $(document).on("click", ".community", function () {
 //Need to send over username:
 //Post song to personal playlist:
 function sendToPersonal(obj) {
-    $.post('/api/songInfo', {
+    $.post('/api/personal', {
         song: obj.song,
         artist: obj.artist,
         url: obj.url,
@@ -169,7 +169,7 @@ function sendToPersonal(obj) {
 
 //Post song to community playlist:
 function sendToCommunity(obj) {
-    $.post('/api/songInfo', {
+    $.post('/api/community', {
         song: obj.song,
         artist: obj.artist,
         url: obj.url,
