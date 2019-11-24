@@ -5,8 +5,6 @@
 $("#personSearch").on("click", function () {
     event.preventDefault();
 
-    console.log("clicked");
-
     var searchedString = $('#userSearch').val().trim();
 
     if (searchedString === "") {
@@ -148,14 +146,34 @@ function CreateSongCard(Arr) {
         saveLink.attr('id', i);
         cardBody1.append(title.text(Arr[i].artist_name));
         dataList.append(songTitle.text(Arr[i].song_title));
-        dataList.append(prevURL.text(Arr[i].preview_url));
+        dataList.append('<button id='+i+'><img class="playBtn" alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
+
+        dataList.attr('src', Arr[i].preview_url);
+    
         cardBody1.append(title);
         cardBody2.append(saveLink, commLink);
         newCard.append(cardImg, cardBody1, dataList, cardBody2);
         $("#singlePlayList").append(newCard);
 
     }
+
+
+    $(".playBtn").on("click", function () {
+        
+        console.log(this.data)
+
+        let playAudio = new Audio(this);
+        playAudio.play();
+
+        console.log('clicked');
+    
+    
+    });
+    
 }
+
+
+
 
 
 

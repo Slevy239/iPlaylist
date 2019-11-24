@@ -164,3 +164,45 @@ img{
 
 }
 
+.prev-url {
+
+    /* background-color: #01b7ff!important;
+    height: 50px;
+    
+    margin-top: 0!important;
+    margin-right: 0!important;
+    margin-bottom: 0!important;
+    margin-left: 0!important;
+
+    padding-top: 0!important;
+    padding-right: 0!important;
+    padding-bottom: 0!important;
+    padding-left: 0!important; */
+
+
+
+}
+
+
+/* source, video {
+  margin-top: 0!important;
+  margin-right: 0!important;
+  margin-bottom: 0!important;
+  margin-left: 0!important;
+
+  padding-top: 0!important;
+  padding-right: 0!important;
+  padding-bottom: 0!important;
+  padding-left: 0!important;
+
+
+} */
+
+
+
+img[alt*="playButton"] {
+
+  height: 60px;
+  width: 60px;
+
+}
