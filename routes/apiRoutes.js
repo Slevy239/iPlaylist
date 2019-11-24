@@ -37,12 +37,45 @@ module.exports = function (app) {
   //Route for user login:
   app.post('/api/login', passport.authenticate("local"), function (req, res) {
     res.json(req.user);
+    let username = req.user.dataValues.username;
   });
 
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/api/login");
+  });
+
+  //Api route for sending song info to personal playlist database:
+  //Need to add username:
+  app.post("/api/personal", function(req, res){
+    db.personalPlaylist.create({
+      artistName: req.body.artist,
+      songName: req.body.song,
+      songLink: req.body.url,
+      albumImg: req.body.img
+    }).then(function(data){
+      res.json(data);
+    }).catch(function (err) {
+      console.log(err);
+      res.status(401).json(err);
+    });
+  });
+
+  //Api route for sending song info to community playlist database:
+  //Need to add username:
+  app.post("/api/community", function(req, res){
+    db.communityPlaylist.create({
+      artistName: req.body.artist,
+      songName: req.body.song,
+      songLink: req.body.url,
+      albumImg: req.body.img
+    }).then(function(data){
+      res.json(data);
+    }).catch(function (err) {
+      console.log(err);
+      res.status(401).json(err);
+    });
   });
 
   // Route for getting some data about our user to be used client side
