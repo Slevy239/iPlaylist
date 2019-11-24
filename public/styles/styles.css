@@ -106,16 +106,24 @@ h2 {
 
 .song {
   margin-top: 0;
+  font-size: 14px;
+
+  padding: 4px!important;
+}
+
+.card-title {
+  margin-top: 2px;
+  margin-left: 2px;
+  font-size: 18px;
+
 }
 
 
 #hover {
   background-color: white;
-  /* width: 25%; */
   height: 100%;
 
 }
-
 
 
 .center-align {
@@ -165,13 +173,36 @@ img{
 }
 
 
-
-
-
-
 img[alt*="playButton"] {
 
   height: 60px;
   width: 60px;
+
+}
+
+.save-img {
+  height: 32px;
+  width: 30px;
+  float: left;
+}
+
+.save-img:hover {
+  cursor: pointer;
+
+}
+
+.add-img {
+  height: 32px;
+  width: 30px;
+  float: right;
+}
+
+.add-img:hover {
+  cursor: pointer;
+
+}
+
+.playBtn:hover {
+  cursor: pointer;
 
 }

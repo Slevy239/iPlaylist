@@ -91,28 +91,24 @@ function CreateSongCard(Arr) {
         let dataList = $("<ul>").addClass('list-group list-group-flush').attr('id', i);
         let songTitle = $("<li>").addClass('list-group-item song').attr('id', i);
         let prevURL = $("<li>").addClass('list-group-item url').attr('id', i);
-        let saveLink = $("<button>").addClass('btn rounded bg-dark text-white card-link personal').attr('id', i).text("Save to my list.");
-        let commLink = $("<button>").addClass('btn rounded bg-dark text-white card-link community').attr('id', i).text("Save to community list.");
+        let saveLink = $("<div>").addClass('personal').attr('id', i);
+        let commLink = $("<div>").addClass('community').attr('id', i);
         let newCard = $("<div>").addClass("card").attr('id', i);
         let cardImg = $("<img>").addClass('card-img-top').attr('id', i);
 
         cardImg.attr('src', Arr[i].cover_img);
         cardBody1.append(artist.text(Arr[i].artist_name));
         dataList.append(songTitle.text(Arr[i].song_title));
-
         dataList.append('<button id='+i+'><img class="playBtn" alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
-
         dataList.attr('src', Arr[i].preview_url);
-
         cardBody1.append(artist);
-
-    
         cardBody1.append(songTitle);
-
-        // dataList.append(prevURL.text(Arr[i].preview_url));
-
         cardBody2.append(saveLink, commLink);
         newCard.append(cardImg, cardBody1, dataList, cardBody2);
+
+        saveLink.append('<img class="save-img" src="https://static.thenounproject.com/png/9016-200.png">');
+        commLink.append('<img class="add-img" src="http://cdn.onlinewebfonts.com/svg/img_390313.png">');
+
         $("#singlePlayList").append(newCard);
 
     }
