@@ -1,5 +1,5 @@
 module.exports = function (sequelize, Sequelize) {
-    let songInfo = sequelize.define("songInfo", {
+    let personalPlaylist = sequelize.define("personalPlaylist", {
         artistName: {
             type: Sequelize.STRING
         },
@@ -9,9 +9,12 @@ module.exports = function (sequelize, Sequelize) {
         songLink: {
             type: Sequelize.STRING
         },
-        albumLink: {
+        albumImg: {
+            type: Sequelize.STRING
+        },
+        userName: {
             type: Sequelize.STRING
         }
     });
-    return songInfo;
+    return personalPlaylist;
 }; 
