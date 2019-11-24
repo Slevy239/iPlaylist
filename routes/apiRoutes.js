@@ -37,6 +37,7 @@ module.exports = function (app) {
   //Route for user login:
   app.post('/api/login', passport.authenticate("local"), function (req, res) {
     res.json(req.user);
+    let username = req.user.dataValues.username;
   });
 
   // Route for logging user out
