@@ -59,10 +59,6 @@ a:hover {
 
 #center { 
   text-align: center;
-  /* margin-top: auto;
-  margin-right: auto;
-  margin-bottom: auto;
-  margin-left: auto; */
 
   
 }
@@ -84,59 +80,6 @@ a:hover {
 
     <br><br>
 
-    <!-- <div class="container">
-        Tab links
-
-
-        <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'first')">Community</button>
-            <button class="tablinks" onclick="openTab(event, 'second')">Personal</button>
-            <button id="instaPlay" class="tablinks" onclick="openTab(event, 'third')">instantPlaylist</button>
-
-
-            <div id="dropdown">
-                <h9 style="float: right;">Sort by:
-
-                    <select>
-                        <option value="data">Data</option>
-                        <option value="author">Author</option>
-                    </select>
-                </h9>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        Tab content
-        <div id="first" class="tabcontent text-center overflow-auto">
-            <div class="row">
-                <div class="col-9">
-                    <div id="spotifyOld"></div>
-
-                </div>
-                <div class="col-3">
-                    <div id="vote"></div>
-
-                </div>
-            </div>
-        </div>
-
-
-        dynamically add divs for each songs
-        <div id="second" class="tabcontent">
-            <div class="songs">
-            </div>
-        </div>
-
-
-        <div id="third" class="tabcontent">
-            <div class="instantPlaylist">
-
-
-            </div>
-        </div>
-
-    </div> -->
 
 
 </body>
@@ -149,86 +92,5 @@ a:hover {
     crossorigin="anonymous"></script>
 <script src="../js/tab.js"></script>
 
-<script>
-
-    $(document).ready(function () {
-        console.log("ready!");
-
-        const songs = [
-            {
-                songTitle: "song1",
-                artist: "artist1",
-                src: '<iframe src="https://open.spotify.com/embed/track/0t3ZvGKlmYmVsDzBJAXK8C" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
-            },
-            {
-                songTitle: "song2",
-                artist: "artist2",
-                src: '<iframe src="https://open.spotify.com/embed/track/2ON1mRDRdSSrFBdlFOUYTu" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
-            },
-            {
-                songTitle: "song3",
-                artist: "3artist",
-                src: '<iframe src="https://open.spotify.com/embed/track/1k5iH4KDKi56MFvlnrALNV" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
-
-            },
-            {
-                songTitle: "song4",
-                artist: "artist4",
-                src: '<iframe src="https://open.spotify.com/embed/track/0K6yUnIKNsFtfIpTgGtcHm" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
-
-            }
-        ]
-
-
-
-
-
-        //dynamically created new div for each index of the array within #spotifyOld
-        for (let i = 0; i < songs.length; i++) {
-
-
-            var voteSytem = '<div class="rating">' +
-                '<div class="like grow">' +
-                '<i class="fa fa-thumbs-up fa-2x like" aria-hidden="true" id="like-' + i + '"></i></div>' +
-                '<div class="dislike grow">' +
-                '<i class="fa fa-thumbs-down fa-2x like" aria-hidden="true" id="dislike-' + i + '"></i>' +
-                '</div>' + '</div>';
-
-
-            var newElement = document.createElement('div');
-            newElement.id = "spotifyNew-" + i;
-            newElement.className = "song";
-            newElement.innerHTML = songs[i];
-            $('#spotifyOld').append(newElement)
-            document.getElementById('spotifyNew-' + i).innerHTML = songs[i].src;
-
-            //vote for each song
-            var newVote = document.createElement('div');
-            newVote.id = "voteNew-" + i;
-            newVote.className = "vote";
-            newVote.innerHTML = songs[i];
-            $("#vote").append(newVote);
-            document.getElementById("voteNew-" + i).innerHTML = voteSytem
-
-            $('#like-' + i).on('click', function () {
-                console.log("hi")
-                event.preventDefault();
-                $('.active').removeClass('active');
-                $(this).addClass('active');
-            });
-
-            $('#dislike-' + i).on('click', function () {
-                event.preventDefault();
-                $('.active').removeClass('active');
-                $(this).addClass('active');
-            });
-        };
-
-
-
-
-    });
-
-</script>
 
 </html>
