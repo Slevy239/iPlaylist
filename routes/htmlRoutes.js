@@ -12,10 +12,6 @@ module.exports = function (app) {
     }
     res.render('login.handlebars', {message: req.flash('error')});
   });
-  //Load login page, this will do Passport authorization:
-  // app.get('/login', function (req, res) {
-  //   res.render('login.handlebars', {message: req.flash('error')});
-  // });
   //Load home page: 
   app.get('/home', isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, '../public/html/project2.html'));
