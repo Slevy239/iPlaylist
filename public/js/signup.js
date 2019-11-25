@@ -4,7 +4,7 @@ $(function(){
     let email = $("#emailInput");
     let password = $("#pWordInput");
 
-    $("#subBtn").on('click', function(event){
+    $("#signUpBtn").on('click', function(event){
         event.preventDefault();
         let createUser = {
             email: email.val().trim(),

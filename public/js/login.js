@@ -1,6 +1,6 @@
 $(function () {
     //On submit, send over the username and password supplied by the user and start authorization cascade:
-    $("#subBtn").on('click', function (event) {
+    $("#loginBtn").on('click', function (event) {
         event.preventDefault();
         let username = $("#username").val().trim();
         let password = $("#password").val().trim();

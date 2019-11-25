@@ -38,6 +38,10 @@ module.exports = function (app) {
   app.post('/api/login', passport.authenticate("local"), function (req, res) {
     res.json(req.user);
     let username = req.user.dataValues.username;
+    });
+
+  app.get('/api/login', function(req, res){
+    res.end();
   });
 
   // Route for logging user out

@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/login.css">
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- Custom script for login -->
+    <script src="../js/login.js"></script>
+    <!-- Custom script for signup -->
+    <script src = "../js/signup.js"></script>
 </head>
 
 <body>
@@ -65,7 +74,7 @@
                             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                             <span class="sr-only">Error:</span> <span class="msg"></span>
                         </div>
-                        <button type="submit" id="subBtn" class="btn btn-default">Sign Up</button>
+                        <button type="submit" id="signUpBtn" class="btn btn-default">Sign Up</button>
                     </form>
                 </div>
                 <!-- <div class="modal-footer">
@@ -96,7 +105,7 @@
                             <input type="password" placeholder="Enter Password" name="psw" id="password" required>
                             <br>
 
-                            <button type="submit" id="subBtn">Login</button>
+                            <button type="submit" id="loginBtn">Login</button>
                             <label>
                                 <input type="checkbox" checked="checked" name="remember" id="remember"> Remember Me
                             </label>
