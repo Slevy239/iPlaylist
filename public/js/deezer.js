@@ -112,12 +112,11 @@ function CreateSongCard(Arr) {
         $("#singlePlayList").append(newCard);
 
 
-        playSong(Arr);
 
     }
 
 
-
+    playSong(Arr);
 
 
 }
