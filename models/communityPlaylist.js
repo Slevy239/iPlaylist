@@ -1,5 +1,11 @@
 module.exports = function (sequelize, Sequelize) {
     let communityPlaylist = sequelize.define("communityPlaylist", {
+        username: {
+            type: Sequelize.STRING
+        },
+        userid: {
+            type: Sequelize.INTEGER
+        },
         artistName: {
             type: Sequelize.STRING
         },
@@ -10,9 +16,6 @@ module.exports = function (sequelize, Sequelize) {
             type: Sequelize.STRING
         },
         albumImg: {
-            type: Sequelize.STRING
-        },
-        userName: {
             type: Sequelize.STRING
         }
     });

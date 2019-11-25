@@ -14,9 +14,6 @@ module.exports = function (app) {
 
     console.log(searchInfo);
 
-
-      
-
   });
 
   
@@ -37,11 +34,22 @@ module.exports = function (app) {
   //Route for user login:
   app.post('/api/login', passport.authenticate("local"), function (req, res) {
     res.json(req.user);
-    let username = req.user.dataValues.username;
     });
 
+  // Route for getting some data about our user to be used client side
   app.get('/api/login', function(req, res){
-    res.end();
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id,
+        username: req.user.username
+      });
+    }
   });
 
   // Route for logging user out
@@ -54,6 +62,8 @@ module.exports = function (app) {
   //Need to add username:
   app.post("/api/personal", function(req, res){
     db.personalPlaylist.create({
+      username: req.body.username,
+      userid: req.body.userid,
       artistName: req.body.artist,
       songName: req.body.song,
       songLink: req.body.url,
@@ -70,6 +80,8 @@ module.exports = function (app) {
   //Need to add username:
   app.post("/api/community", function(req, res){
     db.communityPlaylist.create({
+      username: req.body.username,
+      userid: req.body.userid,
       artistName: req.body.artist,
       songName: req.body.song,
       songLink: req.body.url,
@@ -81,24 +93,6 @@ module.exports = function (app) {
       res.status(401).json(err);
     });
   });
-
-  // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", function (req, res) {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id,
-        username: req.user.username
-      });
-    }
-  });
-
-
 };
 
 

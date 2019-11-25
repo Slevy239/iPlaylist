@@ -24,7 +24,6 @@ $(function () {
     }
     //Error handling
     function handleLoginErr(err) {
-        console.log(err);
         $("#alert2 .msg").text("Invalid user credentials, please try again.");
         $("#alert2").fadeIn(500);
       }
