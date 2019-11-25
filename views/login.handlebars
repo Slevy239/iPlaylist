@@ -83,13 +83,14 @@
                         <br>
 
                         <button type="submit" id="loginBtn">Login</button>
+                        <div style="display: none" id="alert2" class="alert alert-danger" role="alert">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="msg"></span>
+                        </div>
                         <label>
                             <input type="checkbox" checked="checked" name="remember" id="remember"> Remember Me
                         </label>
                     </div>
-                    {{#if message}}
-                    <div class="alert alert-danger">{{message}}</div>
-                    {{/if}}
                     <div class="container">
                         <a href="./"><button type="button" class="cancelbtn btn btn-default">Cancel</button></a>
                     </div>
