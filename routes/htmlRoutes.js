@@ -10,7 +10,7 @@ module.exports = function (app) {
     if (req.user) {
       res.redirect("/home");
     }
-    res.render('login.handlebars', {message: req.flash('error')});
+    res.render('login.handlebars');
   });
   //Load home page: 
   app.get('/home', isAuthenticated, function (req, res) {

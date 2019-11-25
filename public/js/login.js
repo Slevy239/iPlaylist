@@ -24,7 +24,8 @@ $(function () {
     }
     //Error handling
     function handleLoginErr(err) {
-        $("#alert .msg").text(err.responseJSON);
-        $("#alert").fadeIn(500);
+        console.log(err);
+        $("#alert2 .msg").text("Invalid user credentials, please try again.");
+        $("#alert2").fadeIn(500);
       }
 });
