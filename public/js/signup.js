@@ -12,12 +12,15 @@ $(function(){
             username: userName.val().trim()
         };
 
-        if (!createUser.email) {
-            return $('#alert .msg').text("Hey you forgot to add an email address!");
-        } else if (!createUser.password){
-            return $('#alert .msg').text("Hey you forgot to add a password!");
-        } else if (!createUser.username) {
-            return $('#alert .msg').text("Hey you forgot to add a username!");
+        if (!createUser.usename) {
+            $('#alert .msg').text("Hey you forgot to add a username!");
+            return $("#alert").fadeIn(500);
+        } else if (!createUser.email) {
+            $('#alert .msg').text("Hey you forgot to add a email address!");
+            return $("#alert").fadeIn(500);
+        } else if (!createUser.password) {
+             $('#alert .msg').text("Hey you forgot to add a password!");
+             return $("#alert").fadeIn(500);
         }
 
         //Call the sign in function:
@@ -41,7 +44,9 @@ $(function(){
 
     //Error handling function:
     function handleLoginErr(err) {
-        $("#alert .msg").text(err.responseJSON);
+        if (err.responseJSON.errors[0].message === 'Validation isEmail on email failed') {
+        $("#alert .msg").text('Please enter a valid email address.');
+        }
         $("#alert").fadeIn(500);
       }
 });
