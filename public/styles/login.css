@@ -69,3 +69,6 @@ form {
       width: 100%;
     }
   }
+  button.btn.btn-info.btn-lg {
+    color: black;
+}
