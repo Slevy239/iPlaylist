@@ -167,7 +167,7 @@ img{
 
 .card {
   margin: 10px;
-  width: 220px;
+  /* width: 220px; */
   float: left;
 
 }
