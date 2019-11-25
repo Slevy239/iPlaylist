@@ -1,10 +1,10 @@
-$(function(){
+$(function () {
     //Define some variables:
     let userName = $("#userNameInput");
     let email = $("#emailInput");
     let password = $("#pWordInput");
 
-    $("#signUpBtn").on('click', function(event){
+    $("#signUpBtn").on('click', function (event) {
         event.preventDefault();
         let createUser = {
             email: email.val().trim(),
@@ -12,15 +12,21 @@ $(function(){
             username: userName.val().trim()
         };
 
-        if (!createUser.usename) {
+        if (!createUser.username) {
             $('#alert .msg').text("Hey you forgot to add a username!");
-            return $("#alert").fadeIn(500);
+            $("#alert").fadeIn(500);
+            userName.val("");
+            return; 
         } else if (!createUser.email) {
             $('#alert .msg').text("Hey you forgot to add a email address!");
-            return $("#alert").fadeIn(500);
+            $("#alert").fadeIn(500);
+            email.val("");
+            return;
         } else if (!createUser.password) {
-             $('#alert .msg').text("Hey you forgot to add a password!");
-             return $("#alert").fadeIn(500);
+            $('#alert .msg').text("Hey you forgot to add a password!");
+            $("#alert").fadeIn(500);
+            password.val("");
+            return;
         }
 
         //Call the sign in function:
@@ -34,10 +40,10 @@ $(function(){
     //Function to actually post our sing in info to our database:
     function signUpUser(email, password, username) {
         $.post("/api/signup", {
-            email: email,       
+            email: email,
             password: password,
             username: username
-        }).then(function(data){
+        }).then(function (data) {
             window.location.replace("../html/project2.html");
         }).catch(handleLoginErr);
     }
@@ -45,8 +51,8 @@ $(function(){
     //Error handling function:
     function handleLoginErr(err) {
         if (err.responseJSON.errors[0].message === 'Validation isEmail on email failed') {
-        $("#alert .msg").text('Please enter a valid email address.');
+            $("#alert .msg").text('Please enter a valid email address.');
         }
         $("#alert").fadeIn(500);
-      }
+    }
 });
