@@ -99,7 +99,7 @@ function CreateSongCard(Arr) {
         cardImg.attr('src', Arr[i].cover_img);
         cardBody1.append(artist.text(Arr[i].artist_name));
         dataList.append(songTitle.text(Arr[i].song_title));
-        dataList.append('<button id='+i+'><img class="playBtn" alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
+        dataList.append('<button id=' + i + '><img class="playBtn" id=' + i + ' alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
         dataList.attr('src', Arr[i].preview_url);
         cardBody1.append(artist);
         cardBody1.append(songTitle);
@@ -111,22 +111,39 @@ function CreateSongCard(Arr) {
 
         $("#singlePlayList").append(newCard);
 
+
+        playSong(Arr);
+
     }
 
 
-    $(".playBtn").on("click", function () {
-        
-        console.log(this.data)
 
-        let playAudio = new Audio(this);
+
+
+}
+
+function playSong(Arr) {
+
+    $(".playBtn").on("click", function (event) {
+
+        let target = $(event.target);
+
+        console.log(target[0].id);
+
+        let idNum = $(this).attr('id');
+
+        console.log("clicked " + idNum);
+
+        let playAudio = new Audio(Arr[idNum].preview_url);
+        // console.log(Arr);
         playAudio.play();
 
-        console.log('clicked');
-    
-    
-    });
-    
-}
+    }
+
+)}
+
+
+
 
 
 
