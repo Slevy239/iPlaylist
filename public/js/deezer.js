@@ -124,25 +124,21 @@ function CreateSongCard(Arr) {
 
 function playSong(Arr) {
 
+
     $(".playBtn").on("click", function (event) {
-
-        let target = $(event.target);
-
-        console.log(target[0].id);
+        event.preventDefault();
 
         let idNum = $(this).attr('id');
 
-        console.log("clicked " + idNum);
+        // console.log("clicked " + idNum);
 
         let playAudio = new Audio(Arr[idNum].preview_url);
         // console.log(Arr);
         playAudio.play();
 
-    }
-
-)}
-
-
+    
+    })
+}
 
 
 
