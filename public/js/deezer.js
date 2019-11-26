@@ -41,7 +41,7 @@ $(document).ready(function () {
             let song = $(document.getElementById(id).getElementsByClassName("song")[0]).html();
             let artist = $(document.getElementById(id).getElementsByClassName("card-title")[0]).html();
             let url = $(document.getElementById(id).getElementsByClassName("list-group-flush")[0]).attr('src');
-            console.log(url);
+            // console.log(url);
             let img = $(document.getElementById(id).getElementsByClassName("card-img-top")[0]).attr('src');
 
             let songData = {
@@ -54,6 +54,8 @@ $(document).ready(function () {
             };
 
             sendToPersonal(songData);
+            
+
         });
 
         //Send selected song to community playlist:
@@ -79,6 +81,7 @@ $(document).ready(function () {
             };
 
             sendToCommunity(songData);
+
         });
 
     });
@@ -194,6 +197,9 @@ $(document).ready(function () {
         });
     }
 
+
+    let cards = [];
+
     //Need to send over username:
     //Post song to personal playlist:
     function sendToPersonal(obj) {
@@ -205,9 +211,59 @@ $(document).ready(function () {
             url: obj.url,
             img: obj.img
         }).then(function (data) {
-            console.log(data);
+
+            cards.push(data);
+            console.log(cards);
+
+            loadCardsToPersonal(cards);
+
+
         }).catch(handleLoginErr);
     }
+
+
+    function loadCardsToPersonal(Arr) {
+
+        for (let i = 0; Arr.length; i++){
+
+
+            let cardBody1 = $("<div>").addClass("<card-body>").attr('id', i);
+            let cardBody2 = $("<div>").addClass("<card-body>").attr('id', i);
+            let artist = $("<h5>").addClass('card-title').attr('id', i);
+            let dataList = $("<ul>").addClass('list-group list-group-flush').attr('id', i);
+            let songTitle = $("<li>").addClass('list-group-item song').attr('id', i);
+            let prevURL = $("<li>").addClass('list-group-item url').attr('id', i);
+            let saveLink = $("<div>").addClass('personal').attr('id', i);
+            let commLink = $("<div>").addClass('community').attr('id', i);
+            let newCard = $("<div>").addClass("card").attr('id', i);
+            let cardImg = $("<img>").addClass('card-img-top').attr('id', i);
+
+            cardImg.attr('src', Arr[i].albumImg);
+            cardBody1.append(artist.text(Arr[i].artistName));
+            dataList.append(songTitle.text(Arr[i].songName));
+            dataList.append('<button id=' + i + '><img class="playBtn" data-playing ="false" id=' + i + ' alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
+            dataList.attr('src', Arr[i].songLink);
+            cardBody1.append(artist);
+            cardBody1.append(songTitle);
+            cardBody2.append(saveLink, commLink);
+            newCard.append(cardImg, cardBody1, dataList, cardBody2);
+
+            saveLink.append('<img class="save-img" src="https://static.thenounproject.com/png/9016-200.png">');
+            commLink.append('<img class="add-img" src="http://cdn.onlinewebfonts.com/svg/img_390313.png">');
+
+            $("#singlePlayList").append(newCard);
+
+
+        }
+
+        window.location.replace('/project2.html');
+
+    }
+
+
+
+
+
 
     //Post song to community playlist:
     function sendToCommunity(obj) {
@@ -219,7 +275,7 @@ $(document).ready(function () {
             url: obj.url,
             img: obj.img
         }).then(function (data) {
-            console.log(data);
+            // console.log(data);
         }).catch(handleLoginErr);
     }
 
@@ -228,5 +284,8 @@ $(document).ready(function () {
         $("#alert .msg").text(err.responseJSON);
         $("#alert").fadeIn(500);
     }
+
+
+
 
 });

@@ -12,7 +12,7 @@ module.exports = function (app) {
 
     let searchInfo = req.body.searchInfo;
 
-    console.log(searchInfo);
+    // console.log(searchInfo);
 
   });
 
@@ -93,6 +93,23 @@ module.exports = function (app) {
       res.status(401).json(err);
     });
   });
+
+  app.get("/api/personal", function(req, res){
+
+    db.personalPlaylist.findAll({}).then(function(data){
+
+      res.json(data);
+      
+      console.log(data);
+      
+
+    }).catch(function (err) {
+
+      console.log(err);
+      // res.status(401).json(err);
+    })
+
+  })
 };
 
 
