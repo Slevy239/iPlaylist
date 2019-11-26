@@ -31,7 +31,7 @@ $(document).ready(function () {
             });
         });
         //Send selected song to personal playlist:
-        $(document).on('click',".personal", function () {
+        $(document).on('click', ".personal", function () {
             //User info:
             let email = user.email;
             let username = user.username;
@@ -150,7 +150,7 @@ $(document).ready(function () {
             cardImg.attr('src', Arr[i].cover_img);
             cardBody1.append(artist.text(Arr[i].artist_name));
             dataList.append(songTitle.text(Arr[i].song_title));
-            dataList.append('<button id=' + i + '><img class="playBtn" id=' + i + ' alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
+            dataList.append('<button id=' + i + '><img class="playBtn" data-playing ="false" id=' + i + ' alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
             dataList.attr('src', Arr[i].preview_url);
             cardBody1.append(artist);
             cardBody1.append(songTitle);
@@ -168,17 +168,19 @@ $(document).ready(function () {
 
     //Play the song:
     function playSong(Arr) {
+        let playAudio;
         $(".playBtn").on("click", function (event) {
-            event.preventDefault();
-
             let idNum = $(this).attr('id');
-
-            // console.log("clicked " + idNum);
-
-            let playAudio = new Audio(Arr[idNum].preview_url);
-            // console.log(Arr);
-            playAudio.play();
-        })
+            let isPlaying = $(this).attr('data-playing');
+            if (isPlaying === 'false') {
+                playAudio = new Audio(Arr[idNum].preview_url);
+                playAudio.play();
+                $(this).attr('data-playing', 'true');
+            } else {
+                playAudio.pause();
+                $(this).attr('data-playing', 'false');
+            }
+        });
     }
 
     //Can this be removed?
