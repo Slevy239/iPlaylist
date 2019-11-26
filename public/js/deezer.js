@@ -165,7 +165,7 @@ $(document).ready(function () {
             cardImg.attr('src', Arr[i].cover_img);
             cardBody1.append(artist.text(Arr[i].artist_name));
             dataList.append(songTitle.text(Arr[i].song_title));
-            dataList.append('<button id=' + i + '><img class="playBtn" data-playing ="false" id=' + i + ' alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
+            dataList.append('<button id=' + i + '><img class="playBtn" data-playing ="false" id=' + i + ' alt="playButton" src="https://cdn1.iconfinder.com/data/icons/line-arrow-hand-draw/64/arrow_hand_draw_line-25-512.png"></button>');
             dataList.attr('src', Arr[i].preview_url);
             cardBody1.append(artist);
             cardBody1.append(songTitle);
@@ -192,9 +192,11 @@ $(document).ready(function () {
                 playAudio = new Audio(Arr[idNum].preview_url);
                 playAudio.play();
                 $(this).attr('data-playing', 'true');
+                $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/internet-28/48/12-512.png')
             } else {
                 playAudio.pause();
                 $(this).attr('data-playing', 'false');
+                $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/line-arrow-hand-draw/64/arrow_hand_draw_line-25-512.png')
             }
         });
     }
