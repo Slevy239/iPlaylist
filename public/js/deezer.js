@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     //Get user info:
     $.get('/api/login', function (user) {
         //Display username:
@@ -8,6 +9,7 @@ $(document).ready(function () {
         $("#personSearch").click({ user: user }, function () {
             //Prevent reload on click:
             event.preventDefault();
+
             //Clear the card contents when search is conducted:
             $("#singlePlayList").empty();
             var searchedString = $('#userSearch').val().trim();
@@ -29,6 +31,10 @@ $(document).ready(function () {
                 let artist_id = response.data[0].artist.id;
                 artistFunc(artist_id);
             });
+
+            // reset search input form back to placeholder
+            $("#userSearch").val("Search for an artist...");
+
         });
         //Send selected song to personal playlist:
         $(document).on('click', ".personal", function () {
@@ -85,6 +91,7 @@ $(document).ready(function () {
         });
 
     });
+
     //Search Deezer api for artist id:
     function artistFunc(artistID) {
 
@@ -109,6 +116,7 @@ $(document).ready(function () {
             // grab 5 random mp3s to display playlist
             let tracks = [];
 
+            // create a blank object to be filled with random images, artist name, song title, mp3
             let tracksObj = {
                 cover_img: "",
                 artist_name: "",
@@ -116,6 +124,7 @@ $(document).ready(function () {
                 preview_url: ""
             };
 
+            // loop through random array of length 5 and push object properties
             for (let i = 0; i < random_nums.length; i++) {
 
                 tracksObj.cover_img = response.data[random_nums[i]].album.cover_medium;
@@ -125,6 +134,7 @@ $(document).ready(function () {
 
                 tracks.push(tracksObj);
 
+                // resize trackObj back to empty
                 tracksObj = {
                     cover_img: "",
                     artist_name: "",
@@ -132,6 +142,8 @@ $(document).ready(function () {
                     preview_url: ""
                 };
             }
+
+            // call function to create a list of 5 song cards
             CreateSongCard(tracks);
         });
     }
@@ -166,10 +178,11 @@ $(document).ready(function () {
             $("#singlePlayList").append(newCard);
         }
 
+        // call function to handle playing and pausing audio
         playSong(Arr);
     }
 
-    //Play the song:
+    // Play the song:
     function playSong(Arr) {
         let playAudio;
         $(".playBtn").on("click", function (event) {
@@ -186,18 +199,8 @@ $(document).ready(function () {
         });
     }
 
-    //Can this be removed?
-    function deezerPostObj(dataObj) {
 
-        $.post("/api/deezer/search", {
-            searchInfo: dataObj
-
-        }).then(function (data) {
-
-        });
-    }
-
-
+    // set cards = to empty array to be filled with the users personal saved cards
     let cards = [];
 
     //Need to send over username:
@@ -215,17 +218,17 @@ $(document).ready(function () {
             cards.push(data);
             console.log(cards);
 
+            // call function to list saved cards
             loadCardsToPersonal(cards);
-
 
         }).catch(handleLoginErr);
     }
 
 
+    // function to load *saved cards to the personal html page
     function loadCardsToPersonal(Arr) {
 
         for (let i = 0; Arr.length; i++){
-
 
             let cardBody1 = $("<div>").addClass("<card-body>").attr('id', i);
             let cardBody2 = $("<div>").addClass("<card-body>").attr('id', i);
@@ -253,13 +256,11 @@ $(document).ready(function () {
 
             $("#singlePlayList").append(newCard);
 
-
         }
 
-        window.location.replace('/project2.html');
+        window.location.reload();
 
     }
-
 
 
 

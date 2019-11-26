@@ -69,6 +69,7 @@ module.exports = function (app) {
       songLink: req.body.url,
       albumImg: req.body.img
     }).then(function(data){
+      console.log(data);
       res.json(data);
     }).catch(function (err) {
       console.log(err);
@@ -99,7 +100,7 @@ module.exports = function (app) {
     db.personalPlaylist.findAll({}).then(function(data){
 
       res.json(data);
-      
+
       console.log(data);
       
 
