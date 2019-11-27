@@ -1,12 +1,11 @@
 $(document).ready(function () {
-
-    // call function to load userPlayist to the page
-    loadSavedCards();
-
     //Get user info:
     $.get('/api/login', function (user) {
         //Display username:
         $("#userName").text(user.username);
+
+         // call function to load userPlayist to the page
+        loadSavedCards(user.username);
 
         //Run person search function
         $("#personSearch").click({ user: user }, function () {
@@ -67,7 +66,7 @@ $(document).ready(function () {
             window.location.reload();
 
             sendToPersonal(songData);
-            
+
 
         });
 
@@ -207,11 +206,9 @@ $(document).ready(function () {
         });
     }
 
-
-
     //Post song to personal playlist:
     function sendToPersonal(obj) {
-        $.post('/api/personal', {
+        $.post('/api/personal/:' + obj.username, {
             username: obj.username,
             userid: obj.userid,
             song: obj.song,
@@ -219,17 +216,26 @@ $(document).ready(function () {
             url: obj.url,
             img: obj.img
         }).then(function (data) {
-
-
         }).catch(handleLoginErr);
     }
 
-
+    //Post song to community playlist:
+    function sendToCommunity(obj) {
+        $.post('/api/community', {
+            username: obj.username,
+            userid: obj.userid,
+            song: obj.song,
+            artist: obj.artist,
+            url: obj.url,
+            img: obj.img
+        }).then(function (data) {
+            // console.log(data);
+        }).catch(handleLoginErr);
+    }
     // function to load *saved cards to the personal html page
-    function loadSavedCards() {
-
-        $.get("/api/personal", function(data) {
-            for (let i = 0; i < data.length; i++){
+    function loadSavedCards(user) {
+        $.get("/api/personal/" + user, function (data) {
+            for (let i = 0; i < data.length; i++) {
 
                 let cardBody1 = $("<div>").addClass("<card-body>").attr('id', i);
                 let cardBody2 = $("<div>").addClass("<card-body>").attr('id', i);
@@ -240,7 +246,7 @@ $(document).ready(function () {
                 let commLink = $("<div>").addClass('community').attr('id', i);
                 let newCard = $("<div>").addClass("card").attr('id', i);
                 let cardImg = $("<img>").addClass('card-img-top').attr('id', i);
-    
+
                 cardImg.attr('src', data[i].albumImg);
                 cardBody1.append(artist.text(data[i].artistName));
                 dataList.append(songTitle.text(data[i].songName));
@@ -250,12 +256,12 @@ $(document).ready(function () {
                 cardBody1.append(songTitle);
                 cardBody2.append(delLink, commLink);
                 newCard.append(cardImg, cardBody1, dataList, cardBody2);
-    
+
                 delLink.append('<img class="del-img" src="https://icons-for-free.com/iconfiles/png/512/delete+remove+trash+trash+bin+trash+can+icon-1320073117929397588.png">');
                 commLink.append('<img class="add-img" src="http://cdn.onlinewebfonts.com/svg/img_390313.png">');
-    
+
                 $("#savedPlayList").append(newCard);
-    
+
             }
 
             playSavedSong(data);
@@ -264,27 +270,27 @@ $(document).ready(function () {
 
     }
 
-    $(document).on("click", ".delete", function(){
+    $(document).on("click", ".delete", function () {
 
         let id = parseInt($(this).attr('id'));
         console.log(id);
 
         $.ajax({
             method: "DELETE",
-            url: "/api/personal/"+id
+            url: "/api/personal/" + id
 
-        }).then(function(data){
+        }).then(function (data) {
 
             $("#savedPlayList").empty();
 
             loadSavedCards();
 
-        }).catch(function(err){
+        }).catch(function (err) {
 
             console.log(err);
         });
 
-        
+
 
     })
 
@@ -308,21 +314,6 @@ $(document).ready(function () {
             }
         });
     }
-
-    //Post song to community playlist:
-    function sendToCommunity(obj) {
-        $.post('/api/community', {
-            username: obj.username,
-            userid: obj.userid,
-            song: obj.song,
-            artist: obj.artist,
-            url: obj.url,
-            img: obj.img
-        }).then(function (data) {
-            // console.log(data);
-        }).catch(handleLoginErr);
-    }
-
     //Error handling
     function handleLoginErr(err) {
         $("#alert .msg").text(err.responseJSON);

@@ -50,8 +50,7 @@ module.exports = function (app) {
   });
 
   //Api route for sending song info to personal playlist database:
-  //Need to add username:
-  app.post("/api/personal", function (req, res) {
+  app.post("/api/personal/:user", function (req, res) {
     db.personalPlaylist.create({
       username: req.body.username,
       userid: req.body.userid,
@@ -86,15 +85,18 @@ module.exports = function (app) {
     });
   });
 
-
-
   // route for getting all rows in database
   // synonymous to SELECT * FROM some_db
-  app.get("/api/personal", function (req, res) {
-    db.personalPlaylist.findAll({}).then(function (data) {
+  app.get("/api/personal/:user", function (req, res) {
+    db.personalPlaylist.findAll({
+      where: {
+        username: req.params.user
+      }
+    }).then(function (data) {
+      console.log(data);
       res.json(data);
     }).catch(function (err) {
-      console.log(err);
+       return err;
     });
   });
 
@@ -111,7 +113,7 @@ module.exports = function (app) {
       console.log(err);
 
     })
-  })
+  });
 
 
   app.get("/api/community", function (req, res) {
