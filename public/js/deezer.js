@@ -163,7 +163,6 @@ $(document).ready(function () {
             let artist = $("<h5>").addClass('card-title').attr('id', i);
             let dataList = $("<ul>").addClass('list-group list-group-flush').attr('id', i);
             let songTitle = $("<li>").addClass('list-group-item song').attr('id', i);
-            let prevURL = $("<li>").addClass('list-group-item url').attr('id', i);
             let saveLink = $("<div>").addClass('personal').attr('id', i);
             let commLink = $("<div>").addClass('community').attr('id', i);
             let newCard = $("<div>").addClass("card").attr('id', i);
@@ -209,8 +208,6 @@ $(document).ready(function () {
     }
 
 
-    // set cards = to empty array to be filled with the users personal saved cards
-    let cards = [];
 
     //Post song to personal playlist:
     function sendToPersonal(obj) {
@@ -223,9 +220,6 @@ $(document).ready(function () {
             img: obj.img
         }).then(function (data) {
 
-            cards.push(data);
-            console.log(cards);
-
 
         }).catch(handleLoginErr);
     }
@@ -235,20 +229,19 @@ $(document).ready(function () {
     function loadSavedCards() {
 
         $.get("/api/personal", function(data) {
-            console.log(data);
-            for (let i = 0; i <  data.length; i++){
+            console.log(data[i].id);
+            for (let i = 0; i < data.length; i++){
 
                 let cardBody1 = $("<div>").addClass("<card-body>").attr('id', i);
                 let cardBody2 = $("<div>").addClass("<card-body>").attr('id', i);
                 let artist = $("<h5>").addClass('card-title').attr('id', i);
                 let dataList = $("<ul>").addClass('list-group list-group-flush').attr('id', i);
                 let songTitle = $("<li>").addClass('list-group-item song').attr('id', i);
-                let prevURL = $("<li>").addClass('list-group-item url').attr('id', i);
-                let saveLink = $("<div>").addClass('personal').attr('id', i);
+                let delLink = $("<div>").addClass('delete').attr('id', data[i].id);
                 let commLink = $("<div>").addClass('community').attr('id', i);
                 let newCard = $("<div>").addClass("card").attr('id', i);
                 let cardImg = $("<img>").addClass('card-img-top').attr('id', i);
-                console.log(data[i].albumImg);
+    
                 cardImg.attr('src', data[i].albumImg);
                 cardBody1.append(artist.text(data[i].artistName));
                 dataList.append(songTitle.text(data[i].songName));
@@ -256,10 +249,10 @@ $(document).ready(function () {
                 dataList.attr('src', data[i].songLink);
                 cardBody1.append(artist);
                 cardBody1.append(songTitle);
-                cardBody2.append(saveLink, commLink);
+                cardBody2.append(delLink, commLink);
                 newCard.append(cardImg, cardBody1, dataList, cardBody2);
     
-                saveLink.append('<img class="save-img" src="https://static.thenounproject.com/png/9016-200.png">');
+                delLink.append('<img class="del-img" src="https://icons-for-free.com/iconfiles/png/512/delete+remove+trash+trash+bin+trash+can+icon-1320073117929397588.png">');
                 commLink.append('<img class="add-img" src="http://cdn.onlinewebfonts.com/svg/img_390313.png">');
     
                 $("#savedPlayList").append(newCard);
@@ -271,6 +264,31 @@ $(document).ready(function () {
         });
 
     }
+
+    $(document).on("click", ".delete", function(){
+
+        let id = parseInt($(this).attr('id'));
+        console.log(id);
+
+        $.ajax({
+            method: "DELETE",
+            url: "/api/personal/"+id
+
+        }).then(function(data){
+
+            $("#savedPlayList").empty();
+
+            loadSavedCards();
+
+        }).catch(function(err){
+
+            console.log(err);
+        });
+
+        
+
+    })
+
 
     function playSavedSong(Arr) {
         console.log(Arr);
@@ -311,7 +329,6 @@ $(document).ready(function () {
         $("#alert .msg").text(err.responseJSON);
         $("#alert").fadeIn(500);
     }
-
 
 
 });

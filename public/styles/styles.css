@@ -140,7 +140,6 @@ h2 {
 
 }
 
-
 .center-align {
   margin: auto;
 
@@ -197,8 +196,8 @@ img[alt*="playButton"] {
 }
 
 .save-img {
-  height: 32px;
-  width: 30px;
+  height: 30px;
+  width: 28px;
   float: left;
 }
 
@@ -208,12 +207,25 @@ img[alt*="playButton"] {
 }
 
 .add-img {
-  height: 32px;
-  width: 30px;
+  height: 30px;
+  width: 28px;
   float: right;
 }
 
 .add-img:hover {
+  cursor: pointer;
+
+}
+
+.del-img {
+
+  height: 30px;
+  width: 28px;
+  float: left;
+
+}
+
+.del-img:hover {
   cursor: pointer;
 
 }
