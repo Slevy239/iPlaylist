@@ -1,10 +1,6 @@
 const db = require("../models");
 const passport = require('../config/passport/passport');
 
-// spotify api dependencies
-const Keys = require('../keys.js');
-var Spotify = require('node-spotify-api');
-const spotify = new Spotify(Keys.spotify);
 
 module.exports = function (app) {
 
