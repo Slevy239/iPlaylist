@@ -105,17 +105,6 @@ module.exports = function (app) {
     });
   });
 
-  //Grab all songs for display from the community db:
-  app.get("/api/community", function (req, res) {
-    db.communityPlaylist.findAll({
-      order: [
-        ['votes', 'DESC']
-    ]}).then(function (data) {
-      res.json(data);
-    }).catch(function (err) {
-      return err;
-    });
-  });
 
   //Update the votes:
   app.put('/api/community', function(req, res){
