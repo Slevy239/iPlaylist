@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../styles/styles.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="../js/deezer.js"></script>
 </head>
 
@@ -18,20 +18,43 @@
 
     <nav class="navbar navbar-light bg-light justify-content-between">
         <a class="navbar-brand" id="userName"></a>
-            <a href="./project2.html"><h1><i class="fa fa-home"></i></h1></a>
+        <a href="./project2.html">
+            <h1><i class="fa fa-home"></i></h1>
+        </a>
         <form class="form-inline">
-            <input id="userSearch" class="form-control mr-sm-2" type="search" placeholder="Search for an artist..." aria-label="Search">
+            <input id="userSearch" class="form-control mr-sm-2" type="search" placeholder="Search for an artist..."
+                aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="personSearch">Submit</button>
         </form>
     </nav>
 
-    <div class="singlePlaylistBoxes" id="singlePlayList">
+    <div class="row">
+
+        <div class="col-6">
+                <h2 class="centerPersonalSongs">Searched Suggestions</h2>
+            <div class="singlePlaylistBoxes" id="singlePlayList">
+
+            </div>
+
+        </div>
+
+        <div class="col-6">
+            <div class="savedCards" id="savedPlayList">
+
+                <h2 class="centerPersonalSongs">Your Playlist</h2>
+
+            </div>
+
+        </div>
+
+
 
     </div>
 
 
 
 
+
 </body>
-    
+
 </html>

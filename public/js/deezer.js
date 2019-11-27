@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    // call function to load userPlayist to the page
+    loadSavedCards();
+
     //Get user info:
     $.get('/api/login', function (user) {
         //Display username:
@@ -33,7 +36,8 @@ $(document).ready(function () {
             });
 
             // reset search input form back to placeholder
-            $("#userSearch").val("Search for an artist...");
+            $("#userSearch").val("");
+            $("#userSearch").attr("placeholder", "Search for an artist...");
 
         });
         //Send selected song to personal playlist:
@@ -58,6 +62,9 @@ $(document).ready(function () {
                 url: url,
                 img: img
             };
+
+
+            window.location.reload();
 
             sendToPersonal(songData);
             
@@ -219,50 +226,71 @@ $(document).ready(function () {
             cards.push(data);
             console.log(cards);
 
-            // call function to list saved cards
-            loadCardsToPersonal(cards);
 
         }).catch(handleLoginErr);
     }
 
 
     // function to load *saved cards to the personal html page
-    function loadCardsToPersonal(Arr) {
+    function loadSavedCards() {
 
-        for (let i = 0; Arr.length; i++){
+        $.get("/api/personal", function(data) {
+            console.log(data);
+            for (let i = 0; i <  data.length; i++){
 
-            let cardBody1 = $("<div>").addClass("<card-body>").attr('id', i);
-            let cardBody2 = $("<div>").addClass("<card-body>").attr('id', i);
-            let artist = $("<h5>").addClass('card-title').attr('id', i);
-            let dataList = $("<ul>").addClass('list-group list-group-flush').attr('id', i);
-            let songTitle = $("<li>").addClass('list-group-item song').attr('id', i);
-            let prevURL = $("<li>").addClass('list-group-item url').attr('id', i);
-            let saveLink = $("<div>").addClass('personal').attr('id', i);
-            let commLink = $("<div>").addClass('community').attr('id', i);
-            let newCard = $("<div>").addClass("card").attr('id', i);
-            let cardImg = $("<img>").addClass('card-img-top').attr('id', i);
+                let cardBody1 = $("<div>").addClass("<card-body>").attr('id', i);
+                let cardBody2 = $("<div>").addClass("<card-body>").attr('id', i);
+                let artist = $("<h5>").addClass('card-title').attr('id', i);
+                let dataList = $("<ul>").addClass('list-group list-group-flush').attr('id', i);
+                let songTitle = $("<li>").addClass('list-group-item song').attr('id', i);
+                let prevURL = $("<li>").addClass('list-group-item url').attr('id', i);
+                let saveLink = $("<div>").addClass('personal').attr('id', i);
+                let commLink = $("<div>").addClass('community').attr('id', i);
+                let newCard = $("<div>").addClass("card").attr('id', i);
+                let cardImg = $("<img>").addClass('card-img-top').attr('id', i);
+                console.log(data[i].albumImg);
+                cardImg.attr('src', data[i].albumImg);
+                cardBody1.append(artist.text(data[i].artistName));
+                dataList.append(songTitle.text(data[i].songName));
+                dataList.append('<button id=' + i + '><img class="playBtn" data-playing ="false" id=' + i + ' alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
+                dataList.attr('src', data[i].songLink);
+                cardBody1.append(artist);
+                cardBody1.append(songTitle);
+                cardBody2.append(saveLink, commLink);
+                newCard.append(cardImg, cardBody1, dataList, cardBody2);
+    
+                saveLink.append('<img class="save-img" src="https://static.thenounproject.com/png/9016-200.png">');
+                commLink.append('<img class="add-img" src="http://cdn.onlinewebfonts.com/svg/img_390313.png">');
+    
+                $("#savedPlayList").append(newCard);
+    
+            }
 
-            cardImg.attr('src', Arr[i].albumImg);
-            cardBody1.append(artist.text(Arr[i].artistName));
-            dataList.append(songTitle.text(Arr[i].songName));
-            dataList.append('<button id=' + i + '><img class="playBtn" data-playing ="false" id=' + i + ' alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
-            dataList.attr('src', Arr[i].songLink);
-            cardBody1.append(artist);
-            cardBody1.append(songTitle);
-            cardBody2.append(saveLink, commLink);
-            newCard.append(cardImg, cardBody1, dataList, cardBody2);
+            playSavedSong(data);
 
-            saveLink.append('<img class="save-img" src="https://static.thenounproject.com/png/9016-200.png">');
-            commLink.append('<img class="add-img" src="http://cdn.onlinewebfonts.com/svg/img_390313.png">');
-
-            $("#singlePlayList").append(newCard);
-
-        }
-
-        window.location.reload();
+        });
 
     }
 
+    function playSavedSong(Arr) {
+        console.log(Arr);
+        let playAudio;
+        $(".playBtn").on("click", function (event) {
+            console.log("clicked");
+            let idNum = $(this).attr('id');
+            let isPlaying = $(this).attr('data-playing');
+            if (isPlaying === 'false') {
+                playAudio = new Audio(Arr[idNum].songLink);
+                playAudio.play();
+                $(this).attr('data-playing', 'true');
+                $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/internet-28/48/12-512.png')
+            } else {
+                playAudio.pause();
+                $(this).attr('data-playing', 'false');
+                $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/line-arrow-hand-draw/64/arrow_hand_draw_line-25-512.png')
+            }
+        });
+    }
 
     //Post song to community playlist:
     function sendToCommunity(obj) {
@@ -283,7 +311,6 @@ $(document).ready(function () {
         $("#alert .msg").text(err.responseJSON);
         $("#alert").fadeIn(500);
     }
-
 
 
 
