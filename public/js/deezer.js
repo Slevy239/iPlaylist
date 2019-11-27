@@ -102,7 +102,7 @@ $(document).ready(function () {
             $.get('/logout', function () {
                 console.log('Logged out');
             }).then(function (data) {
-                window.location.replace('/');
+                window.location.replace('/login');
             });
         });
 

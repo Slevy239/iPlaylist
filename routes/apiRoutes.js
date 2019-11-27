@@ -60,6 +60,14 @@ module.exports = function (app) {
     });
   });
 
+  //Api route to grab stuff from Community
+  app.get('/api/community', function (req, res) {
+    db.communityPlaylist.findAll({
+    }).then(function (data) {
+      res.json(data);
+    });
+  });
+
   //Api route for sending song info to community playlist database:
   //Need to add username:
   app.post("/api/community", function (req, res) {
@@ -87,7 +95,7 @@ module.exports = function (app) {
     }).then(function (data) {
       res.json(data);
     }).catch(function (err) {
-       return err;
+      return err;
     });
   });
 
@@ -105,24 +113,13 @@ module.exports = function (app) {
     });
   });
 
-  //Grab all songs for display from the community db:
-  app.get("/api/community", function (req, res) {
-    db.communityPlaylist.findAll({
-      order: [
-        ['votes', 'DESC']
-    ]}).then(function (data) {
-      res.json(data);
-    }).catch(function (err) {
-      return err;
-    });
-  });
 
   //Update the votes:
-  app.put('/api/community', function(req, res){
+  app.put('/api/community', function (req, res) {
     db.communityPlaylist.update(
-      {votes: db.sequelize.literal('votes + ' + req.body.num)},
-      {where: {id: req.body.id}}
-      );
+      { votes: db.sequelize.literal('votes + ' + req.body.num) },
+      { where: { id: req.body.id } }
+    );
   });
 
 };

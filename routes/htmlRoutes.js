@@ -16,5 +16,17 @@ module.exports = function (app) {
   app.get('/home', isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, '../public/html/project2.html'));
   });
+  //Load Community page:
+  app.get('/community', function(req,res){
+    db.communityPlaylist.findAll({
+      order: [
+        ['votes', 'DESC']
+    ]}).then(function(data){
+      let playlist = {
+        song: data
+      };
+      res.render('community.handlebars', playlist);
+    });
+  });
 
 };
