@@ -111,10 +111,13 @@ module.exports = function (app) {
 
   //Grab all songs for display from the community db:
   app.get("/api/community", function (req, res) {
-    db.communityPlaylist.findAll({}).then(function (data) {
+    db.communityPlaylist.findAll({
+      order: [
+        ['votes', 'DESC']
+    ]}).then(function (data) {
       res.json(data);
     }).catch(function (err) {
-      console.log(err);
+      return err;
     });
   });
 

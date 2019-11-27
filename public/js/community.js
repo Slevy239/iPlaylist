@@ -14,6 +14,15 @@ $(document).ready(function () {
         vote();
     });
 
+    //Logout
+    $(document).on('click', "#logout", function () {
+        $.get('/logout', function () {
+            console.log('Logged out');
+        }).then(function (data) {
+            window.location.replace('/');
+        });
+    });
+
     function makeCard(data) {
         for (i = 0; i < data.length; i++) {
             console.log(data[i]);
