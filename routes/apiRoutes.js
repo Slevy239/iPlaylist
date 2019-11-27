@@ -41,7 +41,7 @@ module.exports = function (app) {
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
-    res.redirect("/");
+    res.redirect("/login");
   });
 
   //Api route for sending song info to personal playlist database:
