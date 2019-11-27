@@ -9,6 +9,7 @@ $(document).ready(function () {
 
     //Grab all of the songs in the community playlist:
     $.get('/api/community', function (data) {
+        console.log(data);
         makeCard(data);
     }).then(function () {
         vote();

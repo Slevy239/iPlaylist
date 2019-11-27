@@ -6,7 +6,7 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
   //Load the signup page:
-  app.get('/', function (req, res) {
+  app.get('/login', function (req, res) {
     if (req.user) {
       res.redirect("/home");
     }
