@@ -26,7 +26,7 @@ module.exports = function (app) {
         song: data
       };
       res.render('community.handlebars', playlist);
-    })
+    });
   });
 
 };
