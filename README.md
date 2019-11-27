@@ -1,6 +1,6 @@
 # project-2
 
-# Authors: Same Levy, Phil Swartz, Jack Ryan
+# Authors: Sam Levy, Phil Swartz, Jack Ryan
 # 2019
 
 iStack
