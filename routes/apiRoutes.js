@@ -7,15 +7,6 @@ var Spotify = require('node-spotify-api');
 const spotify = new Spotify(Keys.spotify);
 
 module.exports = function (app) {
-
-  app.post("/api/deezer/search", function (req, res) {
-
-    let searchInfo = req.body.searchInfo;
-
-    // console.log(searchInfo);
-
-  });
-
   
   //Route for initial user signup:
   app.post('/api/signup', function (req, res) {
@@ -95,21 +86,30 @@ module.exports = function (app) {
     });
   });
 
+
+
+  // route for getting all rows in database
+  // synonymous to SELECT * FROM some_db
   app.get("/api/personal", function(req, res){
-
     db.personalPlaylist.findAll({}).then(function(data){
-
       res.json(data);
-
-      console.log(data);
-      
-
     }).catch(function (err) {
-
       console.log(err);
-      // res.status(401).json(err);
-    })
+    });
+  });
 
+  // delete specific id from database
+  app.delete("/api/personal/:id", function(req, res){
+    let id = req.params.id;
+    db.personalPlaylist.destroy({
+      where: {
+        id: id
+      }
+    }).then(function(data){
+      res.json(data);
+    }).catch(function (err) {
+      console.log(err);
+    })
   })
 };
 
