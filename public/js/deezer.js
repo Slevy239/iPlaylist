@@ -229,7 +229,6 @@ $(document).ready(function () {
     function loadSavedCards() {
 
         $.get("/api/personal", function(data) {
-            console.log(data[i].id);
             for (let i = 0; i < data.length; i++){
 
                 let cardBody1 = $("<div>").addClass("<card-body>").attr('id', i);

@@ -29,8 +29,8 @@ $(document).ready(function () {
             let createdAt = moment(data[i].createdAt, "YYYYMMDD").format('MMMM Do YYYY');
 
             userAdded.text("Added by " + data[i].username + " on " + createdAt);
-            vote.append("<button id=" + data[i].id + "class= 'upvote' <i class='fa fa-thumbs-up'></i></button>");
-            vote.append("<button id=" + data[i].id + "class= 'downvote' <i class='fa fa-thumbs-down'></i></button>");
+            vote.append("<button id=" + data[i].id + " class= 'upvote'><i class='fa fa-thumbs-up'></i></button>");
+            vote.append("<button id=" + data[i].id + " class= 'downvote'><i class='fa fa-thumbs-down'></i></button>");
             cardImg.attr('src', data[i].albumImg);
             cardBody1.append(artist.text(data[i].artistName));
             dataList.append(songTitle.text(data[i].songName));
@@ -46,15 +46,17 @@ $(document).ready(function () {
     }
 
     function vote() {
-        $(".button").on('click', function(){
-            console.log('clicked');
-            if ($(this).attr("upvote")) {
+        let voteTotal = 0;
+        $("button").on('click', function(){
+            let vote = $(this).attr('class');
+            if (vote === "upvote") {
                 console.log("Up vote");
-            } 
-
-            if ($(this).attr("downvote")) {
+                voteTotal ++;
+            } else if (vote === "downvote") {
                 console.log("down vote");
+                voteTotal --;
             } 
+            console.log(voteTotal);
         });
 
 
