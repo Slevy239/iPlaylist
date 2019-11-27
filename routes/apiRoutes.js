@@ -109,9 +109,20 @@ module.exports = function (app) {
       res.json(data);
     }).catch(function (err) {
       console.log(err);
+
     })
   })
 };
 
 
 
+  app.get("/api/community", function(req, res){
+    db.communityPlaylist.findAll({}).then(function(data){
+      res.json(data);
+      console.log(data);
+    }).catch(function (err) {
+      console.log(err);
+  });
+});
+
+};
