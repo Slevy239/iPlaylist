@@ -4,45 +4,19 @@ $(document).ready(function () {
         //Display username:
         $("#userName").text(user.username);
 
-         // call function to load userPlayist to the page
+        // call function to load userPlayist to the page
         loadSavedCards(user.username);
 
-        //Run person search function
+        // //Run person search function
         $("#personSearch").click({ user: user }, function () {
             //Prevent reload on click:
             event.preventDefault();
-
-            //Clear the card contents when search is conducted:
-            $("#singlePlayList").empty();
-            var searchedString = $('#userSearch').val().trim();
-            if (searchedString === "") {
-                searchedString = "eminem";
-            }
-            // initial deezer api call to grab the artist id related to the users searched string
-            var deezer = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + searchedString,
-                "method": "GET",
-                "headers": {
-                    "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-                    "x-rapidapi-key": "93bb26cc96msh4a3826e7173d4dep100250jsn2e5da9455e0c"
-                }
-            };
-            $.ajax(deezer).done(function (response) {
-                let artist_id = response.data[0].artist.id;
-                artistFunc(artist_id);
-            });
-
-            // reset search input form back to placeholder
-            $("#userSearch").val("");
-            $("#userSearch").attr("placeholder", "Search for an artist...");
-
+            searchButton();
         });
+        
         //Send selected song to personal playlist:
         $(document).on('click', ".personal", function () {
             //User info:
-            let email = user.email;
             let username = user.username;
             let userId = user.id;
             //Extract needed info from card: 
@@ -62,11 +36,14 @@ $(document).ready(function () {
                 img: img
             };
 
-
-            window.location.reload();
-
+            //Send songs to personal playlist DB:
             sendToPersonal(songData);
-
+            // Clear the current search items:
+            $("#singlePlayList").empty();
+            // call function to load userPlayist to the page
+            loadSavedCards(user.username);
+            // Load more songs:
+            searchButton();
 
         });
 
@@ -96,7 +73,63 @@ $(document).ready(function () {
 
         });
 
+        //Delete card:
+        $(document).on("click", ".delete", function () {
+
+            let id = parseInt($(this).attr('id'));
+
+            $.ajax({
+                method: "DELETE",
+                url: "/api/personal/" + id
+
+            }).then(function (data) {
+
+                $("#savedPlayList").empty();
+
+                loadSavedCards(user.username);
+
+            }).catch(function (err) {
+
+                return err;
+            });
+        });
+
     });
+
+    //Search button click function
+    function searchButton() {
+        //Clear the card contents when search is conducted:
+        $("#singlePlayList").empty();
+
+        //Define our search term and hopefully hold it constant when the search bar is empty.
+        let searchArr = [];
+        if (!($('#userSearch').val().trim() === "")) {
+            searchedString = $('#userSearch').val().trim();
+        } else {
+            searchArr.push(searchedString);
+            searchedString = searchArr[0];
+            console.log(searchedString);
+        }
+        // initial deezer api call to grab the artist id related to the users searched string
+        let deezer = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + searchedString,
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+                "x-rapidapi-key": "93bb26cc96msh4a3826e7173d4dep100250jsn2e5da9455e0c"
+            }
+        };
+        $.ajax(deezer).done(function (response) {
+            let artist_id = response.data[0].artist.id;
+            artistFunc(artist_id);
+        });
+
+        // reset search input form back to placeholder
+        $("#userSearch").val("");
+        $("#userSearch").attr("placeholder", "Search for an artist...");
+    }
 
     //Search Deezer api for artist id:
     function artistFunc(artistID) {
@@ -232,8 +265,10 @@ $(document).ready(function () {
             // console.log(data);
         }).catch(handleLoginErr);
     }
+
     // function to load *saved cards to the personal html page
     function loadSavedCards(user) {
+        $("#savedPlayList").empty();
         $.get("/api/personal/" + user, function (data) {
             for (let i = 0; i < data.length; i++) {
 
@@ -270,36 +305,10 @@ $(document).ready(function () {
 
     }
 
-    $(document).on("click", ".delete", function () {
-
-        let id = parseInt($(this).attr('id'));
-        console.log(id);
-
-        $.ajax({
-            method: "DELETE",
-            url: "/api/personal/" + id
-
-        }).then(function (data) {
-
-            $("#savedPlayList").empty();
-
-            loadSavedCards();
-
-        }).catch(function (err) {
-
-            console.log(err);
-        });
-
-
-
-    })
-
-
+    //Play song when play button is clicked, and also pause it.
     function playSavedSong(Arr) {
-        console.log(Arr);
         let playAudio;
         $(".playBtn").on("click", function (event) {
-            console.log("clicked");
             let idNum = $(this).attr('id');
             let isPlaying = $(this).attr('data-playing');
             if (isPlaying === 'false') {
@@ -314,11 +323,11 @@ $(document).ready(function () {
             }
         });
     }
+
     //Error handling
     function handleLoginErr(err) {
         $("#alert .msg").text(err.responseJSON);
         $("#alert").fadeIn(500);
     }
-
 
 });
