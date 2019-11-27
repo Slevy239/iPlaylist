@@ -7,7 +7,7 @@ var Spotify = require('node-spotify-api');
 const spotify = new Spotify(Keys.spotify);
 
 module.exports = function (app) {
-  
+
   //Route for initial user signup:
   app.post('/api/signup', function (req, res) {
     db.userCred.create({
@@ -25,10 +25,10 @@ module.exports = function (app) {
   //Route for user login:
   app.post('/api/login', passport.authenticate("local"), function (req, res) {
     res.json(req.user);
-    });
+  });
 
   // Route for getting some data about our user to be used client side
-  app.get('/api/login', function(req, res){
+  app.get('/api/login', function (req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -51,7 +51,7 @@ module.exports = function (app) {
 
   //Api route for sending song info to personal playlist database:
   //Need to add username:
-  app.post("/api/personal", function(req, res){
+  app.post("/api/personal", function (req, res) {
     db.personalPlaylist.create({
       username: req.body.username,
       userid: req.body.userid,
@@ -59,7 +59,7 @@ module.exports = function (app) {
       songName: req.body.song,
       songLink: req.body.url,
       albumImg: req.body.img
-    }).then(function(data){
+    }).then(function (data) {
       console.log(data);
       res.json(data);
     }).catch(function (err) {
@@ -70,7 +70,7 @@ module.exports = function (app) {
 
   //Api route for sending song info to community playlist database:
   //Need to add username:
-  app.post("/api/community", function(req, res){
+  app.post("/api/community", function (req, res) {
     db.communityPlaylist.create({
       username: req.body.username,
       userid: req.body.userid,
@@ -78,7 +78,7 @@ module.exports = function (app) {
       songName: req.body.song,
       songLink: req.body.url,
       albumImg: req.body.img
-    }).then(function(data){
+    }).then(function (data) {
       res.json(data);
     }).catch(function (err) {
       console.log(err);
@@ -90,8 +90,8 @@ module.exports = function (app) {
 
   // route for getting all rows in database
   // synonymous to SELECT * FROM some_db
-  app.get("/api/personal", function(req, res){
-    db.personalPlaylist.findAll({}).then(function(data){
+  app.get("/api/personal", function (req, res) {
+    db.personalPlaylist.findAll({}).then(function (data) {
       res.json(data);
     }).catch(function (err) {
       console.log(err);
@@ -99,13 +99,13 @@ module.exports = function (app) {
   });
 
   // delete specific id from database
-  app.delete("/api/personal/:id", function(req, res){
+  app.delete("/api/personal/:id", function (req, res) {
     let id = req.params.id;
     db.personalPlaylist.destroy({
       where: {
         id: id
       }
-    }).then(function(data){
+    }).then(function (data) {
       res.json(data);
     }).catch(function (err) {
       console.log(err);
@@ -116,13 +116,13 @@ module.exports = function (app) {
 
 
 
-  app.get("/api/community", function(req, res){
-    db.communityPlaylist.findAll({}).then(function(data){
-      res.json(data);
-      console.log(data);
-    }).catch(function (err) {
-      console.log(err);
+app.get("/api/community", function (req, res) {
+  db.communityPlaylist.findAll({}).then(function (data) {
+    res.json(data);
+    console.log(data);
+  }).catch(function (err) {
+    console.log(err);
   });
 });
 
-};
+
