@@ -212,7 +212,6 @@ $(document).ready(function () {
     // set cards = to empty array to be filled with the users personal saved cards
     let cards = [];
 
-    //Need to send over username:
     //Post song to personal playlist:
     function sendToPersonal(obj) {
         $.post('/api/personal', {
@@ -274,7 +273,6 @@ $(document).ready(function () {
     }
 
     function playSavedSong(Arr) {
-
         console.log(Arr);
         let playAudio;
         $(".playBtn").on("click", function (event) {
@@ -293,8 +291,6 @@ $(document).ready(function () {
             }
         });
     }
-
-
 
     //Post song to community playlist:
     function sendToCommunity(obj) {
