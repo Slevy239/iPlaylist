@@ -176,13 +176,14 @@ img{
 }
 
 .card-img-top {
-  height: auto;
-  width: 20px;
+  height: 175px;
+  width: 203px;
 }
 
 .card {
   margin: 10px;
   /* width: 220px; */
+  
   float: left;
 
 }
@@ -219,5 +220,21 @@ img[alt*="playButton"] {
 
 .playBtn:hover {
   cursor: pointer;
+
+}
+
+
+.centerPersonalSongs {
+
+  margin-top: 10px;
+  text-align: center;
+  color: #ffc107;
+
+  border-radius: 5px;
+  border: 1px solid #ffc107;
+  padding: 4px;
+  margin-right: 4px;
+  margin-left: 4px;
+  
 
 }
