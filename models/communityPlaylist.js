@@ -17,6 +17,12 @@ module.exports = function (sequelize, Sequelize) {
         },
         albumImg: {
             type: Sequelize.STRING
+        },
+        votes: {
+            type: Sequelize.INTEGER
+        },
+        tags: {
+            type: Sequelize.STRING
         }
     });
     return communityPlaylist;

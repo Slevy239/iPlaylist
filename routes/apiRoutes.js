@@ -17,7 +17,6 @@ module.exports = function (app) {
     }).then(function (data) {
       res.json(data);
     }).catch(function (err) {
-      console.log(err);
       res.status(401).json(err);
     });
   });
@@ -59,10 +58,8 @@ module.exports = function (app) {
       songLink: req.body.url,
       albumImg: req.body.img
     }).then(function (data) {
-      console.log(data);
       res.json(data);
     }).catch(function (err) {
-      console.log(err);
       res.status(401).json(err);
     });
   });
@@ -80,7 +77,6 @@ module.exports = function (app) {
     }).then(function (data) {
       res.json(data);
     }).catch(function (err) {
-      console.log(err);
       res.status(401).json(err);
     });
   });
@@ -93,7 +89,6 @@ module.exports = function (app) {
         username: req.params.user
       }
     }).then(function (data) {
-      console.log(data);
       res.json(data);
     }).catch(function (err) {
        return err;
@@ -114,15 +109,22 @@ module.exports = function (app) {
     });
   });
 
-
+  //Grab all songs for display from the community db:
   app.get("/api/community", function (req, res) {
     db.communityPlaylist.findAll({}).then(function (data) {
       res.json(data);
-      console.log(data);
     }).catch(function (err) {
       console.log(err);
     });
   });
+
+  //Update the votes:
+  app.put('/api/community', function(req, res){
+    db.communityPlaylist.update(
+      {votes: db.sequelize.literal('votes + ' + req.body.num)},
+      {where: {id: req.body.id}}
+      );
+  })
 
 };
 

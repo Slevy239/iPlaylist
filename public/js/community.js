@@ -10,19 +10,18 @@ $(document).ready(function () {
     //Grab all of the songs in the community playlist:
     $.get('/api/community', function (data) {
         makeCard(data);
-    }).then(function(data){
-        console.log(data);
+    }).then(function (data) {
         vote();
     });
 
     function makeCard(data) {
-        for (i = 0; i < data.length; i++){
+        for (i = 0; i < data.length; i++) {
             let cardBody1 = $("<div>").addClass("<card-body>").attr('id', i);
             let cardBody2 = $("<div>").addClass("<card-body>").attr('id', i);
             let artist = $("<h5>").addClass('card-title').attr('id', i);
             let dataList = $("<ul>").addClass('list-group list-group-flush').attr('id', i);
             let songTitle = $("<li>").addClass('list-group-item song').attr('id', i);
-            let userAdded = $("<li>").addClass('list-group-item user').attr('id', i);    
+            let userAdded = $("<li>").addClass('list-group-item user').attr('id', i);
             let newCard = $("<div>").addClass("card").attr('id', i);
             let cardImg = $("<img>").addClass('card-img-top').attr('id', i);
             let vote = $("<div>").addClass("vote").attr('id', data[i].id);
@@ -46,20 +45,28 @@ $(document).ready(function () {
     }
 
     function vote() {
-        let voteTotal = 0;
-        $("button").on('click', function(){
+        let num;
+        $("button").on('click', function () {
             let vote = $(this).attr('class');
+            let id = $(this).attr('id');
             if (vote === "upvote") {
-                console.log("Up vote");
-                voteTotal ++;
+                num = 1;
+                update(num, id);
             } else if (vote === "downvote") {
-                console.log("down vote");
-                voteTotal --;
-            } 
-            console.log(voteTotal);
+                num = -1;
+                update(num, id);
+            }
         });
+    }
 
-
-
+    function update(num, id) {
+        $.ajax({
+            method: "PUT",
+            url: "/api/community",
+            data: {num: num,
+            id: id}
+          }).then(function (rowsUpdated) {
+            res.json(rowsUpdated);
+        });
     }
 });
