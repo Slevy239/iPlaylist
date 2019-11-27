@@ -9,7 +9,6 @@ $(document).ready(function () {
 
     //Grab all of the songs in the community playlist:
     $.get('/api/community', function (data) {
-        console.log(data);
         makeCard(data);
     });
 
@@ -24,8 +23,11 @@ $(document).ready(function () {
             let newCard = $("<div>").addClass("card").attr('id', i);
             let cardImg = $("<img>").addClass('card-img-top').attr('id', i);
             let vote = $("<div>").addClass("vote").attr('id', i);
+            let createdAt = moment(data[i].createdAt, "YYYYMMDD").format('MMMM Do YYYY');
 
-            userAdded.text("Added by " + data[i].username + " on " + data[i].createdAt);
+            userAdded.text("Added by " + data[i].username + " on " + createdAt);
+            vote.append("<button id=" + i + 'class= "upvote" <i class="fa fa-thumbs-up"></i></button>');
+            vote.append("<button id=" + i + 'class= "downvote" <i class="fa fa-thumbs-down"></i></button>');
             cardImg.attr('src', data[i].albumImg);
             cardBody1.append(artist.text(data[i].artistName));
             dataList.append(songTitle.text(data[i].songName));
@@ -33,7 +35,7 @@ $(document).ready(function () {
             dataList.attr('src', data[i].songLink);
             cardBody1.append(artist);
             cardBody1.append(songTitle);
-            cardBody2.append(userAdded, dateAdded);
+            cardBody2.append(userAdded);
             newCard.append(cardImg, cardBody1, dataList, cardBody2, vote);
 
             $("#communityPlayList").append(newCard);
