@@ -50,7 +50,6 @@ $(document).ready(function () {
         //Send selected song to community playlist:
         $(document).on('click', ".community", function () {
             //User info:
-            let email = user.email;
             let username = user.username;
             let userId = user.id;
             //Extract needed info from card: 
@@ -69,7 +68,11 @@ $(document).ready(function () {
                 img: img
             };
 
+            //Toggle modal:
+            $("#commModal").modal('show');
+
             sendToCommunity(songData);
+
 
         });
 
@@ -211,8 +214,7 @@ $(document).ready(function () {
             newCard.append(cardImg, cardBody1, dataList, cardBody2);
 
             saveLink.append('<img class="save-img" src="https://static.thenounproject.com/png/9016-200.png">');
-            commLink.append('<img class="add-img" src="http://cdn.onlinewebfonts.com/svg/img_390313.png">');
-
+            commLink.append('<img class="add-img" src="http://cdn.onlinewebfonts.com/svg/img_390313.png">')
             $("#singlePlayList").append(newCard);
         }
 
