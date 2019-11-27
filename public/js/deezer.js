@@ -97,6 +97,7 @@ $(document).ready(function () {
             });
         });
 
+        //Logout
         $(document).on('click', "#logout", function () {
             $.get('/logout', function () {
                 console.log('Logged out');

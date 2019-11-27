@@ -124,7 +124,7 @@ module.exports = function (app) {
       {votes: db.sequelize.literal('votes + ' + req.body.num)},
       {where: {id: req.body.id}}
       );
-  })
+  });
 
 };
 

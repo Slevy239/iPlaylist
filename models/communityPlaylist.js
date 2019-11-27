@@ -19,10 +19,12 @@ module.exports = function (sequelize, Sequelize) {
             type: Sequelize.STRING
         },
         votes: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            defaultValue: 0
         },
         tags: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            defaultValue: ""
         }
     });
     return communityPlaylist;
