@@ -108,10 +108,16 @@ module.exports = function (app) {
 
       console.log(err);
       // res.status(401).json(err);
-    })
+    });
+  });
 
-  })
+  app.get("/api/community", function(req, res){
+    db.communityPlaylist.findAll({}).then(function(data){
+      res.json(data);
+      console.log(data);
+    }).catch(function (err) {
+      console.log(err);
+  });
+});
+
 };
-
-
-
