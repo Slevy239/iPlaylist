@@ -12,10 +12,12 @@ module.exports = function (app) {
     }
     res.render('login.handlebars');
   });
+
   //Load home page: 
   app.get('/home', isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, '../public/html/project2.html'));
   });
+
   //Load Community page:
   app.get('/community', function(req,res){
     db.communityPlaylist.findAll({
@@ -25,7 +27,7 @@ module.exports = function (app) {
       let playlist = {
         song: data
       };
-      res.render('community.handlebars', playlist);
+      res.render('community.handlebars');
     });
   });
 
