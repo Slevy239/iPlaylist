@@ -44,7 +44,7 @@ $(function () {
             password: password,
             username: username
         }).then(function (data) {
-            window.location.replace("../html/project2.html");
+            window.location.replace("/home");
         }).catch(handleLoginErr);
     }
 
