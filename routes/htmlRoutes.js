@@ -12,7 +12,7 @@ module.exports = function (app) {
     }
     res.render('login.handlebars');
   });
-
+  
   //Load home page: 
   app.get('/home', isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, '../public/html/project2.html'));
@@ -27,7 +27,7 @@ module.exports = function (app) {
       let playlist = {
         song: data
       };
-      res.render('community.handlebars');
+      res.render('community.handlebars', playlist);
     });
   });
 
