@@ -6,7 +6,8 @@ $(document).ready(function () {
         console.log('made it to api login');
         //Display username:
         $("#userName").text(user.username);
-
+    }).then(function(){
+        console.log('inside .then function');
         //Grab all of the songs in the community playlist:
         $.get('/api/community', function (data) {
             console.log('Made it to api/community.get');
@@ -14,8 +15,8 @@ $(document).ready(function () {
         }).then(function () {
             vote();
         });
-
     });
+
     console.log("Made it outside of api.get");
     //Logout
     $(document).on('click', "#logout", function () {
