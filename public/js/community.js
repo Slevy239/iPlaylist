@@ -5,13 +5,23 @@ $(document).ready(function () {
     $.get('/api/login', function (user) {
         //Display username:
         $("#userName").text(user.username);
-    });
 
-    //Grab all of the songs in the community playlist:
-    $.get('/api/community', function (data) {
-        playSong(data);
-    }).then(function () {
-        vote();
+
+        //Grab all of the songs in the community playlist:
+        $.get('/api/community', function (data) {
+            playSong(data);
+        }).then(function () {
+            vote();
+        });
+
+        //Logout
+        $(document).on('click', "#logout", function () {
+            $.get('/logout', function () {
+            }).then(function (data) {
+                window.location.replace('/login');
+            });
+        });
+
     });
 
     //Tally the vote:
@@ -34,9 +44,11 @@ $(document).ready(function () {
         $.ajax({
             method: "PUT",
             url: "/api/community",
-            data: {num: num,
-            id: id}
-          }).then(function (rowsUpdated) {
+            data: {
+                num: num,
+                id: id
+            }
+        }).then(function (rowsUpdated) {
             res.json(rowsUpdated);
             window.location.reload();
         });
@@ -60,12 +72,4 @@ $(document).ready(function () {
             }
         });
     }
-
-    //Logout
-    $(document).on('click', "#logout", function () {
-        $.get('/logout', function () {
-        }).then(function (data) {
-            window.location.replace('/login');
-        });
-    });
 });
