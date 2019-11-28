@@ -4,6 +4,11 @@ const passport = require('../config/passport/passport');
 
 module.exports = function (app) {
 
+  //Send users to the login page right away:
+  app.get('/', function(req, res){
+    res.redirect('/login');
+  });
+
   //Route for initial user signup:
   app.post('/api/signup', function (req, res) {
     db.userCred.create({
