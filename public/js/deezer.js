@@ -38,13 +38,6 @@ $(document).ready(function () {
 
             //Send songs to personal playlist DB:
             sendToPersonal(songData);
-            // Clear the current search items:
-            $("#singlePlayList").empty();
-            // call function to load userPlayist to the page
-            loadSavedCards(user.username);
-            // Load more songs:
-            searchButton();
-
         });
 
         //Send selected song to community playlist:
@@ -118,7 +111,6 @@ $(document).ready(function () {
             } else {
                 searchArr.push(searchedString);
                 searchedString = searchArr[0];
-                console.log(searchedString);
             }
             // initial deezer api call to grab the artist id related to the users searched string
             let deezer = {
@@ -258,6 +250,10 @@ $(document).ready(function () {
                 url: obj.url,
                 img: obj.img
             }).then(function (data) {
+                // Clear the current search items:
+                $("#singlePlayList").empty();
+                // call function to load userPlayist to the page
+                loadSavedCards(user.username);
             }).catch(handleLoginErr);
         }
 
@@ -309,7 +305,8 @@ $(document).ready(function () {
                 }
 
                 playSavedSong(data);
-
+                // Load more songs:
+                searchButton();
             });
 
         }
