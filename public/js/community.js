@@ -1,28 +1,29 @@
 $(document).ready(function () {
-
+    console.log("Made it to community.js");
     //Get the username:
     //Get user info:
     $.get('/api/login', function (user) {
         //Display username:
         $("#userName").text(user.username);
-
-
-        //Grab all of the songs in the community playlist:
-        $.get('/api/community', function (data) {
-            playSong(data);
-        }).then(function () {
-            vote();
-        });
-
-        //Logout
-        $(document).on('click', "#logout", function () {
-            $.get('/logout', function () {
-            }).then(function (data) {
-                window.location.replace('/login');
-            });
-        });
-
     });
+
+
+    //Grab all of the songs in the community playlist:
+    $.get('/api/community', function (data) {
+        console.log('Made it to api/community.get');
+        playSong(data);
+    }).then(function () {
+        vote();
+    });
+
+    //Logout
+    $(document).on('click', "#logout", function () {
+        $.get('/logout', function () {
+        }).then(function (data) {
+            window.location.replace('/login');
+        });
+    });
+
 
     //Tally the vote:
     function vote() {
