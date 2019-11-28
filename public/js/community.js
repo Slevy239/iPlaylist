@@ -3,17 +3,18 @@ $(document).ready(function () {
     //Get the username:
     //Get user info:
     $.get('/api/login', function (user) {
+        console.log('made it to api login');
         //Display username:
         $("#userName").text(user.username);
-    });
 
+        //Grab all of the songs in the community playlist:
+        $.get('/api/community', function (data) {
+            console.log('Made it to api/community.get');
+            playSong(data);
+        }).then(function () {
+            vote();
+        });
 
-    //Grab all of the songs in the community playlist:
-    $.get('/api/community', function (data) {
-        console.log('Made it to api/community.get');
-        playSong(data);
-    }).then(function () {
-        vote();
     });
 
     //Logout
