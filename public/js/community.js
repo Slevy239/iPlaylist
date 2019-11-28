@@ -16,7 +16,7 @@ $(document).ready(function () {
         });
 
     });
-
+    console.log("Made it outside of api.get");
     //Logout
     $(document).on('click', "#logout", function () {
         $.get('/logout', function () {
