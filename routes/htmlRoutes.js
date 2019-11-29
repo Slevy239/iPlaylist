@@ -12,23 +12,25 @@ module.exports = function (app) {
     }
     res.render('login.handlebars');
   });
-  
+
   //Load home page: 
   app.get('/home', isAuthenticated, function (req, res) {
     res.render('index.handlebars');
   });
 
   //Load Community page:
-  app.get('/community', function(req,res){
+  app.get('/community', function (req, res) {
     db.communityPlaylist.findAll({
       order: [
         ['votes', 'DESC']
-    ]}).then(function(data){
+      ]
+    }).then(function (data) {
       let playlist = {
         song: data
       };
       res.render('community.handlebars', playlist);
     });
+    res.render('community.handlebars');
   });
 
 };

@@ -5,7 +5,7 @@ const passport = require('../config/passport/passport');
 module.exports = function (app) {
 
   //Send users to the login page right away:
-  app.get('/', function(req, res){
+  app.get('/', function (req, res) {
     res.redirect('/login');
   });
 
@@ -85,6 +85,7 @@ module.exports = function (app) {
     }).then(function (data) {
       res.json(data);
     }).catch(function (err) {
+      console.log(err);
       res.status(401).json(err);
     });
   });
@@ -119,12 +120,16 @@ module.exports = function (app) {
 
 
   //Update the votes:
-  app.put('/api/community', function (req, res) {
+  app.put('/api/community', function (req, res, next) {
     db.communityPlaylist.update(
       { votes: db.sequelize.literal('votes + ' + req.body.num) },
       { where: { id: req.body.id } }
-    );
-    res.json();
+    ).then(function (rowsUpdated) {
+      res.json(rowsUpdated);
+    })
+      .catch(next);
   });
+
+
 };
 
