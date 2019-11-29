@@ -24,7 +24,6 @@ $(document).ready(function () {
             let song = $(document.getElementById(id).getElementsByClassName("song")[0]).html();
             let artist = $(document.getElementById(id).getElementsByClassName("card-title")[0]).html();
             let url = $(document.getElementById(id).getElementsByClassName("list-group-flush")[0]).attr('src');
-            // console.log(url);
             let img = $(document.getElementById(id).getElementsByClassName("card-img-top")[0]).attr('src');
 
             let songData = {
@@ -71,7 +70,6 @@ $(document).ready(function () {
 
         //Delete card:
         $(document).on("click", ".delete", function () {
-
             let id = parseInt($(this).attr('id'));
 
             $.ajax({
@@ -93,7 +91,6 @@ $(document).ready(function () {
         //Logout
         $(document).on('click', "#logout", function () {
             $.get('/logout', function () {
-                console.log('Logged out');
             }).then(function (data) {
                 window.location.replace('/login');
             });
@@ -267,7 +264,6 @@ $(document).ready(function () {
                 url: obj.url,
                 img: obj.img
             }).then(function (data) {
-                // console.log(data);
             }).catch(handleLoginErr);
         }
 

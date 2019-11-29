@@ -1,23 +1,13 @@
 $(document).ready(function () {
-    console.log("Made it to community.js");
-    //Get the username:
     //Get user info:
     $.get('/api/login', function (user) {
-        console.log('made it to api login');
         //Display username:
         $("#userName").text(user.username);
     }).then(function(){
-        console.log('inside .then function');
-        //Grab all of the songs in the community playlist:
-        $.get('/api/community', function (data) {
-            console.log('Made it to api/community.get');
-            playSong(data);
-        }).then(function () {
+            playSong();
             vote();
-        });
     });
 
-    console.log("Made it outside of api.get");
     //Logout
     $(document).on('click', "#logout", function () {
         $.get('/logout', function () {
@@ -58,13 +48,13 @@ $(document).ready(function () {
     }
 
     // // Play the song:
-    function playSong(data) {
+    function playSong() {
         let playAudio;
         $(".playBtn").on("click", function (event) {
-            let idNum = $(this).attr('id');
+            let songLink = $(this).attr('data-songLink');
             let isPlaying = $(this).attr('data-playing');
             if (isPlaying === 'false') {
-                playAudio = new Audio(data[idNum].songLink);
+                playAudio = new Audio(songLink);
                 playAudio.play();
                 $(this).attr('data-playing', 'true');
                 $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/internet-28/48/12-512.png');
