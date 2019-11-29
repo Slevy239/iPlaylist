@@ -67,7 +67,6 @@ module.exports = function (app) {
 
   //Api route to grab stuff from Community
   app.get('/api/community', function (req, res) {
-    console.log("Api community.get called");
     db.communityPlaylist.findAll({
     }).then(function (data) {
       res.json(data);
@@ -76,7 +75,6 @@ module.exports = function (app) {
 
   //Api route for sending song info to community playlist database:
   app.post("/api/community", function (req, res) {
-    console.log("Api community.post called");
     db.communityPlaylist.create({
       username: req.body.username,
       userid: req.body.userid,
@@ -122,7 +120,6 @@ module.exports = function (app) {
 
   //Update the votes:
   app.put('/api/community', function (req, res) {
-    console.log("Api community.put called");
     db.communityPlaylist.update(
       { votes: db.sequelize.literal('votes + ' + req.body.num) },
       { where: { id: req.body.id } }

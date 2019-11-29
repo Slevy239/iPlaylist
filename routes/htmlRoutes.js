@@ -20,7 +20,6 @@ module.exports = function (app) {
 
   //Load Community page:
   app.get('/community', function(req,res){
-    console.log("Community page app.get");
     db.communityPlaylist.findAll({
       order: [
         ['votes', 'DESC']
