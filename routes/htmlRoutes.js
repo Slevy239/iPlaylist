@@ -25,12 +25,8 @@ module.exports = function (app) {
         ['votes', 'DESC']
       ]
     }).then(function (data) {
-      let playlist = {
-        song: data
-      };
-      res.render('community.handlebars', playlist);
+      res.render('community.handlebars', data);
     });
-    res.render('community.handlebars');
   });
 
 };
