@@ -4,7 +4,7 @@
 # 2019
 
 iStack
-[Link](https://fierce-temple-77564.herokuapp.com/)
+[Heroku Link](https://fierce-temple-77564.herokuapp.com/)
 
 Overview:
 
