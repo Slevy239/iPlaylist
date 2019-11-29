@@ -10,12 +10,12 @@ module.exports = function (app) {
     if (req.user) {
       res.redirect("/home");
     }
-    res.render('login.handlebars');
+    res.render('login');
   });
 
   //Load home page: 
   app.get('/home', isAuthenticated, function (req, res) {
-    res.render('index.handlebars');
+    res.render('index');
   });
 
   //Load Community page:
@@ -25,8 +25,12 @@ module.exports = function (app) {
         ['votes', 'DESC']
       ]
     }).then(function (data) {
-      res.render('community.handlebars', data);
+      let playlist = {
+        song: data
+      };
+      res.render('community', playlist);
+    }).catch(function (err) {
+      res.status(401).json(err);
     });
   });
-
 };
