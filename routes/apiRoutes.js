@@ -85,7 +85,7 @@ module.exports = function (app) {
     }).then(function (data) {
       res.json(data);
     }).catch(function (err) {
-      console.log(err);
+  
       res.status(401).json(err);
     });
   });
