@@ -239,11 +239,11 @@ $(document).ready(function () {
                 playAudio = new Audio(Arr[idNum].preview_url);
                 playAudio.play();
                 $(this).attr('data-playing', 'true');
-                $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/internet-28/48/12-512.png')
+                $(this).attr('src', '../images/pause_img.png');
             } else {
                 playAudio.pause();
                 $(this).attr('data-playing', 'false');
-                $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/line-arrow-hand-draw/64/arrow_hand_draw_line-25-512.png')
+                $(this).attr('src', '../images/play_img.png');
             }
         });
     }
@@ -327,11 +327,11 @@ $(document).ready(function () {
                 playAudio = new Audio(Arr[idNum].songLink);
                 playAudio.play();
                 $(this).attr('data-playing', 'true');
-                $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/internet-28/48/12-512.png')
+                $(this).attr('src', '../images/pause_img.png')
             } else {
                 playAudio.pause();
                 $(this).attr('data-playing', 'false');
-                $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/line-arrow-hand-draw/64/arrow_hand_draw_line-25-512.png')
+                $(this).attr('src', '../images/play_img.png')
             }
         });
     }
