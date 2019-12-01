@@ -42,7 +42,6 @@ $(document).ready(function () {
                 id: id
             }
         }).then(function (rowsUpdated) {
-            res.json(rowsUpdated);
             window.location.reload();
         });
     }
