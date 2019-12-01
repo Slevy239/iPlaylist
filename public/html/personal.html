@@ -66,7 +66,7 @@
                         Added to community playlist!
                     </h5>
                 </div>
-                Tags: <input type="text" id="testInput" value="music"/>
+                Tags: <input type="text" id="testInput" value="music" />
             </div>
         </div>
     </div>
@@ -75,12 +75,15 @@
 </html>
 
 <script>
-        $(function() {
-            $("#testInput").tags({
-                unique: true,
-            });
+    $(function () {
+        $("#testInput").tags({
+            unique: true,
         });
-        
-    </script>
+    });
 
-
+</script>
+<style>
+    li {
+        list-style-type: none;
+    }
+</style>
