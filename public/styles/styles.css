@@ -212,3 +212,7 @@ img[alt*="playButton"] {
   
 
 }
+
+button#personSearch {
+  width: 25%;
+}
