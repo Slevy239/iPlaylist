@@ -17,7 +17,7 @@ module.exports = function (sequelize, Sequelize) {
         },
         albumImg: {
             type: Sequelize.STRING
-        }
+        },
     });
     return personalPlaylist;
 }; 

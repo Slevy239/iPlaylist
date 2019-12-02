@@ -57,9 +57,11 @@ module.exports = function (app) {
       artistName: req.body.artist,
       songName: req.body.song,
       songLink: req.body.url,
-      albumImg: req.body.img
+      albumImg: req.body.img,
+      tags: req.body.tags
     }).then(function (data) {
       res.json(data);
+      console.log(tags)
     }).catch(function (err) {
       res.status(401).json(err);
     });
@@ -81,7 +83,8 @@ module.exports = function (app) {
       artistName: req.body.artist,
       songName: req.body.song,
       songLink: req.body.url,
-      albumImg: req.body.img
+      albumImg: req.body.img,
+      tags: req.body.tags
     }).then(function (data) {
       res.json(data);
     }).catch(function (err) {
