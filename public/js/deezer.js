@@ -94,10 +94,11 @@ $(document).ready(function () {
             //Extract needed info from card: 
             let id = this.id;
             console.log(id);
-            let song = $(document.getElementsByClassName("song")[0]).html();
-            let artist = $(document.getElementsByClassName("card-title")[0]).html();
-            let url = $(document.getElementsByClassName("list-group-flush")[0]).attr('src');
-            let img = $(document.getElementsByClassName("card-img-top")[0]).attr('src');
+            let song = $(document.getElementById(id).getElementsByClassName("song")[0]).html();
+            // let song = $(document.getElementsByClassName("song")[0]).html();
+            let artist = $(document.getElementById(id).getElementsByClassName("card-title")[0]).html();
+            let url = $(document.getElementById(id).getElementsByClassName("list-group-flush")[0]).attr('src');
+            let img = $(document.getElementById(id).getElementsByClassName("card-img-top")[0]).attr('src');
             let tags = $('.testInput').val()
             let songData = {
                 username: username,
