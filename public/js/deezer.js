@@ -100,11 +100,20 @@ $(document).ready(function () {
                 img: img
             };
 
-            //Toggle modal:
-            $("#commModal").modal('show');
-
-            sendToCommunity(songData);
+            //Send data to modal: 
+            submitTag(songData);    
         });
+    }
+    
+    function submitTag(data) {
+        //Toggle modal:
+        $("#commModal").modal('show');
+        $('#tagSubmit').one('click', function(){
+            let tag = $('#tagInput').val().trim();
+            data.tag = tag;
+            sendToCommunity(data);
+            $('#commModal').modal('hide');
+            });
     }
 
     //Search button click function
@@ -231,12 +240,10 @@ $(document).ready(function () {
 
     // Play the song:
     function playSong(Arr) {
-        //console.log(Arr);
         let playAudio;
         $(".playBtn").on("click", function (event) {
             //This id is coming from the card that is created.
             let idNum = $(this).attr('id');
-            console.log('New song id '+ idNum);
             let isPlaying = $(this).attr('data-playing');
             if (isPlaying === 'false') {
                 playAudio = new Audio(Arr[idNum].preview_url);
@@ -259,8 +266,7 @@ $(document).ready(function () {
             song: obj.song,
             artist: obj.artist,
             url: obj.url,
-            img: obj.img,
-            // tags: obj.tags
+            img: obj.img
         }).then(function (data) {
             // Clear the current search items:
             $("#singlePlayList").empty();
@@ -277,7 +283,8 @@ $(document).ready(function () {
             song: obj.song,
             artist: obj.artist,
             url: obj.url,
-            img: obj.img
+            img: obj.img,
+            tags: obj.tag
         });
     }
 
