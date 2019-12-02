@@ -256,7 +256,8 @@ $(document).ready(function () {
             song: obj.song,
             artist: obj.artist,
             url: obj.url,
-            img: obj.img
+            img: obj.img,
+            // tags: obj.tags
         }).then(function (data) {
             // Clear the current search items:
             $("#singlePlayList").empty();
