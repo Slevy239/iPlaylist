@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="../styles/styles.css" />
+    <link rel="stylesheet" href="../styles/tags.css">
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -18,12 +19,16 @@
         integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P"
         crossorigin="anonymous"></script>
     <script src="../js/deezer.js"></script>
+    <script type="text/javascript" src="../js/tags.js"></script>
+
 </head>
 
 <body>
     <nav class="navbar navbar-light bg-light justify-content-between">
         <a class="navbar-brand" id="userName"></a>
-        <a id="logout">Logout</a>
+        <a id="logout">
+            <h3>Logout</h3>
+        </a>
         <a href="/home">
             <h1><i class="fa fa-home"></i></h1>
         </a>
@@ -61,9 +66,24 @@
                         Added to community playlist!
                     </h5>
                 </div>
+                Tags: <input type="text" id="testInput" value="music" />
             </div>
         </div>
     </div>
 </body>
 
 </html>
+
+<script>
+    $(function () {
+        $("#testInput").tags({
+            unique: true,
+        });
+    });
+
+</script>
+<style>
+    li {
+        list-style-type: none;
+    }
+</style>

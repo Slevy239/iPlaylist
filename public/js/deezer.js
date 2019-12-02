@@ -220,8 +220,8 @@ $(document).ready(function () {
             cardBody2.append(saveLink, commLink);
             newCard.append(cardImg, cardBody1, dataList, cardBody2);
 
-            saveLink.append('<img class="save-img" src="https://static.thenounproject.com/png/9016-200.png">');
-            commLink.append('<img class="add-img" src="http://cdn.onlinewebfonts.com/svg/img_390313.png">')
+            saveLink.append('<img class="save-img" src="../images/save_link_img.png">');
+            commLink.append('<img class="add-img" src="../images/add_img.png">');
             $("#singlePlayList").append(newCard);
         }
 
@@ -242,11 +242,11 @@ $(document).ready(function () {
                 playAudio = new Audio(Arr[idNum].preview_url);
                 playAudio.play();
                 $(this).attr('data-playing', 'true');
-                $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/internet-28/48/12-512.png')
+                $(this).attr('src', '../images/pause_img.png');
             } else {
                 playAudio.pause();
                 $(this).attr('data-playing', 'false');
-                $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/line-arrow-hand-draw/64/arrow_hand_draw_line-25-512.png')
+                $(this).attr('src', '../images/play_img.png');
             }
         });
     }
@@ -305,8 +305,8 @@ $(document).ready(function () {
                 cardBody2.append(delLink, commLink);
                 newCard.append(cardImg, cardBody1, dataList, cardBody2);
 
-                delLink.append('<img class="del-img" src="https://icons-for-free.com/iconfiles/png/512/delete+remove+trash+trash+bin+trash+can+icon-1320073117929397588.png">');
-                commLink.append('<img class="add-img" src="http://cdn.onlinewebfonts.com/svg/img_390313.png">');
+                delLink.append('<img class="del-img" src="../images/delete_img.png">');
+                commLink.append('<img class="add-img" src="../images/add_img.png">');
 
                 $("#savedPlayList").append(newCard);
 
@@ -329,11 +329,11 @@ $(document).ready(function () {
                 playAudio = new Audio(Arr[idNum].songLink);
                 playAudio.play();
                 $(this).attr('data-playing', 'true');
-                $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/internet-28/48/12-512.png')
+                $(this).attr('src', '../images/pause_img.png')
             } else {
                 playAudio.pause();
                 $(this).attr('data-playing', 'false');
-                $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/line-arrow-hand-draw/64/arrow_hand_draw_line-25-512.png')
+                $(this).attr('src', '../images/play_img.png')
             }
         });
     }
