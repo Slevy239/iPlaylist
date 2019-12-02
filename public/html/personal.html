@@ -67,7 +67,7 @@
                     </h5>
                 </div>
                 <div class="container">
-                    <form action="/api/personal/:id" method="post">
+                    <form action="/api/community/:id" method="post">
 
                         Tags: <input type="text" id="tagInput" value="music">
                         <button type="button" id = 'tagSubmit' class="btn btn-outline-success">Add song to community playlist</button>
@@ -81,6 +81,23 @@
 </html>
 
 <script>
+    // var obj = {
+    //     tag1: [],
+    // }
+    // var arr = [];
+
+    // for (var i = 0; i < arr.length; i++) {
+    //     obj.tag1.push(arr[i]);
+    // }
+
+    // function sendToDb() {
+    // console.log(obj);
+    // console.log($("#testInput").val())
+
+    // arr.push($("#testInput").val());
+    // }
+
+
     $(function () {
         $("#testInput").tags({
             unique: true,
