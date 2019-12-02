@@ -19,7 +19,7 @@ $(document).ready(function () {
 
         //Send selected song to community playlist:
         communityClick(user);
-        
+
         //Delete card:
         $(document).on("click", ".delete", function () {
             let id = parseInt($(this).attr('id'));
@@ -78,30 +78,38 @@ $(document).ready(function () {
         });
     }
 
+    //Toggle modal:
+    $(document).on("click", ".add-img", function () {
+        $("#commModal").modal('show');
+    })
+
     //Guts of communityClick function:
     function communityClick(user) {
-        $(document).on('click', ".community", function () {
+
+        $(document).on('click', "#submitTags", function () {
+
             //User info:
             let username = user.username;
             let userId = user.id;
             //Extract needed info from card: 
             let id = this.id;
-            let song = $(document.getElementById(id).getElementsByClassName("song")[0]).html();
-            let artist = $(document.getElementById(id).getElementsByClassName("card-title")[0]).html();
-            let url = $(document.getElementById(id).getElementsByClassName("list-group-flush")[0]).attr('src');
-            let img = $(document.getElementById(id).getElementsByClassName("card-img-top")[0]).attr('src');
-
+            console.log(id);
+            let song = $(document.getElementsByClassName("song")[0]).html();
+            let artist = $(document.getElementsByClassName("card-title")[0]).html();
+            let url = $(document.getElementsByClassName("list-group-flush")[0]).attr('src');
+            let img = $(document.getElementsByClassName("card-img-top")[0]).attr('src');
+            let tags = $('.testInput').val()
             let songData = {
                 username: username,
                 userid: userId,
                 song: song,
                 artist: artist,
                 url: url,
-                img: img
+                img: img,
+                tags: tags
             };
+            console.log(songData);
 
-            //Toggle modal:
-            $("#commModal").modal('show');
 
             sendToCommunity(songData);
         });
@@ -257,7 +265,6 @@ $(document).ready(function () {
             artist: obj.artist,
             url: obj.url,
             img: obj.img,
-            // tags: obj.tags
         }).then(function (data) {
             // Clear the current search items:
             $("#singlePlayList").empty();
@@ -274,7 +281,8 @@ $(document).ready(function () {
             song: obj.song,
             artist: obj.artist,
             url: obj.url,
-            img: obj.img
+            img: obj.img,
+            tags: obj.tags
         });
     }
 
