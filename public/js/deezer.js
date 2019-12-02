@@ -231,9 +231,12 @@ $(document).ready(function () {
 
     // Play the song:
     function playSong(Arr) {
+        //console.log(Arr);
         let playAudio;
         $(".playBtn").on("click", function (event) {
+            //This id is coming from the card that is created.
             let idNum = $(this).attr('id');
+            console.log('New song id '+ idNum);
             let isPlaying = $(this).attr('data-playing');
             if (isPlaying === 'false') {
                 playAudio = new Audio(Arr[idNum].preview_url);
@@ -282,7 +285,6 @@ $(document).ready(function () {
         $("#savedPlayList").empty();
         $.get("/api/personal/" + user, function (data) {
             for (let i = 0; i < data.length; i++) {
-
                 let cardBody1 = $("<div>").addClass("<card-body>").attr('id', i);
                 let cardBody2 = $("<div>").addClass("<card-body>").attr('id', i);
                 let artist = $("<h5>").addClass('card-title').attr('id', i);
@@ -296,7 +298,7 @@ $(document).ready(function () {
                 cardImg.attr('src', data[i].albumImg);
                 cardBody1.append(artist.text(data[i].artistName));
                 dataList.append(songTitle.text(data[i].songName));
-                dataList.append('<button id=' + i + '><img class="playBtn" data-playing ="false" id=' + i + ' alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
+                dataList.append('<button id=' + i + '><img class="playSavedSong" data-playing ="false" id=' + i + ' alt="playButton" src="https://cdn0.iconfinder.com/data/icons/controls-essential/48/v-02-512.png"></button>');
                 dataList.attr('src', data[i].songLink);
                 cardBody1.append(artist);
                 cardBody1.append(songTitle);
@@ -320,7 +322,7 @@ $(document).ready(function () {
     //Play song when play button is clicked, and also pause it.
     function playSavedSong(Arr) {
         let playAudio;
-        $(".playBtn").on("click", function (event) {
+        $(".playSavedSong").on("click", function (event) {
             let idNum = $(this).attr('id');
             let isPlaying = $(this).attr('data-playing');
             if (isPlaying === 'false') {
