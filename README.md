@@ -19,13 +19,13 @@ Our application utilizes the deezer api to help find specific songs for the user
    - includes secure password encryption and decryption methods
    
 <h4>2. Front End</h4>
-   <h6>- Personalized Playlist:</h6>
+   - Personalized Playlist:
       - gives the user total control to customize a playlist in seconds
       - comprised of search, save, and add buttons
       - able to play and pause audio right within the app, not reliant on external windows
       - can create tags related to a song based on genre, vibes, mood etc...
       
-   <h6>- Community Playlist:</h6>
+   - Community Playlist:
       - allows users to see what everyone else likes and dislikes based on our voting feature
       - also includes play and pause audio functions
       - enables the use of *tags which can be searched for later in the future
