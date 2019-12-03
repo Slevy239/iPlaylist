@@ -1,0 +1,24 @@
+.dot {
+    border-radius: 10%;
+    display: inline-block;
+    background-color: rgb(76,175,79);
+    padding: .25rem;
+    color: white;
+  }
+
+  .userNameDisp {
+    padding: .25rem;
+      color: white;
+      background-color: black;
+  }
+
+  .songName {
+      font-style: italic;
+      font-weight: 300;
+  }
+
+.user,
+.tags,
+.vote {
+    font-weight: 300; 
+}

@@ -46,7 +46,7 @@ $(document).ready(function () {
         });
     }
 
-    // // Play the song:
+    // Play the song:
     function playSong() {
         let playAudio;
         $(".playBtn").on("click", function (event) {
