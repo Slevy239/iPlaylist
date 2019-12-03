@@ -69,8 +69,26 @@ Our application utilizes the deezer api to help find specific songs for the user
    <li>Select new or existing user:</li>
    <img src="./public/images/new_exist.png">
 
+   <br>
+
+   <li>Login with username and password (make sure to check remember me!)</li>
+   <img src="./public/images/login.png">
+
+   <br>
+
+   <li>Navigate to the personal or community page based on your preference</li>
+   <ul>
+      <li>Personal - if you'd like to create your own playlist</li>
+      <li>Commmunity - if you'd like to view other peoples songs</li>
+   </ul>
+   <img src="./public/images/homepage.png">
+
+   <br>
 
 </ol>
+
+<br>
+<p>Thank you for viewing our code, all feedback, comments, and questions are welcome!</p>
  
    
 
