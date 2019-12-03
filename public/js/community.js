@@ -6,6 +6,7 @@ $(document).ready(function () {
     }).then(function(){
             playSong();
             vote();
+            searchTag();
     });
 
     //Logout
@@ -45,7 +46,6 @@ $(document).ready(function () {
             window.location.reload();
         });
     }
-
     // Play the song:
     function playSong() {
         let playAudio;
@@ -62,6 +62,20 @@ $(document).ready(function () {
                 $(this).attr('data-playing', 'false');
                 $(this).attr('src', 'https://cdn1.iconfinder.com/data/icons/line-arrow-hand-draw/64/arrow_hand_draw_line-25-512.png');
             }
+        });
+    }
+    //Search and return songs with a specific tag:
+    function searchTag() {
+        $('#tagSearch').on('click', function(event){
+            event.preventDefault();
+            let searchTerm = $("#tagSearchInput").val().trim();
+            getTag(searchTerm);
+        });
+    }
+    //Function to get from the api/community route:
+    function getTag(tag) {
+        $.get("/api/community/" + tag, function(data){
+            console.log(data);
         });
     }
 });

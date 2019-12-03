@@ -67,13 +67,26 @@ module.exports = function (app) {
     });
   });
 
-  //Api route to grab stuff from Community
+  //Api route to grab all songs from Community
   app.get('/api/community', function (req, res) {
     db.communityPlaylist.findAll({
     }).then(function (data) {
       res.json(data);
     });
   });
+
+  //Api route to grab all songs with a specific tag from community:
+  app.get('/api/community/:tag', function (req, res) {
+    db.communityPlaylist.findAll({
+      where: {
+        tags: req.params.tag
+      }
+    }).then(function (data) {
+      res.json(data);
+    }).catch(function (err) {
+      res.status(401).json(err);
+  });
+});
 
   //Api route for sending song info to community playlist database:
   app.post("/api/community", function (req, res) {
