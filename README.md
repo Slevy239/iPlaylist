@@ -1,4 +1,4 @@
-# project-2
+# iPlaylist
 
 # Authors: Sam Levy, Phil Swartz, Jack Ryan
 # 2019
