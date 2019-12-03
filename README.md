@@ -29,12 +29,14 @@ Our application utilizes the deezer api to help find specific songs for the user
          <li>comprised of search, save, and add buttons</li>
          <li>able to play and pause audio right within the app, not reliant on external windows</li>
          <li>can create tags related to a song based on genre, vibes, mood etc...</li>
-   </ol>
+      </ol>
       
-   - Community Playlist:
-      - allows users to see what everyone else likes and dislikes based on our voting feature
-      - also includes play and pause audio functions
-      - enables the use of *tags which can be searched for later in the future
+   <li>Community Playlist:</li>
+      <ol>
+         <li>allows users to see what everyone else likes and dislikes based on our voting feature</li>
+         <li>also includes play and pause audio functions</li>
+         <li>enables the use of *tags which can be searched for later in the future</li>
+      </ol>
    </ol>
       
  </ol>  
