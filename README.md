@@ -22,7 +22,7 @@ Our application utilizes the deezer api to help find specific songs for the user
    </ol>
    
 <li><strong>Front End</strong></li>
-   <ol>
+   <ul>
    <li>Personalized Playlist:</li>
       <ol>
          <li>gives the user total control to customize a playlist in seconds</li>
@@ -37,7 +37,7 @@ Our application utilizes the deezer api to help find specific songs for the user
          <li>also includes play and pause audio functions</li>
          <li>enables the use of *tags which can be searched for later in the future</li>
       </ol>
-   </ol>
+   </ul>
       
  </ol>  
    
