@@ -10,7 +10,6 @@ Overview:
 
 iPlaylist is a fully customizable web application where users can create their own playlists and contribute to the community playlist.
 
-Our application utilizes the deezer api to help find specific songs for the user.
 
 <h1>Layout:</h1>
    
@@ -51,6 +50,10 @@ Our application utilizes the deezer api to help find specific songs for the user
       <ol>
          <li>handles all of our http requests and responses</li>
          <li>backbone of our api and html routing</li>
+      </ol>
+   <li>API</li>
+      <ol>
+         <li>utilized the deezer api to randomize song selection</li>
       </ol>
    <li>Handlebars</li>
      <ol>
