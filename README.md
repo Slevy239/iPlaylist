@@ -63,6 +63,14 @@ Our application utilizes the deezer api to help find specific songs for the user
  
  <br>
  <h1>Demo:</h1>
+
+<ol>
+
+   <li>Select new or existing user:</li>
+   <img src="./public/images/new_exist.png">
+
+
+</ol>
  
    
 
