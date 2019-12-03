@@ -209,10 +209,30 @@ img[alt*="playButton"] {
   padding: 4px;
   margin-right: 4px;
   margin-left: 4px;
-  
-
 }
 
-button#personSearch {
+#username {
+  font-size: 1.25rem;
+  font-weight: .75rem;
+}
+
+#logout {
+  font-size: 1.15rem;
+  font-weight: .75rem;
+}
+
+#logout:hover {
+  color: lightgrey;
+}
+
+
+button#personSearch,
+#tagSearch
+{
   width: 25%;
+  border: 0;
+}
+
+#tagSearchForm {
+  border: 0;
 }

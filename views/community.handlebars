@@ -1,42 +1,41 @@
- <nav class="navbar navbar-light bg-light justify-content-between">
+<nav class="navbar navbar-light bg-light justify-content-between">
     <a class="navbar-brand" id="userName"></a>
-    <a id="logout">Logout</a>
-    <a href="/home">
+    <a id='home' href="/home">
         <h1><i class="fa fa-home"></i></h1>
     </a>
+    <a id="logout">Logout</a>
 
-    <form class="form-inline">
-        <input id="userSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="personSearch">Search</button>
+    <form class="form-inline" id="tagSearchForm">
+        <input id="tagSearchInput" class="form-control mr-sm-2" type="search" placeholder="Search by tag"
+            aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="tagSearch">Search</button>
     </form>
 </nav>
 
 <div class="communityPlaylistBoxes" id="communityPlayList">
     {{#each song}}
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src={{this.albumImg}} alt="Card image cap">
-        <div class="card-body">
+        <img class="mx-auto card-img-top" src={{this.albumImg}} alt="Card image cap">
+        <div class="card-body py-1">
             <h5 class="card-title">{{this.artistName}}</h5>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{this.songName}}</li>
-            <li class="list-group-item"><button id={{this.id}}><img class="playBtn" data-playing ="false" id={{this.id}} alt="playButton" src="https://cdn1.iconfinder.com/data/icons/line-arrow-hand-draw/64/arrow_hand_draw_line-25-512.png" data-songLink= {{this.songLink}}></button></li>
+            <li class="list-group-item py-1 border-0 songName">{{this.songName}}</li>
+            <li class="list-group-item"><button id={{this.id}}><img class="playBtn" data-playing="false" id={{this.id}}
+                        alt="playButton"
+                        src="https://cdn1.iconfinder.com/data/icons/line-arrow-hand-draw/64/arrow_hand_draw_line-25-512.png"
+                        data-songLink={{this.songLink}}></button></li>
         </ul>
         <div class="card-body">
-            <ul class = "list-group list-group-flush">
-                <li class="list-group-item">Added by {{this.username}}</li>
-            </ul>
-        </div>
-
-        <div class="tags">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Tags: {{this.tags}}</li>
+                <li class="user list-group-item">Added by: <span class='userNameDisp'>{{this.username}}</span></li>
+                <li class="tags list-group-item">Tags: <span class="dot">{{this.tags}}</span></li>
+                <li class='vote list-group-item'>Votes: <span id="votesDisp" class='votesDisp'>{{this.votes}}</span></li>
+                <li class='list-group-item py-1'><button id={{this.id}} class='upvote'><i
+                            class='fa fa-thumbs-up'></i></button></li>
+                <li class='list-group-item py-1'><button id={{this.id}} class='downvote'><i
+                            class='fa fa-thumbs-down'></i></button></li>
             </ul>
-        </div>
-        <div class='vote'>
-            <p>Votes: <span>{{this.votes}}</span></p>
-            <button id={{this.id}} class= 'upvote'><i class='fa fa-thumbs-up'></i></button>
-            <button id={{this.id}} class= 'downvote'><i class='fa fa-thumbs-down'></i></button>
         </div>
     </div>
     {{/each}}
