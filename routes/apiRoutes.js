@@ -82,7 +82,10 @@ module.exports = function (app) {
         tags: req.params.tag
       }
     }).then(function (data) {
-      res.json(data);
+      let playlist = {
+        song: data
+      };
+      res.render('community', playlist);
     }).catch(function (err) {
       res.status(401).json(err);
   });

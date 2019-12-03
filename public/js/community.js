@@ -67,6 +67,7 @@ $(document).ready(function () {
     //Search and return songs with a specific tag:
     function searchTag() {
         $('#tagSearch').on('click', function(event){
+            $("#communityPlayList").empty();
             event.preventDefault();
             let searchTerm = $("#tagSearchInput").val().trim();
             getTag(searchTerm);
@@ -74,8 +75,12 @@ $(document).ready(function () {
     }
     //Function to get from the api/community route:
     function getTag(tag) {
-        $.get("/api/community/" + tag, function(data){
-            console.log(data);
-        });
+        if (tag === "") {
+            window.location.replace('/community');           
+        } else {
+            $.get("/api/community/" + tag, function(data){
+                window.location.replace('/api/community/' + tag);
+            });
+        }
     }
 });
