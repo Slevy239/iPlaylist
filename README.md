@@ -15,7 +15,7 @@ Our application utilizes the deezer api to help find specific songs for the user
 <h1>Layout:</h1>
    
 <ol>
-<li>A robust login system</li>
+<li><strong>A robust login system</strong></li>
    <ol>
    <li>handles user authentication</li>
    <li>includes secure password encryption and decryption methods</li>
